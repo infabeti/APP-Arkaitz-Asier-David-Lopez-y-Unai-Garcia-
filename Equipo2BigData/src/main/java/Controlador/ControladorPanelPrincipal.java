@@ -57,7 +57,7 @@ public class ControladorPanelPrincipal {
 	}
 
 	public void accionadoBottonDesconectarPanelPrincipal() {
-		this.controlador.navegarPanelLogin();
+		this.controlador.navegarPanelInicio();
 	}
 	
 	public PanelPrincipal makePanelPrincipal(ControladorPanelPrincipal controladorPanelPrincipal) {

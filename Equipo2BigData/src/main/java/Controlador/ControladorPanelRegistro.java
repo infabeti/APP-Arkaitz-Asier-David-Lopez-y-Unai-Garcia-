@@ -34,8 +34,8 @@ public class ControladorPanelRegistro {
 		this.vista.mostrarPanel(this.panelRegistro);
 	}
 
-	public void accionadoBottonVolverPanelLogin() {
-		this.controlador.navegarPanelLogin();
+	public void accionadoBottonVolverPanelInicio() {
+		this.controlador.navegarPanelInicio();
 	}
 
 	public void insertarRegistro(String DNI, String Nombre, String Apellido, String contrasena, String nif) {

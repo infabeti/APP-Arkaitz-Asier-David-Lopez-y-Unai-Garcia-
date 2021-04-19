@@ -1,7 +1,7 @@
 package TestControlador;
 
 import Controlador.Controlador;
-import Controlador.ControladorLogin;
+import Controlador.ControladorInicio;
 import Controlador.ControladorPanelAprovisionamiento;
 import Controlador.ControladorPanelComandas;
 import Controlador.ControladorPanelFacturas;
@@ -33,7 +33,7 @@ public class TestControlador {
 	private ControladorPanelRegistro controladorPanelRegistroMock = mock(ControladorPanelRegistro.class);
 	private ControladorPanelAprovisionamiento controladorPanelAprovisionamientoMock = mock(
 			ControladorPanelAprovisionamiento.class);
-	private ControladorLogin controladorLoginMock = mock(ControladorLogin.class);
+	private ControladorInicio controladorInicioMock = mock(ControladorInicio.class);
 	private ControladorPanelTickets controladorPanelTicketsMock = mock(ControladorPanelTickets.class);
 	private ControladorPanelFacturas controladorPanelFacturasMock = mock(ControladorPanelFacturas.class);
 	private ControladorPanelComandas controladorPanelComandasMock = mock(ControladorPanelComandas.class);
@@ -47,10 +47,10 @@ public class TestControlador {
 	private String[] arrString = new String[] { "a", "b" };
 
 	@Test
-	public void navegarPanelLogin() {
+	public void navegarPanelInicio() {
 
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -63,15 +63,15 @@ public class TestControlador {
 		doReturn(controladorPanelFacturasMock).when(spyControlador).makeControladorPanelFacturas(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 
-		spyControlador.navegarPanelLogin();
+		spyControlador.navegarPanelInicio();
 
-		verify(spyControlador).controladorLoginMostrarPanelLogin();
+		verify(spyControlador).controladorInicioMostrarPanelInicio();
 	}
 
 	@Test
 	public void navegarPanelRegistro() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -92,7 +92,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelPedidosRESTAURANTE() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -127,7 +127,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelPedidosCAFETERIA() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -162,7 +162,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelPedidosBAR() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -198,7 +198,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelTickets() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -233,7 +233,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelPrincipal() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -260,7 +260,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelAprovisionamiento() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -296,7 +296,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelFacturas() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -332,7 +332,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelComandas() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
@@ -371,7 +371,7 @@ public class TestControlador {
 	@Test
 	public void navegarPanelComandasNORESTAURANTE() {
 		spyControlador = spy(new Controlador(modeloMock, vistaMock));
-		doReturn(controladorLoginMock).when(spyControlador).makeControladorPanelLogin(any(Modelo.class),
+		doReturn(controladorInicioMock).when(spyControlador).makeControladorPanelInicio(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));
 		doReturn(controladorPanelPedidosMock).when(spyControlador).makeControladorPanelPedidos(any(Modelo.class),
 				any(Vista.class), any(Controlador.class));

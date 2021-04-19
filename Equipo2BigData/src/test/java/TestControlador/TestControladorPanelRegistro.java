@@ -66,13 +66,13 @@ public class TestControladorPanelRegistro {
 	}
 
 	@Test
-	public void testAccionadoBottonVolverPanelLogin() {
+	public void testAccionadoBottonVolverPanelInicio() {
 
 		controladorPanelRegistro = new ControladorPanelRegistro(modeloMock, vistaMock, controladorMock);
 
-		controladorPanelRegistro.accionadoBottonVolverPanelLogin();
+		controladorPanelRegistro.accionadoBottonVolverPanelInicio();
 
-		verify(controladorMock).navegarPanelLogin();
+		verify(controladorMock).navegarPanelInicio();
 
 	}
 

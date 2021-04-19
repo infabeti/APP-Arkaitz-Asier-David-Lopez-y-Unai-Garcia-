@@ -130,7 +130,7 @@ public class TestControladorPanelPrincipal {
 			
 		controladorPanelPrincipal.accionadoBottonDesconectarPanelPrincipal();
 			
-		verify(controladorMock).navegarPanelLogin();
+		verify(controladorMock).navegarPanelInicio();
 
 	}
 	

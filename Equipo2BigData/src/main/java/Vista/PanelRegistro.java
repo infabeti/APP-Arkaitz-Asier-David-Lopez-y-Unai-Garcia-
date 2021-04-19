@@ -121,7 +121,7 @@ public class PanelRegistro extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
-				controladorPanelRegistro.accionadoBottonVolverPanelLogin();
+				controladorPanelRegistro.accionadoBottonVolverPanelInicio();
 			}
 		};
 	}
@@ -144,7 +144,7 @@ public class PanelRegistro extends JPanel {
 					controladorPanelRegistro.insertarRegistro(dni, nombre, apellido, password, nif);
 
 					JOptionPane.showMessageDialog(null, "Empleado introducido correctamente");
-					controladorPanelRegistro.accionadoBottonVolverPanelLogin();
+					controladorPanelRegistro.accionadoBottonVolverPanelInicio();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, mensaje);

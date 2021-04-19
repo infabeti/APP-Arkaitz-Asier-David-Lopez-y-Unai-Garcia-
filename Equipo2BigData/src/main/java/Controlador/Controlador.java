@@ -15,12 +15,12 @@ public class Controlador {
 	private ControladorPanelTickets controladorPanelTickets;
 	private ControladorPanelRegistro controladorPanelRegistro;
 	private ControladorPanelComandas controladorPanelComandas;
-	private ControladorLogin controladorLogin;
+	private ControladorInicio controladorInicio;
 
 	public Controlador(Modelo modelo, Vista vista) {
 		this.modelo = modelo;
 		this.vista = vista;
-		this.controladorLogin = new ControladorLogin(this.modelo, this.vista, this);
+		this.controladorInicio = new ControladorInicio(this.modelo, this.vista, this);
 		this.controladorPanelPrincipal = new ControladorPanelPrincipal(this.modelo, this.vista, this);
 		this.controladorPanelPedidos = new ControladorPanelPedidos(this.modelo, this.vista, this);
 		this.controladorPanelAprovisionamiento = new ControladorPanelAprovisionamiento(this.modelo, this.vista, this);
@@ -28,16 +28,16 @@ public class Controlador {
 		this.controladorPanelTickets = new ControladorPanelTickets(this.modelo, this.vista, this);
 		this.controladorPanelRegistro = new ControladorPanelRegistro(this.modelo, this.vista, this);
 		this.controladorPanelComandas = new ControladorPanelComandas(this.modelo, this.vista, this);
-		this.navegarPanelLogin();
+		this.navegarPanelInicio();
 	}
 
-	public void navegarPanelLogin() {
-		System.out.println("Login de los usuarios");
-		controladorLoginMostrarPanelLogin();
+	public void navegarPanelInicio() {
+		System.out.println("Inicio");
+		controladorInicioMostrarPanelInicio();
 	}
 
-	public void controladorLoginMostrarPanelLogin() {
-		this.controladorLogin.mostrarPanelLogin();
+	public void controladorInicioMostrarPanelInicio() {
+		this.controladorInicio.mostrarPanelInicio();
 	}
 
 	public void navegarPanelRegistro() {
@@ -135,8 +135,8 @@ public class Controlador {
 		return new ControladorPanelPrincipal(this.modelo, this.vista, this);
 	}
 
-	public ControladorLogin makeControladorPanelLogin(Modelo modelo, Vista vista, Controlador controlador) {
-		return new ControladorLogin(this.modelo, this.vista, this);
+	public ControladorInicio makeControladorPanelInicio(Modelo modelo, Vista vista, Controlador controlador) {
+		return new ControladorInicio(this.modelo, this.vista, this);
 	}
 
 	public ControladorPanelComandas makecontroladorPanelComandas(Modelo modelo, Vista vista, Controlador controlador) {

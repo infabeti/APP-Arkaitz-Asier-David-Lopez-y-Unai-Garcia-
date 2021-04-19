@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class PanelInicio extends JPanel {
 
@@ -27,55 +29,52 @@ public class PanelInicio extends JPanel {
 	private JButton btnRegistro;
 
 	public PanelInicio(ControladorInicio controladorInicio) {
-		setBackground(SystemColor.activeCaption);
+		setBackground(new Color(51, 153, 255));
 
 		this.controlador = controladorInicio;
 
 		setLayout(null);
 
-		lblTextoPanel = new JLabel("PANEL LOGIN");
+		lblTextoPanel = new JLabel("INICIO");
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(226, 11, 412, 46);
+		lblTextoPanel.setBounds(209, 35, 412, 46);
 		add(lblTextoPanel);
-
-		JLabel lbldni = new JLabel("DNI: ");
-		lbldni.setFont(new Font("Arial", Font.PLAIN, 28));
-		lbldni.setBounds(181, 129, 141, 23);
-		add(lbldni);
 
 		textFieldNomUsuario = new JTextField();
 		textFieldNomUsuario.setFont(new Font("Arial", Font.PLAIN, 20));
-		textFieldNomUsuario.setBounds(363, 120, 234, 46);
+		textFieldNomUsuario.setBounds(34, 32, 234, 46);
 		textFieldNomUsuario.setColumns(10);
 		textFieldNomUsuario.setText("75623142C");
 		add(textFieldNomUsuario);
 
-		JLabel lblLocal = new JLabel("Contrase\u00F1a:");
-		lblLocal.setFont(new Font("Arial", Font.PLAIN, 28));
-		lblLocal.setBounds(181, 214, 169, 23);
-		add(lblLocal);
-
 		textFieldpassword = new JPasswordField();
 		textFieldpassword.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldpassword.setColumns(10);
-		textFieldpassword.setBounds(363, 205, 234, 46);
+		textFieldpassword.setBounds(34, 89, 234, 46);
 		textFieldpassword.setText("12345");
 		add(textFieldpassword);
 
 		btnAceptar = new JButton("Login");
 		btnAceptar.setFont(new Font("Arial", Font.PLAIN, 24));
-		btnAceptar.setBounds(393, 284, 136, 46);
+		btnAceptar.setBounds(34, 146, 136, 46);
 		add(btnAceptar);
 
 		btnRegistro = new JButton("Registro");
 		btnRegistro.setFont(new Font("Arial", Font.PLAIN, 20));
-		btnRegistro.setBounds(116, 499, 141, 41);
+		btnRegistro.setBounds(34, 203, 141, 41);
 		add(btnRegistro);
 		
-		JLabel lblReg = new JLabel("\u00BFAun no estas registrado?");
-		lblReg.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblReg.setBounds(73, 465, 277, 23);
-		add(lblReg);
+		JButton btnPoblacion = new JButton(" Poblaci\u00F3n de Datos");
+		btnPoblacion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnPoblacion.setBounds(143, 280, 200, 70);
+		add(btnPoblacion);
+		
+		JButton btnAnalisis = new JButton("An\u00E1lisis de Datos");
+		btnAnalisis.setEnabled(false);
+		btnAnalisis.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAnalisis.setBounds(486, 280, 200, 70);
+		add(btnAnalisis);
 
 		initializeEvents();
 
