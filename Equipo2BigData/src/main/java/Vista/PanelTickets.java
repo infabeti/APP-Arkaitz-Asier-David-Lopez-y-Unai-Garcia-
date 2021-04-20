@@ -39,7 +39,6 @@ public class PanelTickets extends JPanel {
 	private JScrollPane scrollPane_1;
 	private JFormattedTextField TextFieldCantidad;
 	private JLabel lblCantidad;
-	private JLabel lblError;
 	private JTextField textLocal;
 	private JButton btnEliminar;
 	private JLabel lblTotal;
@@ -47,44 +46,48 @@ public class PanelTickets extends JPanel {
 	private JTextField textFieldFecha;
 
 	public PanelTickets(ControladorPanelTickets controladorPanelTickets) {
-		setBackground(SystemColor.activeCaption);
+		setBackground(new Color(51, 153, 255));
 
 		this.controladorPanelTickets = controladorPanelTickets;
 
 		setLayout(null);
 
 		lblTextoPanel = new JLabel("PANEL TICKETS");
-		lblTextoPanel.setFont(new Font("Arial", Font.PLAIN, 31));
-		lblTextoPanel.setBounds(0, 0, 450, 67);
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+		lblTextoPanel.setBounds(137, 35, 556, 50);
 		add(lblTextoPanel);
 
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(714, 546, 89, 23);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnVolver.setBounds(513, 545, 117, 25);
 		add(btnVolver);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setBounds(120, 76, 114, 19);
+		textFieldNumTrans.setBounds(249, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setText(controladorPanelTickets.leerNumTransBBDD());
 		textFieldNumTrans.setEditable(false);
-		textFieldNumTrans.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
-		lblTransaccion = new JLabel("Transaccion");
-		lblTransaccion.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblTransaccion.setBounds(30, 78, 102, 15);
+		lblTransaccion = new JLabel("Transacci\u00F3n:");
+		lblTransaccion.setFont(new Font("Arial", Font.BOLD, 16));
+		lblTransaccion.setBounds(137, 139, 102, 20);
 		add(lblTransaccion);
 
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.setBounds(568, 545, 117, 25);
+		btnFinalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnFinalizar.setBounds(198, 545, 117, 25);
 		add(btnFinalizar);
 
 		btnAnadir = new JButton("Seleccionar\r\n");
-		btnAnadir.setBounds(411, 459, 117, 25);
+		btnAnadir.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAnadir.setBounds(543, 459, 150, 25);
 		add(btnAnadir);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 244, 296, 153);
+		scrollPane.setBounds(137, 244, 300, 160);
 		add(scrollPane);
 
 		listaAnnadidos = new JList(listaPAnnadidos);
@@ -92,16 +95,16 @@ public class PanelTickets extends JPanel {
 		scrollPane.setViewportView(listaAnnadidos);
 
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(380, 240, 150, 160);
+		scrollPane_1.setBounds(543, 244, 150, 160);
 		add(scrollPane_1);
 
 		listaProductos = new JList(controladorPanelTickets.cogerListaProductos());
 		listaProductos.setBackground(Color.WHITE);
 		scrollPane_1.setViewportView(listaProductos);
 
-		lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblCantidad.setBounds(350, 411, 92, 22);
+		lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setFont(new Font("Arial", Font.BOLD, 16));
+		lblCantidad.setBounds(543, 415, 92, 20);
 		add(lblCantidad);
 
 		NumberFormat format = NumberFormat.getInstance();
@@ -114,61 +117,64 @@ public class PanelTickets extends JPanel {
 		formatter.setCommitsOnValidEdit(true);
 
 		TextFieldCantidad = new JFormattedTextField(formatter);
+		TextFieldCantidad.setHorizontalAlignment(SwingConstants.TRAILING);
 		TextFieldCantidad.setFont(new Font("Arial", Font.PLAIN, 12));
-		TextFieldCantidad.setBounds(425, 411, 40, 27);
+		TextFieldCantidad.setBounds(653, 415, 40, 20);
 		add(TextFieldCantidad);
 		TextFieldCantidad.setText("1");
 
-		JLabel lblProdDisp = new JLabel("Productos");
-		lblProdDisp.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblProdDisp.setBounds(411, 207, 92, 22);
+		JLabel lblProdDisp = new JLabel("Productos:");
+		lblProdDisp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProdDisp.setFont(new Font("Arial", Font.BOLD, 16));
+		lblProdDisp.setBounds(543, 210, 150, 22);
 		add(lblProdDisp);
 
-		JLabel lblProductosSeleccionados = new JLabel("Productos Seleccionados");
-		lblProductosSeleccionados.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblProductosSeleccionados.setBounds(71, 209, 244, 22);
+		JLabel lblProductosSeleccionados = new JLabel("Productos Seleccionados:");
+		lblProductosSeleccionados.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProductosSeleccionados.setFont(new Font("Arial", Font.BOLD, 16));
+		lblProductosSeleccionados.setBounds(137, 210, 300, 22);
 		add(lblProductosSeleccionados);
 
-		lblError = new JLabel("");
-		lblError.setBounds(30, 166, 332, 31);
-		add(lblError);
-
 		textLocal = new JTextField();
-		textLocal.setBounds(120, 126, 114, 19);
+		textLocal.setBounds(249, 177, 114, 19);
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelTickets.conseguirLocal());
 		textLocal.setEditable(false);
-		textLocal.setHorizontalAlignment(SwingConstants.CENTER);
+		textLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldFecha = new JTextField();
+		textFieldFecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldFecha.setColumns(10);
-		textFieldFecha.setBounds(448, 71, 106, 30);
+		textFieldFecha.setBounds(587, 139, 106, 20);
 		add(textFieldFecha);
 		textFieldFecha.setText(this.controladorPanelTickets.devolverFechaHora());
 		textFieldFecha.setEditable(false);
 
-		JLabel lblLocal = new JLabel("Local");
-		lblLocal.setBounds(30, 128, 70, 15);
-		lblLocal.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblLocal = new JLabel("Local:");
+		lblLocal.setBounds(137, 179, 70, 20);
+		lblLocal.setFont(new Font("Arial", Font.BOLD, 16));
 		add(lblLocal);
 
-		JLabel lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(380, 78, 70, 15);
-		lblFecha.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblFecha.setBounds(510, 139, 70, 20);
+		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
 		add(lblFecha);
 
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(105, 408, 117, 25);
+		btnEliminar.setBounds(137, 415, 117, 25);
 		add(btnEliminar);
 
-		lblTotal = new JLabel("Total");
-		lblTotal.setBounds(52, 464, 70, 15);
+		lblTotal = new JLabel("Total:");
+		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+		lblTotal.setBounds(137, 461, 50, 20);
 		add(lblTotal);
 
 		textTotal = new JTextField();
+		textTotal.setHorizontalAlignment(SwingConstants.TRAILING);
 		textTotal.setEditable(false);
-		textTotal.setBounds(92, 461, 114, 19);
+		textTotal.setBounds(187, 461, 114, 20);
 		add(textTotal);
 		textTotal.setColumns(10);
 		textTotal.setText("0");
@@ -235,7 +241,6 @@ public class PanelTickets extends JPanel {
 					}
 				} catch (Exception e) {
 					System.out.println("No se ha seleccionado un producto");
-					lblError.setText("No se ha escogido un producto");
 				}
 				if (existeProd) {
 					try {
@@ -250,7 +255,6 @@ public class PanelTickets extends JPanel {
 										cantidad);
 								listaPAnnadidos.addElement(productosAnadir[0]);
 								textTotal.setText(productosAnadir[1]);
-								lblError.setText("");
 							} else {
 								int indice = controladorPanelTickets.existeProducto(producto);
 								String yaAnnadido = listaPAnnadidos.get(indice);
@@ -270,7 +274,6 @@ public class PanelTickets extends JPanel {
 					} catch (Exception e) {
 						System.out.println("El campo cantidad no contiene un entero");
 						e.printStackTrace();
-						lblError.setText("No se ha introducido una cantidad");
 					}
 				}
 			}
@@ -293,10 +296,8 @@ public class PanelTickets extends JPanel {
 					String total = controladorPanelTickets.accionadoBotonEliminar(pos, listaPAnnadidos.get(pos));
 					listaPAnnadidos.remove(pos);
 					textTotal.setText(total);
-					lblError.setText("");
 				} catch (Exception e) {
 					System.out.println("No se pudo borrar el producto seleccionado/No se seleccionado ningun producto");
-					lblError.setText("No se pudo eliminar");
 				}
 			}
 		};
