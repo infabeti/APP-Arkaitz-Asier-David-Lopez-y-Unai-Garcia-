@@ -11,15 +11,15 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import Controlador.Controlador;
-import Controlador.ControladorLogin;
+import Controlador.ControladorInicio;
 import Modelo.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
-import Vista.PanelLogin;
+import Vista.PanelInicio;
 import Vista.Vista;
 
-public class TestControladorPanelLogin {
+public class TestControladorPanelInicio {
 
 	private Modelo modeloMock = mock(Modelo.class);
 	private Vista vistaMock = mock(Vista.class);
@@ -28,22 +28,22 @@ public class TestControladorPanelLogin {
 	private Usuario userMock = mock(Usuario.class);
 	private ListaProductos listaProductosMock = mock(ListaProductos.class);
 
-	private ControladorLogin controladorLogin = new ControladorLogin(modeloMock, vistaMock, controladorMock);
+	private ControladorInicio controladorInicio = new ControladorInicio(modeloMock, vistaMock, controladorMock);
 
-	// Test mostrarPanelLogin
-	private PanelLogin panelLoginMock = mock(PanelLogin.class);
-	private ControladorLogin spyControladorLogin = spy(new ControladorLogin(modeloMock, vistaMock, controladorMock));
+	// Test mostrarPanelInicio
+	private PanelInicio panelInicioMock = mock(PanelInicio.class);
+	private ControladorInicio spyControladorInicio = spy(new ControladorInicio(modeloMock, vistaMock, controladorMock));
 	
 	
 	@Test
-	public void testConstructorControladorLogin() {
-		assertEquals(controladorLogin.getControlador(), controladorMock);
-		assertEquals(controladorLogin.getVista(), vistaMock);
-		assertEquals(controladorLogin.getModelo(), modeloMock);
+	public void testConstructorControladorInicio() {
+		assertEquals(controladorInicio.getControlador(), controladorMock);
+		assertEquals(controladorInicio.getVista(), vistaMock);
+		assertEquals(controladorInicio.getModelo(), modeloMock);
 	}
 
 	@Test
-	public void testMostrarPanelLogin() {
+	public void testMostrarPanelInicio() {
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
 
@@ -53,29 +53,29 @@ public class TestControladorPanelLogin {
 
 		when(userMock.getNifLocal()).thenReturn("pepe");
 
-		doReturn(panelLoginMock).when(spyControladorLogin).makePanelLogin(any(ControladorLogin.class));
+		doReturn(panelInicioMock).when(spyControladorInicio).makePanelInicio(any(ControladorInicio.class));
 
-		spyControladorLogin.mostrarPanelLogin();
-		verify(vistaMock).mostrarPanel(panelLoginMock);
+		spyControladorInicio.mostrarPanelInicio();
+		verify(vistaMock).mostrarPanel(panelInicioMock);
 
 	}
 	
 	@Test
 	public void TestAccionadoBotonAceptarPanelPrincipal() {
-		controladorLogin = new ControladorLogin(modeloMock,
+		controladorInicio = new ControladorInicio(modeloMock,
 				vistaMock, controladorMock);
 		
-		controladorLogin.accionadoBottonAceptarPanelPrincipal();
+		controladorInicio.accionadoBottonAceptarPanelPrincipal();
 		
 		verify(controladorMock).navegarPanelPrincipal();
 	}
 	
 	@Test
-	public void TestaccionadoBottonRegistroPanelLogin() {
-		controladorLogin = new ControladorLogin(modeloMock,
+	public void TestaccionadoBottonRegistroPanelInicio() {
+		controladorInicio = new ControladorInicio(modeloMock,
 				vistaMock, controladorMock);
 		
-		controladorLogin.accionadoBottonRegistroPanelLogin();
+		controladorInicio.accionadoBottonRegistroPanelInicio();
 		
 		verify(controladorMock).navegarPanelRegistro();
 	}
