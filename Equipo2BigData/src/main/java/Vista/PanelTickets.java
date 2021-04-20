@@ -51,7 +51,7 @@ public class PanelTickets extends JPanel {
 
 		setLayout(null);
 
-		lblTextoPanel = new JLabel("PANEL TICKETS");
+		lblTextoPanel = new JLabel("PANEL DE TICKETS");
 		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
 		lblTextoPanel.setBounds(137, 35, 556, 50);
@@ -103,7 +103,7 @@ public class PanelTickets extends JPanel {
 
 		lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCantidad.setBounds(543, 415, 92, 20);
+		lblCantidad.setBounds(543, 417, 92, 20);
 		add(lblCantidad);
 
 		NumberFormat format = NumberFormat.getInstance();
@@ -118,7 +118,7 @@ public class PanelTickets extends JPanel {
 		TextFieldCantidad = new JFormattedTextField(formatter);
 		TextFieldCantidad.setHorizontalAlignment(SwingConstants.TRAILING);
 		TextFieldCantidad.setFont(new Font("Arial", Font.PLAIN, 12));
-		TextFieldCantidad.setBounds(653, 415, 40, 20);
+		TextFieldCantidad.setBounds(653, 417, 40, 20);
 		add(TextFieldCantidad);
 		TextFieldCantidad.setText("1");
 
