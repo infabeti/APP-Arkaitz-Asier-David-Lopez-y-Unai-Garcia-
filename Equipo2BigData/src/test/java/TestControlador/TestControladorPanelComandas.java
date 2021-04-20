@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import Controlador.Controlador;
 import Controlador.ControladorPanelComandas;
-import Modelo.Conexion;
+import principal.Conexion;
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;

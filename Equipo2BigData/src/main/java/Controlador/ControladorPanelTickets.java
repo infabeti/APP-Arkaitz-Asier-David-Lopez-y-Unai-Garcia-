@@ -4,6 +4,9 @@ import javax.swing.DefaultListModel;
 import Modelo.Modelo;
 import Vista.PanelTickets;
 import Vista.Vista;
+import principal.Consultas;
+import principal.Inserciones;
+import principal.InsercionesActividades;
 
 public class ControladorPanelTickets {
 
@@ -12,11 +15,16 @@ public class ControladorPanelTickets {
 	private Controlador controlador;
 	private PanelTickets panelTickets;
 	private double total;
+	private InsercionesActividades insercionesActividades;
+	private Inserciones inserciones;
+	private Consultas consultas;
 
 	public ControladorPanelTickets(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
+
+		
 	}
 
 	public Modelo getModelo() {
@@ -37,17 +45,18 @@ public class ControladorPanelTickets {
 	}
 
 	public String leerNumTransBBDD() {
-		return String.valueOf(this.modelo.getConsultas().leerNumTransBBDD());
+		return String.valueOf(this.consultas.leerNumTransBBDD());
 	}
 	
 	public int conseguirStock(String nif, String producto) {
-		return this.modelo.getConsultas().obtenerStock(nif, producto);
+		return this.consultas.obtenerStock(nif, producto);
 	}
 	
 
 	public void insertarTicket(int transaccion, String fecha, double totalOperacion, String nif,
 			DefaultListModel<String> lista) {
-		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "TICKET", nif);
+		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "TICKET", nif);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));
@@ -56,9 +65,10 @@ public class ControladorPanelTickets {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
-		this.modelo.getInserciones().insertarProductoActividad(transaccion,
-				this.modelo.getConsultas().obtenerCodigoAlimentoProducto(producto), cantidad,
-				cogerPrecioString(producto));
+		this.inserciones = new Inserciones(modelo.getConexion());
+		inserciones.insertarProductoActividad(transaccion,
+				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad,
+				cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
 	}
 
 	public String conseguirLocal() {

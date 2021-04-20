@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import Controlador.Controlador;
 import Controlador.ControladorLogin;
-import Modelo.Conexion;
+import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;

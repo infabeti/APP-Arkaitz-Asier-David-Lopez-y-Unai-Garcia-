@@ -8,9 +8,9 @@ import Controlador.ControladorPanelFacturas;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelRegistro;
 import Controlador.ControladorPanelTickets;
-import Modelo.Conexion;
-import Modelo.Consultas;
-import Modelo.ConsultasListas;
+import principal.Conexion;
+import principal.Consultas;
+import principal.ConsultasListas;
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
@@ -39,9 +39,9 @@ public class TestControlador {
 	private ControladorPanelComandas controladorPanelComandasMock = mock(ControladorPanelComandas.class);
 	private Controlador spyControlador;
 	private Usuario userMock = mock(Usuario.class);
+	private Conexion conexionMock = mock(Conexion.class);
 	private Consultas consultasMock = mock(Consultas.class);
 	private ConsultasListas consultasListasMock = mock(ConsultasListas.class);
-	private Conexion conexionMock = mock(Conexion.class);
 	private ListaPlatos listaPlatosMock = mock(ListaPlatos.class);
 	private ListaProductos listaProductosMock = mock(ListaProductos.class);
 	private String[] arrString = new String[] { "a", "b" };
@@ -111,8 +111,6 @@ public class TestControlador {
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
 
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
-
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
@@ -145,8 +143,6 @@ public class TestControlador {
 		when(userMock.getTipoLocal()).thenReturn("cafeteria");
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
-
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
 
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 
@@ -183,8 +179,6 @@ public class TestControlador {
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
 
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
-
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 
@@ -214,8 +208,6 @@ public class TestControlador {
 				any(Vista.class), any(Controlador.class));
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
-
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
 
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 		// Objeto tipo listaproductos
@@ -276,11 +268,7 @@ public class TestControlador {
 				any(Vista.class), any(Controlador.class));
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
-
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
 		
-		when(modeloMock.getConsultasListas()).thenReturn(consultasListasMock);
-
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 		when(consultasListasMock.cogerProductosAprovisionamiento()).thenReturn(listaProductosMock);
 
@@ -316,8 +304,6 @@ public class TestControlador {
 		// Objeto tipo listaproductos
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
-
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 
 		when(modeloMock.getUser()).thenReturn(userMock);
@@ -348,9 +334,7 @@ public class TestControlador {
 				any(Vista.class), any(Controlador.class));
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
-
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
-
+		
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 		// Objeto tipo listaproductos
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
@@ -387,8 +371,6 @@ public class TestControlador {
 				any(Vista.class), any(Controlador.class));
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
-
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
 
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
 

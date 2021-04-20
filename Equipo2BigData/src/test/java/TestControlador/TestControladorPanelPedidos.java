@@ -13,7 +13,7 @@ import Controlador.Controlador;
 import Controlador.ControladorPanelPedidos;
 
 
-import Modelo.Conexion;
+import principal.Conexion;
 
 import Modelo.ListaProductos;
 import Modelo.Modelo;

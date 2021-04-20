@@ -6,6 +6,8 @@ import Modelo.Usuario;
 import Vista.PanelLogin;
 
 import Vista.Vista;
+import principal.Consultas;
+import principal.ConsultasListas;
 
 public class ControladorLogin {
 
@@ -13,11 +15,15 @@ public class ControladorLogin {
 	private Vista vista;
 	private Controlador controlador;
 	private PanelLogin panelLogin;
+	private Consultas consultas;
+	private ConsultasListas consultasListas;
 
 	public ControladorLogin(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
+		this.consultas = new Consultas(modelo.getConexion());
+		this.consultasListas = new ConsultasListas(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
@@ -47,7 +53,7 @@ public class ControladorLogin {
 
 	public boolean login(String user, String password) {
 
-		Usuario res = this.modelo.getConsultas().login(user, password);
+		Usuario res = modelo.conversor.listaStringAUser(this.consultas.login(user, password));
 
 		this.modelo.setUser(res);
 		if (res.getNombre().equals("")) {
@@ -55,7 +61,7 @@ public class ControladorLogin {
 		} else {
 			this.modelo.actualizarListaProductosLocal();
 			if (this.modelo.getUser().getTipoLocal().equals("RESTAURANTE")) {
-				this.modelo.setListaPlatos(this.modelo.getConsultasListas().cogerListaPlatos(this.modelo.getUser().getNifLocal()));
+				this.modelo.setListaPlatos(modelo.conversor.listaStringAPlatos(this.consultasListas.cogerListaPlatos(this.modelo.getUser().getNifLocal())));
 			}
 			return true;
 		}

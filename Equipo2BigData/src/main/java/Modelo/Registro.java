@@ -1,11 +1,15 @@
 package Modelo;
 
+import principal.ConsultasComprobaciones;
+
 public class Registro {
 	
 	private Modelo modelo;
+	private ConsultasComprobaciones consultasComprobaciones;
 	
 	public Registro(Modelo modelo) {
 		this.modelo = modelo;
+		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
@@ -13,11 +17,11 @@ public class Registro {
 	}
 
 	public boolean comprobarBBDDnif(String nif) {
-		return this.modelo.getConsultasComprobaciones().comprobarSiExisteNIF(nif);
+		return consultasComprobaciones.comprobarSiExisteNIF(nif);
 	}
 
 	public boolean comprobarBBDDdni(String dni) {
-		return this.modelo.getConsultasComprobaciones().comprobarSiExisteDNI(dni);
+		return consultasComprobaciones.comprobarSiExisteDNI(dni);
 	}
 
 	public boolean comprobarNif(String nif) {

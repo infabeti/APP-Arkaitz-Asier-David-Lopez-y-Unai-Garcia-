@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 import Controlador.Controlador;
 import Controlador.ControladorPanelAprovisionamiento;
-import Modelo.Conexion;
+import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;

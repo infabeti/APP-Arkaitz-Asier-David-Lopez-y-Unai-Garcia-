@@ -6,7 +6,9 @@ import java.util.regex.Pattern;
 
 public class Validaciones {
 	
-	public Validaciones() {}
+	private Modelo modelo;
+	
+	public Validaciones(Modelo modelo) {this.modelo = modelo;}
 	
 	public boolean comprobarNif(String nif) {
 		boolean correcto = false;
@@ -70,6 +72,18 @@ public class Validaciones {
 	public String devolverFechaFormateada(String input) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		String dateInString = input;
+		try {
+			java.util.Date date1 = formatter.parse(dateInString);
+			return (new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Error";
+	}
+	
+	public String fechaFormateada() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		String dateInString = modelo.getFechaHoraSys();
 		try {
 			java.util.Date date1 = formatter.parse(dateInString);
 			return (new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date1));

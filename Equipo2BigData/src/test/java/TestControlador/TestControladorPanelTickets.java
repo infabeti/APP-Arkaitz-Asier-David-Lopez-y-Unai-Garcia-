@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import Controlador.Controlador;
 import Controlador.ControladorPanelTickets;
-import Modelo.Conexion;
+import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;

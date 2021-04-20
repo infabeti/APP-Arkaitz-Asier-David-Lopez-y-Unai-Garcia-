@@ -3,6 +3,10 @@ import javax.swing.DefaultListModel;
 import Modelo.Modelo;
 import Vista.Vista;
 import Vista.PanelComandas;
+import principal.Inserciones;
+import principal.InsercionesActividades;
+import principal.Consultas;
+
 public class ControladorPanelComandas {
 	
 	private Modelo modelo;
@@ -10,6 +14,10 @@ public class ControladorPanelComandas {
 	private Controlador controlador;
 	private PanelComandas panelComandas;
 	private double total;
+	private InsercionesActividades insercionesActividades;
+	private Inserciones inserciones;
+	private Consultas consultas;
+	
 	public Modelo getModelo() {return this.modelo;}
 	public Vista getVista() {return this.vista;}
 	public Controlador getControlador() {return this.controlador;}
@@ -17,7 +25,10 @@ public class ControladorPanelComandas {
 	public ControladorPanelComandas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
-		this.controlador = controlador; }
+		this.controlador = controlador;
+		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		this.inserciones = new Inserciones(modelo.getConexion());
+		this.consultas = new Consultas(modelo.getConexion());}
 	
 	public void mostrarPanelComandas() {
 		this.panelComandas = makePanelComandas(this);
@@ -36,7 +47,7 @@ public class ControladorPanelComandas {
 		return modelo.getListaProductos().getListaProductosString(); }
 	
 	public int conseguirStockProductos(String nif, String producto) {
-		return this.modelo.getConsultas().obtenerStock(nif, producto); }
+		return this.consultas.obtenerStock(nif, producto); }
 	
 	public String[] cogerListaPlatos() {
 		return modelo.getListaPlatos().getListaPlatosString(); }
@@ -74,21 +85,21 @@ public class ControladorPanelComandas {
 		return String.valueOf(total); }
 	
 	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal) {
-		this.modelo.getInserciones().insertarProductoActividad(transaccion, this.modelo.getConsultas().obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal); }
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
-		this.modelo.getInserciones().insertarPlatoActividad(transaccion, this.modelo.getConsultas().obtenerCodigoPlato(nombrePlato), cantidad); }
+		inserciones.insertarPlatoActividad(transaccion, this.consultas.obtenerCodigoPlato(nombrePlato), cantidad); }
 	
 	public String[] conseguirDatosPanel() {
 		String[] devolver = new String[3];
 		devolver[0] = modelo.getUser().getNifLocal();
 		devolver[1] = modelo.getFechaHoraSys();
-		devolver[2] = String.valueOf(this.modelo.getConsultas().leerNumTransBBDD());
+		devolver[2] = String.valueOf(this.consultas.leerNumTransBBDD());
 		return devolver; }
 	
 	public void insertarComanda(int transaccion, String fecha, double totalOperacion, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
-		this.modelo.insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha), totalOperacion,"COMANDA", nif);
-		this.modelo.insercionesActividades.insertarComanda(transaccion);
+		insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha), totalOperacion,"COMANDA", nif);
+		insercionesActividades.insertarComanda(transaccion);
 		for (int i = 0; i < listaProductos.getSize(); i++) {
 			String textoSpliteado[] = listaProductos.get(i).split(" ");
 			String producto = this.modelo.getListaTemporal().getListaProductosString()[i];

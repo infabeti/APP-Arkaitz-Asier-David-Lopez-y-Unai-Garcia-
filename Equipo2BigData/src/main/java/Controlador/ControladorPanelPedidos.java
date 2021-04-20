@@ -4,6 +4,9 @@ import Modelo.Modelo;
 import javax.swing.DefaultListModel;
 import Vista.PanelPedidos;
 import Vista.Vista;
+import principal.Consultas;
+import principal.Inserciones;
+import principal.InsercionesActividades;
 
 public class ControladorPanelPedidos {
 
@@ -12,11 +15,17 @@ public class ControladorPanelPedidos {
 	private Controlador controlador;
 	private PanelPedidos panelPedidos;
 	private double total;
+	private Inserciones inserciones;
+	private InsercionesActividades insercionesActividades;
+	private Consultas consultas;
 
 	public ControladorPanelPedidos(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
+		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		this.inserciones = new Inserciones(modelo.getConexion());
+		this.consultas = new Consultas(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
@@ -32,11 +41,11 @@ public class ControladorPanelPedidos {
 	}
 
 	public String leerNumTransBBDD() {
-		return String.valueOf(this.modelo.getConsultas().leerNumTransBBDD());
+		return String.valueOf(this.consultas.leerNumTransBBDD());
 	}
 
 	public int conseguirStock(String nif, String producto) {
-		return this.modelo.getConsultas().obtenerStock(nif, producto);
+		return this.consultas.obtenerStock(nif, producto);
 	}
 	
 	public String conseguirLocal() {
@@ -98,12 +107,12 @@ public class ControladorPanelPedidos {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
-		this.modelo.getInserciones().insertarProductoActividad(transaccion, this.modelo.getConsultas().obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto));
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, double totalOperacion, String nif, String domicilio, DefaultListModel<String> lista) {
-		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "PEDIDO", nif);
-		this.modelo.insercionesActividades.insertarPedido(transaccion, domicilio);
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "PEDIDO", nif);
+		insercionesActividades.insertarPedido(transaccion, domicilio);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));

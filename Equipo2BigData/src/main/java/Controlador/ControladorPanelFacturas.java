@@ -4,6 +4,10 @@ import Modelo.Modelo;
 import javax.swing.DefaultListModel;
 import Vista.PanelFacturas;
 import Vista.Vista;
+import principal.Inserciones;
+import principal.InsercionesActividades;
+import principal.Consultas;
+import principal.ConsultasComprobaciones;
 
 public class ControladorPanelFacturas {
 
@@ -12,11 +16,19 @@ public class ControladorPanelFacturas {
 	private Controlador controlador;
 	private PanelFacturas panelFacturas;
 	private double total;
+	private InsercionesActividades insercionesActividades;
+	private Inserciones inserciones;
+	private Consultas consultas;
+	private ConsultasComprobaciones consultasComprobaciones;
 
 	public ControladorPanelFacturas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
+		this.inserciones = new Inserciones(modelo.getConexion());
+		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		this.consultas = new Consultas(modelo.getConexion());
+		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
@@ -36,7 +48,7 @@ public class ControladorPanelFacturas {
 	}
 	
 	public int conseguirStock(String nif, String producto) {
-		return this.modelo.getConsultas().obtenerStock(nif, producto);
+		return this.consultas.obtenerStock(nif, producto);
 	}
 
 	public String conseguirLocal() {
@@ -44,7 +56,7 @@ public class ControladorPanelFacturas {
 	}
 
 	public String leerNumTransBBDD() {
-		return String.valueOf(this.modelo.getConsultas().leerNumTransBBDD());
+		return String.valueOf(this.consultas.leerNumTransBBDD());
 	}
 
 	public void mostrarPanelFacturas() {
@@ -103,8 +115,8 @@ public class ControladorPanelFacturas {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
-		this.modelo.getInserciones().insertarProductoActividad(transaccion,
-				this.modelo.getConsultas().obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto));
+		inserciones.insertarProductoActividad(transaccion,
+				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
 	}
 
 	public boolean comprobarCampos(double total, String nif, String nombre, String apellido) {
@@ -113,14 +125,14 @@ public class ControladorPanelFacturas {
 
 	public void insertarFactura(int transaccion, String fecha, double totalOperacion, String nifLocal, String nombre,
 			String apellido, DefaultListModel<String> lista, String nifComprador) {
-		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "FACTURA",
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "FACTURA",
 				nifLocal);
-		if (this.modelo.getConsultasComprobaciones().comprobarSiExisteComprador(nifComprador)) {
+		if (this.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {
 			System.out.println("El comprador ya existe, no se hace la insert en la tabla comprador");
 		} else {
-			this.modelo.getInserciones().insertarComprador(nifComprador, nombre, apellido);
+			inserciones.insertarComprador(nifComprador, nombre, apellido);
 		}
-		this.modelo.insercionesActividades.insertarFactura(transaccion, nifComprador);
+		insercionesActividades.insertarFactura(transaccion, nifComprador);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));

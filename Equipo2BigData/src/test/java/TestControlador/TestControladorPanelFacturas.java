@@ -1,7 +1,7 @@
 package TestControlador;
 
 import Controlador.*;
-import Modelo.Conexion;
+import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;

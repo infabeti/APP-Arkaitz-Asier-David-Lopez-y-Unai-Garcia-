@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import principal.ConsultasListas;
 
 public class Modelo {
 
@@ -12,57 +13,31 @@ public class Modelo {
 	private Usuario user;
 	public FuncionesProductos funProd;
 	public FuncionesPlatos funPlat;
-	private Inserciones inserciones;
-	private Consultas consultas;
-	private ConsultasListas consultasListas;
 	private Registro registro;
-	public InsercionesActividades insercionesActividades;
 	public Validaciones validaciones;
-	private Conexion conexion = new Conexion();
+	private principal.Conexion conexion = new principal.Conexion("33060");
 	private ListaProductos listaTemporal = new ListaProductos();
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
 	public java.sql.Connection conexionConn = conexion.getConn();
+	public Conversor conversor = new Conversor();
 
 	public Registro getRegistro() {
 		return registro;
-	}
-
-	private ConsultasComprobaciones consultasComprobaciones;
-
-	public ConsultasComprobaciones getConsultasComprobaciones() {
-		return consultasComprobaciones;
-	}
-
-	public Consultas getConsultas() {
-		return consultas;
-	}
-
-	public Inserciones getInserciones() {
-		return inserciones;
 	}
 
 	public Modelo() {
 		user = new Usuario("", "", "", "");
 		funProd = new FuncionesProductos(this);
 		funPlat = new FuncionesPlatos(this);
-		inserciones = new Inserciones(this);
-		consultasComprobaciones = new ConsultasComprobaciones(this);
-		consultas = new Consultas(this);
-		consultasListas = new ConsultasListas(this);
 		registro = new Registro(this);
-		insercionesActividades = new InsercionesActividades(this);
-		validaciones = new Validaciones();
+		validaciones = new Validaciones(this);
 	}
 
-	public ConsultasListas getConsultasListas() {
-		return consultasListas;
-	}
-
-	public void setConexion(Conexion conexion) {
+	public void setConexion(principal.Conexion conexion) {
 		this.conexion = conexion;
 	}
 
-	public Conexion getConexion() {
+	public principal.Conexion getConexion() {
 		return this.conexion;
 	}
 
@@ -111,7 +86,8 @@ public class Modelo {
 	}
 
 	public void actualizarListaProductosLocal() {
-		this.listaProductos = consultasListas.cogerProductosLocal(user.getNifLocal());
+		ConsultasListas consultasListas = new ConsultasListas(this.conexion);
+		this.listaProductos = conversor.listaStringAProductos(consultasListas.cogerProductosLocal(user.getNifLocal()));
 	}
 
 	public Usuario getUser() {
