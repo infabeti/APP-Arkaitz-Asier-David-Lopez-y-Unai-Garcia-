@@ -1,7 +1,6 @@
 package Vista;
 
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -64,16 +63,16 @@ public class PanelTickets extends JPanel {
 		add(btnVolver);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setBounds(249, 139, 114, 20);
+		textFieldNumTrans.setBounds(297, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setText(controladorPanelTickets.leerNumTransBBDD());
 		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
-		lblTransaccion = new JLabel("Transacci\u00F3n:");
+		lblTransaccion = new JLabel("N\u00BA Transacci\u00F3n:");
 		lblTransaccion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTransaccion.setBounds(137, 139, 102, 20);
+		lblTransaccion.setBounds(137, 139, 150, 20);
 		add(lblTransaccion);
 
 		btnFinalizar = new JButton("Finalizar");
@@ -136,7 +135,7 @@ public class PanelTickets extends JPanel {
 		add(lblProductosSeleccionados);
 
 		textLocal = new JTextField();
-		textLocal.setBounds(249, 177, 114, 19);
+		textLocal.setBounds(297, 180, 114, 19);
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelTickets.conseguirLocal());
@@ -156,13 +155,14 @@ public class PanelTickets extends JPanel {
 		lblLocal.setFont(new Font("Arial", Font.BOLD, 16));
 		add(lblLocal);
 
-		JLabel lblFecha = new JLabel("Fecha:");
+		JLabel lblFecha = new JLabel("Fecha y hora: ");
 		lblFecha.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblFecha.setBounds(510, 139, 70, 20);
+		lblFecha.setBounds(457, 139, 123, 20);
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
 		add(lblFecha);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnEliminar.setBounds(137, 415, 117, 25);
 		add(btnEliminar);
 
