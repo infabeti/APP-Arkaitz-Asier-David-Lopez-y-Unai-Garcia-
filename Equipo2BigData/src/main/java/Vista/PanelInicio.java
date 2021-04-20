@@ -35,7 +35,7 @@ public class PanelInicio extends JPanel {
 		lblTextoPanel = new JLabel("INICIO");
 		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(209, 35, 412, 46);
+		lblTextoPanel.setBounds(137, 35, 556, 50);
 		add(lblTextoPanel);
 		
 		btnPoblacion = new JButton(" Poblaci\u00F3n de Datos");
