@@ -6,12 +6,9 @@ import javax.swing.JPanel;
 import Controlador.ControladorPanelPrincipal;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
@@ -166,7 +163,6 @@ public class PanelPrincipal extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectar");
 				controladorPanelPrincipal.accionadoBottonDesconectarPanelPrincipal();
-				JOptionPane.showMessageDialog(null, "Desconectado correctamente");				
 			}
 		};
 }
