@@ -9,7 +9,7 @@ import principal.InsercionesActividades;
 import principal.Consultas;
 import principal.ConsultasComprobaciones;
 
-public class ControladorPanelFacturas {
+public class ControladorPanelFacturas implements ControladorInterfaz {
 
 	private Modelo modelo;
 	private Vista vista;
@@ -30,15 +30,15 @@ public class ControladorPanelFacturas {
 		this.consultas = new Consultas(modelo.getConexion());
 		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
-
+	@Override
 	public Modelo getModelo() {
 		return this.modelo;
 	}
-
+	@Override
 	public Vista getVista() {
 		return this.vista;
 	}
-
+	@Override
 	public Controlador getControlador() {
 		return this.controlador;
 	}
@@ -67,7 +67,7 @@ public class ControladorPanelFacturas {
 	public String[] cogerListaProductos() {
 		return this.modelo.getListaProductos().getListaProductosString();
 	}
-
+	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 		this.modelo.getListaTemporal().limpiarLista();

@@ -8,7 +8,7 @@ import principal.Consultas;
 import principal.Inserciones;
 import principal.InsercionesActividades;
 
-public class ControladorPanelTickets {
+public class ControladorPanelTickets implements ControladorInterfaz{
 
 	private Modelo modelo;
 	private Vista vista;
@@ -24,15 +24,15 @@ public class ControladorPanelTickets {
 		this.vista = vista;
 		this.controlador = controlador;
 	}
-
+	@Override
 	public Modelo getModelo() {
 		return modelo;
 	}
-
+	@Override
 	public Vista getVista() {
 		return vista;
 	}
-
+	@Override
 	public Controlador getControlador() {
 		return controlador;
 	}
@@ -79,7 +79,7 @@ public class ControladorPanelTickets {
 	public String devolverFechaHora() {
 		return modelo.getFechaHoraSys();
 	}
-
+	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 		modelo.getListaTemporal().limpiarLista();

@@ -6,7 +6,7 @@ import Vista.PanelInicio;
 import Vista.Vista;
 import principal.Consultas; import principal.ConsultasListas;
 
-public class ControladorInicio {
+public class ControladorInicio implements ControladorInterfaz {
 
 	private Modelo modelo;
 	private Vista vista;
@@ -22,15 +22,15 @@ public class ControladorInicio {
 		this.consultas = new Consultas(modelo.getConexion());
 		this.consultasListas = new ConsultasListas(modelo.getConexion());
 	}
-
+	@Override
 	public Modelo getModelo() {
 		return modelo;
 	}
-
+	@Override
 	public Vista getVista() {
 		return vista;
 	}
-
+	@Override
 	public Controlador getControlador() {
 		return controlador;
 	}
@@ -39,8 +39,8 @@ public class ControladorInicio {
 		this.panelInicio = makePanelInicio(this);
 		this.vista.mostrarPanel(this.panelInicio);
 	}
-
-	public void accionadoBottonAceptarPanelPrincipal() {
+	@Override
+	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 	}
 

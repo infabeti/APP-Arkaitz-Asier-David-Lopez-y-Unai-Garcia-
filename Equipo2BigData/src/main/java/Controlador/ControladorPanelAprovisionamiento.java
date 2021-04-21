@@ -10,7 +10,7 @@ import principal.Consultas;
 import principal.ConsultasListas;
 import principal.ConsultasComprobaciones;
 
-public class ControladorPanelAprovisionamiento {
+public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 
 	private Modelo modelo;
 	private Vista vista;
@@ -29,24 +29,24 @@ public class ControladorPanelAprovisionamiento {
 		this.consultasListas = new ConsultasListas(modelo.getConexion());
 		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
-
+	@Override
 	public Modelo getModelo() {
 		return this.modelo;
 	}
-
+	@Override
 	public Vista getVista() {
 		return this.vista;
 	}
-
+	@Override
 	public Controlador getControlador() {
 		return this.controlador;
 	}
-
+	
 	public void mostrarPanelAprovisionamiento() {
 		this.panelAprovisionamiento = makePanelAprovisionamiento(this);
 		this.vista.mostrarPanel(this.panelAprovisionamiento);
 	}
-
+	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 	}
