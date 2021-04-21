@@ -51,12 +51,14 @@ public class PanelComandas extends JPanel {
 		setLayout(null);
 
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(67, 574, 117, 25);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnVolver.setBounds(513, 574, 117, 25);
 		add(btnVolver);
 
 		JLabel lblComandas = new JLabel("COMANDAS");
-		lblComandas.setFont(new Font("Dialog", Font.BOLD, 48));
-		lblComandas.setBounds(12, 12, 469, 63);
+		lblComandas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblComandas.setFont(new Font("Arial", Font.BOLD, 50));
+		lblComandas.setBounds(137, 12, 556, 50);
 		add(lblComandas);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -96,7 +98,8 @@ public class PanelComandas extends JPanel {
 		add(btnAnadirPlato);
 
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.setBounds(226, 574, 117, 25);
+		btnFinalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnFinalizar.setBounds(198, 574, 117, 25);
 		add(btnFinalizar);
 
 		btnEliminarProducto = new JButton("Eliminar Producto");
@@ -129,6 +132,7 @@ public class PanelComandas extends JPanel {
 		textCantidadPlatos.setText("1");
 
 		textTotal = new JTextField();
+		textTotal.setHorizontalAlignment(SwingConstants.TRAILING);
 		textTotal.setBounds(143, 503, 114, 19);
 		add(textTotal);
 		textTotal.setColumns(10);
@@ -136,7 +140,7 @@ public class PanelComandas extends JPanel {
 		textTotal.setEditable(false);
 
 		textLocal = new JTextField();
-		textLocal.setBounds(205, 128, 125, 25);
+		textLocal.setBounds(297, 126, 114, 19);
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelComandas.conseguirDatosPanel()[0]);
@@ -145,32 +149,32 @@ public class PanelComandas extends JPanel {
 
 		textFieldFecha = new JTextField();
 		textFieldFecha.setColumns(10);
-		textFieldFecha.setBounds(463, 86, 117, 25);
+		textFieldFecha.setBounds(587, 86, 106, 20);
 		add(textFieldFecha);
 		textFieldFecha.setText(this.controladorPanelComandas.conseguirDatosPanel()[1]);
 		textFieldFecha.setEditable(false);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setBounds(205, 86, 125, 25);
+		textFieldNumTrans.setBounds(297, 86, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setText(controladorPanelComandas.conseguirDatosPanel()[2]);
 		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JLabel lblNumTrans = new JLabel("Numero de transacci\u00F3n: \r\n");
-		lblNumTrans.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblNumTrans.setBounds(22, 86, 187, 23);
+		JLabel lblNumTrans = new JLabel("N\u00BA Transacci\u00F3n:");
+		lblNumTrans.setFont(new Font("Arial", Font.BOLD, 16));
+		lblNumTrans.setBounds(137, 86, 150, 20);
 		add(lblNumTrans);
 
 		JLabel lblLocal = new JLabel("Local:\r\n");
-		lblLocal.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblLocal.setBounds(21, 125, 113, 23);
+		lblLocal.setFont(new Font("Arial", Font.BOLD, 16));
+		lblLocal.setBounds(137, 125, 70, 20);
 		add(lblLocal);
 
 		JLabel lblFecha = new JLabel("Fecha y hora: ");
-		lblFecha.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblFecha.setBounds(352, 88, 113, 23);
+		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
+		lblFecha.setBounds(457, 86, 123, 20);
 		add(lblFecha);
 
 		JLabel lblProductos = new JLabel("Productos");
@@ -186,6 +190,11 @@ public class PanelComandas extends JPanel {
 		lblError = new JLabel("");
 		lblError.setBounds(425, 590, 332, 31);
 		add(lblError);
+		
+		JLabel lblTotal = new JLabel("Total:");
+		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+		lblTotal.setBounds(67, 506, 50, 20);
+		add(lblTotal);
 
 		initializeEvents();
 	}
