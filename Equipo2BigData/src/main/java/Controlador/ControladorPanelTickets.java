@@ -23,8 +23,6 @@ public class ControladorPanelTickets {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-
-		
 	}
 
 	public Modelo getModelo() {
@@ -45,10 +43,12 @@ public class ControladorPanelTickets {
 	}
 
 	public String leerNumTransBBDD() {
+		this.consultas = new Consultas(modelo.getConexion());
 		return String.valueOf(this.consultas.leerNumTransBBDD());
 	}
 	
 	public int conseguirStock(String nif, String producto) {
+		this.consultas = new Consultas(modelo.getConexion());
 		return this.consultas.obtenerStock(nif, producto);
 	}
 	
@@ -66,6 +66,7 @@ public class ControladorPanelTickets {
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
 		this.inserciones = new Inserciones(modelo.getConexion());
+		this.consultas = new Consultas(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
 				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad,
 				cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
