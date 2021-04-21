@@ -62,39 +62,39 @@ public class PanelComandas extends JPanel {
 		add(lblComandas);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(367, 194, 216, 298);
+		scrollPane.setBounds(329, 194, 216, 298);
 		add(scrollPane);
 
 		listaProductos = new JList(controladorPanelComandas.cogerListaProductos());
 		scrollPane.setViewportView(listaProductos);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(610, 194, 216, 298);
+		scrollPane_1.setBounds(578, 194, 216, 298);
 		add(scrollPane_1);
 
 		listaPlatos = new JList(controladorPanelComandas.cogerListaPlatos());
 		scrollPane_1.setViewportView(listaPlatos);
 
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(67, 182, 263, 108);
+		scrollPane_2.setBounds(33, 182, 263, 108);
 		add(scrollPane_2);
 
 		productosAnadidos = new JList(productosAnadidosString);
 		scrollPane_2.setViewportView(productosAnadidos);
 
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(67, 337, 263, 108);
+		scrollPane_3.setBounds(33, 337, 263, 108);
 		add(scrollPane_3);
 
 		platosAnadidos = new JList(platosAnadidosString);
 		scrollPane_3.setViewportView(platosAnadidos);
 
 		btnAnadirProducto = new JButton("Anadir producto");
-		btnAnadirProducto.setBounds(377, 510, 163, 25);
+		btnAnadirProducto.setBounds(329, 510, 163, 25);
 		add(btnAnadirProducto);
 
 		btnAnadirPlato = new JButton("Anadir plato");
-		btnAnadirPlato.setBounds(628, 510, 156, 25);
+		btnAnadirPlato.setBounds(578, 510, 156, 25);
 		add(btnAnadirPlato);
 
 		btnFinalizar = new JButton("Finalizar");
@@ -103,11 +103,11 @@ public class PanelComandas extends JPanel {
 		add(btnFinalizar);
 
 		btnEliminarProducto = new JButton("Eliminar Producto");
-		btnEliminarProducto.setBounds(109, 301, 168, 25);
+		btnEliminarProducto.setBounds(80, 301, 168, 25);
 		add(btnEliminarProducto);
 
 		btnEliminarPlato = new JButton("Eliminar Plato");
-		btnEliminarPlato.setBounds(109, 456, 168, 25);
+		btnEliminarPlato.setBounds(80, 456, 168, 25);
 		add(btnEliminarPlato);
 
 		NumberFormat format = NumberFormat.getInstance();
@@ -120,20 +120,22 @@ public class PanelComandas extends JPanel {
 		formatter.setCommitsOnValidEdit(true);
 
 		textCantidadProductos = new JFormattedTextField(formatter);
+		textCantidadProductos.setHorizontalAlignment(SwingConstants.TRAILING);
 		textCantidadProductos.setFont(new Font("Arial", Font.PLAIN, 12));
-		textCantidadProductos.setBounds(549, 512, 27, 20);
+		textCantidadProductos.setBounds(518, 512, 27, 20);
 		add(textCantidadProductos);
 		textCantidadProductos.setText("1");
 
 		textCantidadPlatos = new JFormattedTextField(formatter);
+		textCantidadPlatos.setHorizontalAlignment(SwingConstants.TRAILING);
 		textCantidadPlatos.setFont(new Font("Arial", Font.PLAIN, 12));
-		textCantidadPlatos.setBounds(794, 512, 27, 20);
+		textCantidadPlatos.setBounds(767, 512, 27, 20);
 		add(textCantidadPlatos);
 		textCantidadPlatos.setText("1");
 
 		textTotal = new JTextField();
 		textTotal.setHorizontalAlignment(SwingConstants.TRAILING);
-		textTotal.setBounds(143, 503, 114, 19);
+		textTotal.setBounds(134, 506, 114, 20);
 		add(textTotal);
 		textTotal.setColumns(10);
 		textTotal.setText("0");
@@ -179,12 +181,12 @@ public class PanelComandas extends JPanel {
 
 		JLabel lblProductos = new JLabel("Productos");
 		lblProductos.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblProductos.setBounds(416, 160, 113, 23);
+		lblProductos.setBounds(329, 160, 216, 23);
 		add(lblProductos);
 
 		JLabel lblPlatos = new JLabel("Platos");
 		lblPlatos.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblPlatos.setBounds(676, 160, 113, 23);
+		lblPlatos.setBounds(578, 160, 216, 23);
 		add(lblPlatos);
 
 		lblError = new JLabel("");
@@ -193,7 +195,7 @@ public class PanelComandas extends JPanel {
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTotal.setBounds(67, 506, 50, 20);
+		lblTotal.setBounds(80, 506, 50, 20);
 		add(lblTotal);
 
 		initializeEvents();
