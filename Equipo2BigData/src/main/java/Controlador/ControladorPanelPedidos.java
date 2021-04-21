@@ -8,7 +8,7 @@ import principal.Consultas;
 import principal.Inserciones;
 import principal.InsercionesActividades;
 
-public class ControladorPanelPedidos {
+public class ControladorPanelPedidos  implements ControladorInterfaz {
 
 	private Modelo modelo;
 	private Vista vista;
@@ -27,15 +27,15 @@ public class ControladorPanelPedidos {
 		this.inserciones = new Inserciones(modelo.getConexion());
 		this.consultas = new Consultas(modelo.getConexion());
 	}
-
+	@Override
 	public Modelo getModelo() {
 		return modelo;
 	}
-
+	@Override
 	public Vista getVista() {
 		return vista;
 	}
-
+	@Override
 	public Controlador getControlador() {
 		return controlador;
 	}
@@ -56,7 +56,7 @@ public class ControladorPanelPedidos {
 		this.panelPedidos = makePanelPedidos(this);
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
-
+	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 		this.modelo.getListaTemporal().limpiarLista();

@@ -62,7 +62,7 @@ public class PanelInicio extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton INICIO");
 				if (controlador.login("75623142C", "12345")) {
-					controlador.accionadoBottonAceptarPanelPrincipal();
+					controlador.accionadoBottonVolverPanelPrincipal();
 				} else {
 					JOptionPane.showMessageDialog(null, "Fallo al iniciar");
 

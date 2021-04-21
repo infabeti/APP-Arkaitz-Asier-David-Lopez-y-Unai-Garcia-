@@ -203,7 +203,7 @@ public class PanelComandas extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Pedidos");
-				controladorPanelComandas.accionadoBotonVolverPanelPrincipal();
+				controladorPanelComandas.accionadoBottonVolverPanelPrincipal();
 			}
 		};
 	}
@@ -357,7 +357,7 @@ public class PanelComandas extends JPanel {
 								productosAnadidosString, platosAnadidosString);
 
 						JOptionPane.showMessageDialog(null, "Comanda introducida correctamente");
-						controladorPanelComandas.accionadoBotonVolverPanelPrincipal();
+						controladorPanelComandas.accionadoBottonVolverPanelPrincipal();
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Debes introducir articulos");

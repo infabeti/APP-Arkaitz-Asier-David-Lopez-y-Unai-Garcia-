@@ -7,20 +7,31 @@ import principal.Inserciones;
 import principal.InsercionesActividades;
 import principal.Consultas;
 
-public class ControladorPanelComandas {
+public class ControladorPanelComandas implements ControladorInterfaz {
+
 	
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;
 	private PanelComandas panelComandas;
 	private double total;
+
 	private InsercionesActividades insercionesActividades;
 	private Inserciones inserciones;
 	private Consultas consultas;
 	
-	public Modelo getModelo() {return this.modelo;}
-	public Vista getVista() {return this.vista;}
-	public Controlador getControlador() {return this.controlador;}
+	@Override
+	public Modelo getModelo() {
+		return this.modelo;
+		}
+	@Override
+	public Vista getVista() {
+		return this.vista;
+		}
+	@Override
+	public Controlador getControlador() {
+		return this.controlador;
+		}
 	
 	public ControladorPanelComandas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -33,8 +44,8 @@ public class ControladorPanelComandas {
 	public void mostrarPanelComandas() {
 		this.panelComandas = makePanelComandas(this);
 		this.vista.mostrarPanel(this.panelComandas); }
-	
-	public void accionadoBotonVolverPanelPrincipal() {
+	@Override
+	public void accionadoBottonVolverPanelPrincipal() {
 		this.modelo.getListaTemporal().limpiarLista();
 		this.modelo.getListaTemporalPlatos().limpiarLista();
 		this.controlador.navegarPanelPrincipal();
