@@ -24,6 +24,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 		this.vista = vista;
 		this.controlador = controlador;
 	}
+	
 	@Override
 	public Modelo getModelo() {
 		return modelo;
