@@ -17,7 +17,7 @@ import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.FuncionesProductos;
 import Modelo.FuncionesPlatos;
-import Modelo.Consultas;
+import principal.Consultas;
 import Vista.PanelComandas;
 import Vista.Vista;
 
@@ -206,7 +206,6 @@ public class TestControladorPanelComandas {
 		when(modeloMock.getUser()).thenReturn(userMock);
 		when(userMock.getNifLocal()).thenReturn("1");
 		when(modeloMock.getFechaHoraSys()).thenReturn("2");
-		when(modeloMock.getConsultas()).thenReturn(consultasMock);
 		when(consultasMock.leerNumTransBBDD()).thenReturn(3);
 		
 		resultadoEsperadoArrayString = new String[] {"1","2","3"};

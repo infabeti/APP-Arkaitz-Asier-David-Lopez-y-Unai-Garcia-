@@ -11,13 +11,9 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import Controlador.Controlador;
-<<<<<<< HEAD:Equipo2BigData/src/test/java/TestControlador/TestControladorPanelLogin.java
-import Controlador.ControladorLogin;
-import principal.Conexion;
-=======
 import Controlador.ControladorInicio;
-import Modelo.Conexion;
->>>>>>> 7083af5cf390c0cbbc7caa49e13805b61e8a3683:Equipo2BigData/src/test/java/TestControlador/TestControladorPanelInicio.java
+import principal.Conexion;
+
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
