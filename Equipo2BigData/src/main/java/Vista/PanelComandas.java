@@ -193,7 +193,7 @@ public class PanelComandas extends JPanel {
 		add(lblPlatos);
 
 		lblError = new JLabel("");
-		lblError.setBounds(425, 590, 332, 31);
+		lblError.setBounds(36, 148, 263, 23);
 		add(lblError);
 		
 		JLabel lblTotal = new JLabel("Total:");

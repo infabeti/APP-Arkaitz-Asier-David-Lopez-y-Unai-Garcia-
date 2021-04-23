@@ -99,7 +99,7 @@ public class PanelPedidos extends JPanel {
 		textFieldLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblTipoPed = new JLabel("*Solo rellenar si el pedido es a domicilio:");
-		lblTipoPed.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblTipoPed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTipoPed.setBounds(139, 461, 300, 20);
 		add(lblTipoPed);
 
@@ -154,7 +154,8 @@ public class PanelPedidos extends JPanel {
 		add(lblProdAdd);
 
 		lblError = new JLabel("");
-		lblError.setBounds(477, 303, 330, 15);
+		lblError.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblError.setBounds(436, 180, 259, 19);
 		add(lblError);
 
 		btnEliminar = new JButton("Eliminar");

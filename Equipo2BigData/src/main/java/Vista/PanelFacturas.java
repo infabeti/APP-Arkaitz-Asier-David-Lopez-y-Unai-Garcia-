@@ -177,7 +177,7 @@ public class PanelFacturas extends JPanel {
 		add(lblProductosSeleccionados);
 
 		lblError = new JLabel("");
-		lblError.setBounds(533, 277, 277, 15);
+		lblError.setBounds(139, 505, 300, 20);
 		add(lblError);
 
 		textLocal = new JTextField();
