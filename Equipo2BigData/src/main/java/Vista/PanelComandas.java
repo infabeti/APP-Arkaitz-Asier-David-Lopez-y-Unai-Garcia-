@@ -52,13 +52,13 @@ public class PanelComandas extends JPanel {
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnVolver.setBounds(513, 574, 117, 25);
+		btnVolver.setBounds(517, 574, 117, 25);
 		add(btnVolver);
 
 		JLabel lblComandas = new JLabel("COMANDAS");
 		lblComandas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblComandas.setFont(new Font("Arial", Font.BOLD, 50));
-		lblComandas.setBounds(137, 12, 556, 50);
+		lblComandas.setBounds(139, 12, 556, 50);
 		add(lblComandas);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -99,7 +99,7 @@ public class PanelComandas extends JPanel {
 
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnFinalizar.setBounds(198, 574, 117, 25);
+		btnFinalizar.setBounds(200, 574, 117, 25);
 		add(btnFinalizar);
 
 		btnEliminarProducto = new JButton("Eliminar Producto");
