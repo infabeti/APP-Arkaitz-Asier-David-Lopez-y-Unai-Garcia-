@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class PanelAprovisionamiento extends JPanel {
 
@@ -35,23 +36,31 @@ public class PanelAprovisionamiento extends JPanel {
 
 	public PanelAprovisionamiento(ControladorPanelAprovisionamiento controladorPanelAprovisionamiento) {
 
-		setBackground(SystemColor.activeCaption);
+		setBackground(new Color(51, 153, 255));
 
 		this.controladorPanelAprovisionamiento = controladorPanelAprovisionamiento;
 
 		setLayout(null);
+		
+		textFieldNumTrans = new JTextField();
+		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
+		textFieldNumTrans.setColumns(10);
+		textFieldNumTrans.setBounds(560, 219, 114, 20);
+		add(textFieldNumTrans);
 
-		lblTextoPanel = new JLabel("PANEL APROVISIONAMIENTO");
-		lblTextoPanel.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		lblTextoPanel.setBounds(0, 0, 450, 67);
+		lblTextoPanel = new JLabel("APROVISIONAMIENTO");
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(620, 553, 89, 23);
+		btnVolver.setBounds(517, 545, 117, 25);
 		add(btnVolver);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(98, 187, 295, 304);
+		scrollPane.setBounds(160, 163, 295, 304);
 		add(scrollPane);
 		
 		listaProductos = new JList(this.controladorPanelAprovisionamiento.pasarListaProductos());
@@ -68,59 +77,59 @@ public class PanelAprovisionamiento extends JPanel {
 		formatter.setCommitsOnValidEdit(true);
 		
 		textFieldCantidad = new JFormattedTextField(formatter);
+		textFieldCantidad.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldCantidad.setFont(new Font("Arial", Font.PLAIN, 12));
-		textFieldCantidad.setBounds(189, 512, 58, 19);
+		textFieldCantidad.setBounds(270, 491, 40, 20);
 		add(textFieldCantidad);
 		textFieldCantidad.setText("1");
 		
-		JLabel lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setBounds(109, 515, 70, 15);
+		JLabel lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setFont(new Font("Arial", Font.BOLD, 16));
+		lblCantidad.setBounds(160, 491, 92, 20);
 		add(lblCantidad);
 		
 		btnAnnadir = new JButton("A\u00F1adir");
-		btnAnnadir.setBounds(257, 510, 117, 25);
+		btnAnnadir.setBounds(338, 491, 117, 20);
 		add(btnAnnadir);
 		
 		JLabel lblLocal = new JLabel("Local:\r\n");
-		lblLocal.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblLocal.setBounds(22, 111, 113, 23);
+		lblLocal.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblLocal.setFont(new Font("Arial", Font.BOLD, 16));
+		lblLocal.setBounds(604, 275, 70, 20);
 		add(lblLocal);
 		
-		JLabel lblNumTrans = new JLabel("Numero de transacci\u00F3n: \r\n");
-		lblNumTrans.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblNumTrans.setBounds(22, 69, 187, 23);
+		JLabel lblNumTrans = new JLabel("N\u00BA Transacci\u00F3n:");
+		lblNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNumTrans.setFont(new Font("Arial", Font.BOLD, 16));
+		lblNumTrans.setBounds(524, 163, 150, 20);
 		add(lblNumTrans);
 		
 		textFieldLocl = new JTextField();
 		textFieldLocl.setText(controladorPanelAprovisionamiento.conseguirLocal());
-		textFieldLocl.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldLocl.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldLocl.setEditable(false);
 		textFieldLocl.setColumns(10);
-		textFieldLocl.setBounds(212, 109, 125, 30);
+		textFieldLocl.setBounds(560, 331, 114, 20);
 		add(textFieldLocl);
 		
-		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setText("0");
-		textFieldNumTrans.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setBounds(212, 67, 125, 30);
-		add(textFieldNumTrans);
-		
 		JLabel lblFecha = new JLabel("Fecha y hora: ");
-		lblFecha.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblFecha.setBounds(347, 69, 113, 23);
+		lblFecha.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
+		lblFecha.setBounds(551, 387, 123, 20);
 		add(lblFecha);
 		
 		textFieldFecha = new JTextField();
+		textFieldFecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldFecha.setText(controladorPanelAprovisionamiento.devolverFechaHora());
 		textFieldFecha.setEditable(false);
 		textFieldFecha.setColumns(10);
-		textFieldFecha.setBounds(463, 67, 106, 30);
+		textFieldFecha.setBounds(560, 443, 114, 20);
 		add(textFieldFecha);
 		
-		lblProd = new JLabel("PRODUCTOS");
-		lblProd.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblProd.setBounds(189, 162, 113, 23);
+		lblProd = new JLabel("Productos:");
+		lblProd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProd.setFont(new Font("Arial", Font.BOLD, 16));
+		lblProd.setBounds(160, 138, 295, 23);
 		add(lblProd);
 
 		initializeEvents();

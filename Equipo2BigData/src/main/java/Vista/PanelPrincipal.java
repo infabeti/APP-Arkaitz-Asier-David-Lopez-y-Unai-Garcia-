@@ -41,72 +41,72 @@ public class PanelPrincipal extends JPanel {
 			
 			btnPedidos = new JButton("Pedidos");
 			btnPedidos.setFont(new Font("Arial", Font.BOLD, 15));
-			btnPedidos.setBounds(566, 339, 127, 57);
+			btnPedidos.setBounds(568, 339, 127, 57);
 			add(btnPedidos);
 			
 			btnTickets = new JButton("Tickets");
 			btnTickets.setFont(new Font("Arial", Font.BOLD, 15));
-			btnTickets.setBounds(137, 251, 127, 57);
+			btnTickets.setBounds(139, 251, 127, 57);
 			add(btnTickets);
 			
 			btnFacturas = new JButton("Facturas");
 			btnFacturas.setFont(new Font("Arial", Font.BOLD, 15));
-			btnFacturas.setBounds(351, 251, 127, 57);
+			btnFacturas.setBounds(353, 251, 127, 57);
 			add(btnFacturas);
 			
 			btnAprovisionamiento = new JButton("Aprovisionamiento");
 			btnAprovisionamiento.setFont(new Font("Arial", Font.BOLD, 15));
-			btnAprovisionamiento.setBounds(137, 338, 341, 59);
+			btnAprovisionamiento.setBounds(139, 338, 341, 59);
 			add(btnAprovisionamiento);
 			
 			btnComandas = new JButton("Comandas");
 			btnComandas.setFont(new Font("Arial", Font.BOLD, 15));
-			btnComandas.setBounds(566, 251, 127, 57);
+			btnComandas.setBounds(568, 251, 127, 57);
 			add(btnComandas);
 			
 			lblTextoPanel = new JLabel("PANEL PRINCIPAL");
 			lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-			lblTextoPanel.setBounds(137, 35, 556, 50);
+			lblTextoPanel.setBounds(139, 35, 556, 50);
 			add(lblTextoPanel);
 			
 			btnDesconectar = new JButton("Desconectar");
 			btnDesconectar.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btnDesconectar.setBounds(351, 450, 127, 45);
+			btnDesconectar.setBounds(353, 450, 127, 45);
 			add(btnDesconectar);
 			
 			lblTipoLocal = new JLabel("TIPO LOCAL: ");
 			lblTipoLocal.setFont(new Font("Arial", Font.BOLD, 16));
-			lblTipoLocal.setBounds(137, 177, 106, 30);
+			lblTipoLocal.setBounds(139, 177, 106, 30);
 			add(lblTipoLocal);
 			
 			lblTipoLocalTexto = new JLabel("");
 			lblTipoLocalTexto.setFont(new Font("Arial", Font.BOLD, 15));
-			lblTipoLocalTexto.setBounds(253, 177, 180, 30);
+			lblTipoLocalTexto.setBounds(255, 177, 180, 30);
 			lblTipoLocalTexto.setText(tipoLocal);
 			add(lblTipoLocalTexto);
 			
 			lblNomLocal = new JLabel("LOCAL:");
 			lblNomLocal.setFont(new Font("Arial", Font.BOLD, 16));
-			lblNomLocal.setBounds(137, 136, 65, 30);
+			lblNomLocal.setBounds(139, 136, 65, 30);
 			add(lblNomLocal);
 			
 			lblNomLocalTexto = new JLabel("");
 			lblNomLocalTexto.setFont(new Font("Arial", Font.BOLD, 15));
-			lblNomLocalTexto.setBounds(207, 136, 180, 30);
+			lblNomLocalTexto.setBounds(209, 136, 180, 30);
 			lblNomLocalTexto.setText(nombreLocal);
 			add(lblNomLocalTexto);
 			
 			lblUsuario = new JLabel("USUARIO:");
 			lblUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
 			lblUsuario.setFont(new Font("Arial", Font.BOLD, 16));
-			lblUsuario.setBounds(603, 136, 90, 30);
+			lblUsuario.setBounds(605, 136, 90, 30);
 			add(lblUsuario);
 			
 			lblUsuarioTexto = new JLabel("");
 			lblUsuarioTexto.setHorizontalAlignment(SwingConstants.TRAILING);
 			lblUsuarioTexto.setFont(new Font("Arial", Font.BOLD, 15));
-			lblUsuarioTexto.setBounds(513, 177, 180, 30);
+			lblUsuarioTexto.setBounds(515, 177, 180, 30);
 			lblUsuarioTexto.setText(nombreUsuario);
 			add(lblUsuarioTexto);
 			initializeEvents();

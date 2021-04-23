@@ -35,18 +35,18 @@ public class PanelInicio extends JPanel {
 		lblTextoPanel = new JLabel("INICIO");
 		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(137, 35, 556, 50);
+		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 		
 		btnPoblacion = new JButton(" Poblaci\u00F3n de Datos");
 		btnPoblacion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnPoblacion.setBounds(143, 280, 200, 70);
+		btnPoblacion.setBounds(144, 280, 200, 70);
 		add(btnPoblacion);
 		
 		JButton btnAnalisis = new JButton("An\u00E1lisis de Datos");
 		btnAnalisis.setEnabled(false);
 		btnAnalisis.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAnalisis.setBounds(486, 280, 200, 70);
+		btnAnalisis.setBounds(488, 280, 200, 70);
 		add(btnAnalisis);
 
 		initializeEvents();
