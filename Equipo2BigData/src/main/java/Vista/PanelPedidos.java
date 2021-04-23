@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,12 +48,6 @@ public class PanelPedidos extends JPanel {
 		this.controladorPanelPedidos = controladorPanelPedidos;
 
 		setLayout(null);
-
-		lblTextoPanel = new JLabel("PANEL DE PEDIDOS");
-		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(139, 35, 556, 50);
-		add(lblTextoPanel);
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -105,7 +100,7 @@ public class PanelPedidos extends JPanel {
 
 		textFieldDomicilio = new JTextField();
 		textFieldDomicilio.setColumns(10);
-		textFieldDomicilio.setBounds(139, 490, 300, 40);
+		textFieldDomicilio.setBounds(139, 490, 300, 30);
 		add(textFieldDomicilio);
 
 		JLabel lblCantidad = new JLabel("Cantidad: \r\n");
@@ -188,6 +183,16 @@ public class PanelPedidos extends JPanel {
 		productosAlmacenados = new JList(controladorPanelPedidos.cogerListaProductos());
 		scrollPane_1.setViewportView(productosAlmacenados);
 		productosAlmacenados.setBackground(Color.WHITE);
+
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_pedidos.jpg"));
+		lblBG.setBounds(0, 0, 834, 611);
+		add(lblBG);
+		
+				lblTextoPanel = new JLabel("PANEL DE PEDIDOS");
+				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+				lblTextoPanel.setBounds(139, 35, 556, 50);
+				add(lblTextoPanel);
 
 		initializeEvents();
 

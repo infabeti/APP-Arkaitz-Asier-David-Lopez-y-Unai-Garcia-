@@ -3,6 +3,8 @@ package Vista;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,23 +33,27 @@ public class PanelInicio extends JPanel {
 		this.controlador = controladorInicio;
 
 		setLayout(null);
-
-		lblTextoPanel = new JLabel("INICIO");
-		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(139, 35, 556, 50);
-		add(lblTextoPanel);
 		
 		btnPoblacion = new JButton(" Poblaci\u00F3n de Datos");
 		btnPoblacion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnPoblacion.setBounds(144, 280, 200, 70);
+		btnPoblacion.setBounds(144, 270, 200, 70);
 		add(btnPoblacion);
 		
 		JButton btnAnalisis = new JButton("An\u00E1lisis de Datos");
 		btnAnalisis.setEnabled(false);
 		btnAnalisis.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnAnalisis.setBounds(488, 280, 200, 70);
+		btnAnalisis.setBounds(488, 270, 200, 70);
 		add(btnAnalisis);
+
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_inicio.jpg"));
+		lblBG.setBounds(0, 0, 834, 611);
+		add(lblBG);
+		
+				lblTextoPanel = new JLabel("INICIO");
+				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+				lblTextoPanel.setBounds(139, 35, 556, 50);
+				add(lblTextoPanel);
 
 		initializeEvents();
 	}
