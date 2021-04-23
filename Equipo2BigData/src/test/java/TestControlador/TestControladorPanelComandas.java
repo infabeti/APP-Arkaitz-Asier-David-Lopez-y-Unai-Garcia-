@@ -206,7 +206,7 @@ public class TestControladorPanelComandas {
 		when(userMock.getNifLocal()).thenReturn("1");
 		when(modeloMock.getFechaHoraSys()).thenReturn("2");
 		
-		resultadoEsperadoArrayString = new String[] {"1","2","0"};
+		resultadoEsperadoArrayString = new String[] {"1","2"};
 		
 		resultadoArrayString = controladorPanelComandas.conseguirDatosPanel();
 		
