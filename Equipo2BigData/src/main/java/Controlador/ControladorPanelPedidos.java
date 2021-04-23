@@ -38,6 +38,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public int conseguirStock(String nif, String producto) {
+		consultas = new Consultas(modelo.getConexion());
 		return this.consultas.obtenerStock(nif, producto);
 	}
 	
