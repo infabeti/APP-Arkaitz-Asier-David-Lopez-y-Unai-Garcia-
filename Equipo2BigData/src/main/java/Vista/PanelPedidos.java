@@ -51,21 +51,21 @@ public class PanelPedidos extends JPanel {
 		lblTextoPanel = new JLabel("PANEL DE PEDIDOS");
 		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(137, 35, 556, 50);
+		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnVolver.setBounds(513, 545, 117, 25);
+		btnVolver.setBounds(517, 545, 117, 25);
 		add(btnVolver);
 
 		JLabel lblNumTrans = new JLabel("N\u00BA Transacci\u00F3n:");
 		lblNumTrans.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNumTrans.setBounds(137, 139, 150, 20);
+		lblNumTrans.setBounds(139, 139, 150, 20);
 		add(lblNumTrans);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setBounds(297, 139, 114, 20);
+		textFieldNumTrans.setBounds(299, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setText("0");
@@ -74,25 +74,25 @@ public class PanelPedidos extends JPanel {
 		JLabel lblFecha = new JLabel("Fecha y hora: ");
 		lblFecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
-		lblFecha.setBounds(457, 139, 123, 20);
+		lblFecha.setBounds(459, 139, 123, 20);
 		add(lblFecha);
 
 		textFieldFecha = new JTextField();
 		textFieldFecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldFecha.setColumns(10);
-		textFieldFecha.setBounds(587, 139, 106, 20);
+		textFieldFecha.setBounds(589, 139, 106, 20);
 		add(textFieldFecha);
 		textFieldFecha.setText(this.controladorPanelPedidos.devolverFechaHora());
 		textFieldFecha.setEditable(false);
 
 		JLabel lblLocal = new JLabel("Local:\r\n");
 		lblLocal.setFont(new Font("Arial", Font.BOLD, 16));
-		lblLocal.setBounds(137, 179, 70, 20);
+		lblLocal.setBounds(139, 179, 70, 20);
 		add(lblLocal);
 
 		textFieldLocal = new JTextField();
 		textFieldLocal.setColumns(10);
-		textFieldLocal.setBounds(297, 180, 114, 19);
+		textFieldLocal.setBounds(299, 180, 114, 19);
 		add(textFieldLocal);
 		textFieldLocal.setText(controladorPanelPedidos.conseguirLocal());
 		textFieldLocal.setEditable(false);
@@ -100,17 +100,17 @@ public class PanelPedidos extends JPanel {
 
 		JLabel lblTipoPed = new JLabel("*Solo rellenar si el pedido es a domicilio:");
 		lblTipoPed.setFont(new Font("Arial", Font.PLAIN, 17));
-		lblTipoPed.setBounds(137, 461, 300, 20);
+		lblTipoPed.setBounds(139, 461, 300, 20);
 		add(lblTipoPed);
 
 		textFieldDomicilio = new JTextField();
 		textFieldDomicilio.setColumns(10);
-		textFieldDomicilio.setBounds(137, 490, 300, 40);
+		textFieldDomicilio.setBounds(139, 490, 300, 40);
 		add(textFieldDomicilio);
 
 		JLabel lblCantidad = new JLabel("Cantidad: \r\n");
 		lblCantidad.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCantidad.setBounds(543, 417, 92, 20);
+		lblCantidad.setBounds(545, 417, 92, 20);
 		add(lblCantidad);
 
 		NumberFormat format = NumberFormat.getInstance();
@@ -125,17 +125,17 @@ public class PanelPedidos extends JPanel {
 		TextFieldCantidad = new JFormattedTextField(formatter);
 		TextFieldCantidad.setHorizontalAlignment(SwingConstants.TRAILING);
 		TextFieldCantidad.setFont(new Font("Arial", Font.PLAIN, 12));
-		TextFieldCantidad.setBounds(653, 417, 40, 20);
+		TextFieldCantidad.setBounds(655, 417, 40, 20);
 		add(TextFieldCantidad);
 		TextFieldCantidad.setText("1");
 
 		btnSeleccionar = new JButton("Seleccionar");
 		btnSeleccionar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSeleccionar.setBounds(543, 459, 150, 25);
+		btnSeleccionar.setBounds(545, 459, 150, 25);
 		add(btnSeleccionar);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(137, 244, 300, 160);
+		scrollPane.setBounds(139, 244, 300, 160);
 		add(scrollPane);
 
 		listaAnnadidos = new JList(listaPAnnadidos);
@@ -144,13 +144,13 @@ public class PanelPedidos extends JPanel {
 		JLabel lblProd = new JLabel("Productos:");
 		lblProd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProd.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProd.setBounds(543, 210, 150, 22);
+		lblProd.setBounds(545, 210, 150, 22);
 		add(lblProd);
 
 		JLabel lblProdAdd = new JLabel("Productos Seleccionados:");
 		lblProdAdd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProdAdd.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProdAdd.setBounds(137, 210, 300, 22);
+		lblProdAdd.setBounds(139, 210, 300, 22);
 		add(lblProdAdd);
 
 		lblError = new JLabel("");
@@ -159,29 +159,29 @@ public class PanelPedidos extends JPanel {
 
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnEliminar.setBounds(137, 415, 117, 25);
+		btnEliminar.setBounds(139, 415, 117, 25);
 		add(btnEliminar);
 
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTotal.setBounds(273, 417, 50, 20);
+		lblTotal.setBounds(275, 417, 50, 20);
 		add(lblTotal);
 
 		textTotal = new JTextField();
 		textTotal.setHorizontalAlignment(SwingConstants.TRAILING);
 		textTotal.setEditable(false);
-		textTotal.setBounds(323, 417, 114, 20);
+		textTotal.setBounds(325, 417, 114, 20);
 		add(textTotal);
 		textTotal.setColumns(10);
 		textTotal.setText("0");
 
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnFinalizar.setBounds(198, 545, 117, 25);
+		btnFinalizar.setBounds(200, 545, 117, 25);
 		add(btnFinalizar);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(543, 244, 150, 160);
+		scrollPane_1.setBounds(545, 244, 150, 160);
 		add(scrollPane_1);
 
 		productosAlmacenados = new JList(controladorPanelPedidos.cogerListaProductos());
