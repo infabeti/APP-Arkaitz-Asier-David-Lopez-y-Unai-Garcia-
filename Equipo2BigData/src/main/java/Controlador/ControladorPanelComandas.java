@@ -36,10 +36,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 	public ControladorPanelComandas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
-		this.controlador = controlador;
-		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		this.inserciones = new Inserciones(modelo.getConexion());
-		this.consultas = new Consultas(modelo.getConexion());}
+		this.controlador = controlador;}
 	
 	public void mostrarPanelComandas() {
 		this.panelComandas = makePanelComandas(this);
@@ -96,19 +93,22 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return String.valueOf(total); }
 	
 	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal) {
+		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
+		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarPlatoActividad(transaccion, this.consultas.obtenerCodigoPlato(nombrePlato), cantidad); }
 	
 	public String[] conseguirDatosPanel() {
 		String[] devolver = new String[3];
 		devolver[0] = modelo.getUser().getNifLocal();
 		devolver[1] = modelo.getFechaHoraSys();
-		devolver[2] = String.valueOf(this.consultas.leerNumTransBBDD());
+		devolver[2] = "0";
 		return devolver; }
 	
 	public void insertarComanda(int transaccion, String fecha, double totalOperacion, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
+		insercionesActividades = new InsercionesActividades(modelo.getConexion());
 		insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha), totalOperacion,"COMANDA", nif);
 		insercionesActividades.insertarComanda(transaccion);
 		for (int i = 0; i < listaProductos.getSize(); i++) {

@@ -25,9 +25,6 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-		this.consultas= new Consultas(modelo.getConexion());
-		this.consultasListas = new ConsultasListas(modelo.getConexion());
-		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
 	@Override
 	public Modelo getModelo() {
@@ -70,6 +67,7 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public String[] pasarListaProductos() {
+		consultasListas = new ConsultasListas(modelo.getConexion());
 		listaP = modelo.conversor.listaStringAProductos(consultasListas.cogerProductosAprovisionamiento());
 		return listaP.getListaProductosString();
 	}

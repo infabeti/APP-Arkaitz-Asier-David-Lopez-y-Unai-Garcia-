@@ -19,8 +19,6 @@ public class ControladorInicio implements ControladorInterfaz {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-		this.consultas = new Consultas(modelo.getConexion());
-		this.consultasListas = new ConsultasListas(modelo.getConexion());
 	}
 	@Override
 	public Modelo getModelo() {
@@ -49,6 +47,8 @@ public class ControladorInicio implements ControladorInterfaz {
 	}
 
 	public boolean login(String user, String password) {
+		consultas = new Consultas(modelo.getConexion());
+		consultasListas = new ConsultasListas(modelo.getConexion());
 
 		Usuario res = modelo.conversor.listaStringAUser(this.consultas.login(user, password));
 

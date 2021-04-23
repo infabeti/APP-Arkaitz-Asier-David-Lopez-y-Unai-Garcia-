@@ -17,7 +17,6 @@ public class ControladorPanelRegistro {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-		this.inserciones = new Inserciones(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
@@ -42,6 +41,7 @@ public class ControladorPanelRegistro {
 	}
 
 	public void insertarRegistro(String DNI, String Nombre, String Apellido, String contrasena, String nif) {
+		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarRegistro(DNI, Nombre, Apellido, contrasena, nif);
 	}
 

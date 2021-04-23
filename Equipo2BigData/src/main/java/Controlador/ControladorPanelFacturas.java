@@ -25,11 +25,8 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-		this.inserciones = new Inserciones(modelo.getConexion());
-		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		this.consultas = new Consultas(modelo.getConexion());
-		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
+	
 	@Override
 	public Modelo getModelo() {
 		return this.modelo;
@@ -48,6 +45,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	}
 	
 	public int conseguirStock(String nif, String producto) {
+		consultas = new Consultas(modelo.getConexion());
 		return this.consultas.obtenerStock(nif, producto);
 	}
 
@@ -56,6 +54,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	}
 
 	public String leerNumTransBBDD() {
+		consultas = new Consultas(modelo.getConexion());
 		return String.valueOf(this.consultas.leerNumTransBBDD());
 	}
 
@@ -115,6 +114,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
+		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
 				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
 	}
@@ -125,6 +125,9 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 
 	public void insertarFactura(int transaccion, String fecha, double totalOperacion, String nifLocal, String nombre,
 			String apellido, DefaultListModel<String> lista, String nifComprador) {
+		insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
+		inserciones = new Inserciones(modelo.getConexion());
 		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "FACTURA",
 				nifLocal);
 		if (this.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {

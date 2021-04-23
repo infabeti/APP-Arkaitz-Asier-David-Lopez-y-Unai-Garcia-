@@ -33,7 +33,6 @@ public class TestControladorPanelComandas {
 	private FuncionesProductos funcionesProductosMock = mock(FuncionesProductos.class);
 	private FuncionesPlatos funcionesPlatosMock = mock(FuncionesPlatos.class);
 	private String[] resultadoArrayString, resultadoEsperadoArrayString;
-	private Consultas consultasMock = mock(Consultas.class);
 	
 	private ControladorPanelComandas controladorPanelComandas = new ControladorPanelComandas(modeloMock, vistaMock,
 			controladorMock);
@@ -55,7 +54,7 @@ public class TestControladorPanelComandas {
 		
 		when(listaPlatosMock.limpiarLista()).thenReturn(true);		
 
-		controladorPanelComandas.accionadoBotonVolverPanelPrincipal();
+		controladorPanelComandas.accionadoBottonVolverPanelPrincipal();
 
 		verify(controladorMock).navegarPanelPrincipal();
 	}
@@ -206,9 +205,8 @@ public class TestControladorPanelComandas {
 		when(modeloMock.getUser()).thenReturn(userMock);
 		when(userMock.getNifLocal()).thenReturn("1");
 		when(modeloMock.getFechaHoraSys()).thenReturn("2");
-		when(consultasMock.leerNumTransBBDD()).thenReturn(3);
 		
-		resultadoEsperadoArrayString = new String[] {"1","2","3"};
+		resultadoEsperadoArrayString = new String[] {"1","2","0"};
 		
 		resultadoArrayString = controladorPanelComandas.conseguirDatosPanel();
 		

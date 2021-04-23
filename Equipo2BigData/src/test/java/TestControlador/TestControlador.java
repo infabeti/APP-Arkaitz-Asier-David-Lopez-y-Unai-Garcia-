@@ -22,7 +22,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestControlador {
@@ -44,7 +46,13 @@ public class TestControlador {
 	private ConsultasListas consultasListasMock = mock(ConsultasListas.class);
 	private ListaPlatos listaPlatosMock = mock(ListaPlatos.class);
 	private ListaProductos listaProductosMock = mock(ListaProductos.class);
+	private ArrayList<String[]> arrayListMock = mock(ArrayList.class);
 	private String[] arrString = new String[] { "a", "b" };
+	
+	@Before
+	public void setNecesarios() {
+		modeloMock.setConexion(conexionMock);
+	}
 
 	@Test
 	public void navegarPanelInicio() {
@@ -270,7 +278,7 @@ public class TestControlador {
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
 		
 		when(consultasMock.leerNumTransBBDD()).thenReturn(66);
-		when(consultasListasMock.cogerProductosAprovisionamiento()).thenReturn(listaProductosMock);
+		when(consultasListasMock.cogerProductosAprovisionamiento()).thenReturn(arrayListMock);
 
 		when(modeloMock.getUser()).thenReturn(userMock);
 

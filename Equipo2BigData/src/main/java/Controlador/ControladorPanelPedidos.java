@@ -23,9 +23,6 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.controlador = controlador;
-		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		this.inserciones = new Inserciones(modelo.getConexion());
-		this.consultas = new Consultas(modelo.getConexion());
 	}
 	@Override
 	public Modelo getModelo() {
@@ -107,10 +104,12 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
+		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, double totalOperacion, String nif, String domicilio, DefaultListModel<String> lista) {
+		insercionesActividades = new InsercionesActividades(modelo.getConexion());
 		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "PEDIDO", nif);
 		insercionesActividades.insertarPedido(transaccion, domicilio);
 		for (int i = 0; i < lista.getSize(); i++) {

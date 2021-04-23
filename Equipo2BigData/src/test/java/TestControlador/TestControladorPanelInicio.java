@@ -66,7 +66,7 @@ public class TestControladorPanelInicio {
 		controladorInicio = new ControladorInicio(modeloMock,
 				vistaMock, controladorMock);
 		
-		controladorInicio.accionadoBottonAceptarPanelPrincipal();
+		controladorInicio.accionadoBottonVolverPanelPrincipal();
 		
 		verify(controladorMock).navegarPanelPrincipal();
 	}
