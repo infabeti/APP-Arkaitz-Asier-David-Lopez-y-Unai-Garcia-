@@ -177,7 +177,7 @@ public class PanelComandas extends JPanel {
 
 		JLabel lblFecha = new JLabel("Fecha y hora: ");
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 16));
-		lblFecha.setBounds(581, 117, 114, 20);
+		lblFecha.setBounds(581, 117, 123, 20);
 		add(lblFecha);
 
 		JLabel lblProductos = new JLabel("Productos:");

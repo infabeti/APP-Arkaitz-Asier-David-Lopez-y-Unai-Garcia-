@@ -134,7 +134,7 @@ public class PanelTickets extends JPanel {
 		add(lblProductosSeleccionados);
 
 		textLocal = new JTextField();
-		textLocal.setBounds(299, 180, 114, 19);
+		textLocal.setBounds(299, 179, 114, 20);
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelTickets.conseguirLocal());
