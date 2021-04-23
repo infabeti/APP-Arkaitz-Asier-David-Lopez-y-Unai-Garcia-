@@ -100,9 +100,8 @@ public class PanelAprovisionamiento extends JPanel {
 		add(textFieldLocl);
 		
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setText(controladorPanelAprovisionamiento.leerNumTransBBDD());
+		textFieldNumTrans.setText("0");
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setBounds(212, 67, 125, 30);
 		add(textFieldNumTrans);

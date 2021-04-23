@@ -94,8 +94,7 @@ public class PanelFacturas extends JPanel {
 		textFieldNumTrans.setBounds(297, 148, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText(controladorPanelFacturas.leerNumTransBBDD());
-		textFieldNumTrans.setEditable(false);
+		textFieldNumTrans.setText("0");
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNIF = new JLabel("NIF:");
@@ -279,7 +278,7 @@ public class PanelFacturas extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes añadir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
+											"No puedes aï¿½adir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
 								} else {
 									productosAnadir = controladorPanelFacturas.cambiarCantidadProductos(yaAnnadido,
 											Integer.parseInt(cantidad), producto);

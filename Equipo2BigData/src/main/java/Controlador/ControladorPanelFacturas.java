@@ -53,11 +53,6 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		return this.modelo.getUser().getNifLocal();
 	}
 
-	public String leerNumTransBBDD() {
-		consultas = new Consultas(modelo.getConexion());
-		return String.valueOf(this.consultas.leerNumTransBBDD());
-	}
-
 	public void mostrarPanelFacturas() {
 		this.panelFacturas = makePanelFacturas(this);
 		this.vista.mostrarPanel(this.panelFacturas);

@@ -37,10 +37,6 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 		return controlador;
 	}
 
-	public String leerNumTransBBDD() {
-		return String.valueOf(this.consultas.leerNumTransBBDD());
-	}
-
 	public int conseguirStock(String nif, String producto) {
 		return this.consultas.obtenerStock(nif, producto);
 	}

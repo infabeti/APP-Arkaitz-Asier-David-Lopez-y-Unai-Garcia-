@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import Modelo.ConsultasComprobaciones;
+import principal.ConsultasComprobaciones;
 import Modelo.Modelo;
 import Modelo.Registro;
 import Modelo.Validaciones;
@@ -18,6 +19,11 @@ public class TestRegistro {
 	private Registro registro = new Registro(modeloMock);
 	private ConsultasComprobaciones consultasComprobacionesMock = mock(ConsultasComprobaciones.class);
 	
+	@Before
+	public void setNecesarios() {
+		registro.setConsultasComprobaciones(consultasComprobacionesMock);
+	}
+	
 	@Test
 	public void testConstructor() {
 		assertEquals(modeloMock ,registro.getModelo());
@@ -28,7 +34,6 @@ public class TestRegistro {
 	public void testcomprobarBBDDnif() {
 		String nif = "78965321S";
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
 		when(consultasComprobacionesMock.comprobarSiExisteNIF(nif)).thenReturn(true);
 
 		
@@ -40,7 +45,6 @@ public class TestRegistro {
 	public void testcomprobarBBDDdni() {
 		String dni = "18932321S";
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
 		when(consultasComprobacionesMock.comprobarSiExisteDNI(dni)).thenReturn(false);
 
 		
@@ -86,8 +90,6 @@ public class TestRegistro {
 		modeloMock.validaciones = validacionesMock;
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
-		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
 
 		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
@@ -116,8 +118,6 @@ public class TestRegistro {
 		modeloMock.validaciones = validacionesMock;
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
-		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
 
 		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
@@ -145,9 +145,6 @@ public class TestRegistro {
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
-
-		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(false);
 		when(registro.comprobarFormatoApellido(apellido)).thenReturn(false);
 		when(registro.comprobarNif(nif)).thenReturn(false);
@@ -173,9 +170,6 @@ public class TestRegistro {
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
-
-		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
 		when(registro.comprobarFormatoApellido(apellido)).thenReturn(false);
 		when(registro.comprobarNif(nif)).thenReturn(true);
@@ -200,8 +194,6 @@ public class TestRegistro {
 		modeloMock.validaciones = validacionesMock;
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
-		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
 
 		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
@@ -229,9 +221,6 @@ public class TestRegistro {
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
-
-		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
 		when(registro.comprobarFormatoApellido(apellido)).thenReturn(true);
 		when(registro.comprobarNif(nif)).thenReturn(false);
@@ -257,9 +246,6 @@ public class TestRegistro {
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
 		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
-
-		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
 		when(registro.comprobarFormatoApellido(apellido)).thenReturn(true);
 		when(registro.comprobarNif(nif)).thenReturn(true);
@@ -284,9 +270,6 @@ public class TestRegistro {
 		modeloMock.validaciones = validacionesMock;
 		
 		when(validacionesMock.comprobarNif(dni)).thenReturn(false);
-		
-		when(modeloMock.getConsultasComprobaciones()).thenReturn(consultasComprobacionesMock);
-
 		
 		when(registro.comprobarFormatoNombre(nombre)).thenReturn(true);
 		when(registro.comprobarFormatoApellido(apellido)).thenReturn(true);

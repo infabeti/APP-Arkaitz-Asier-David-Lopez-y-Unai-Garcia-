@@ -66,8 +66,7 @@ public class PanelTickets extends JPanel {
 		textFieldNumTrans.setBounds(297, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText(controladorPanelTickets.leerNumTransBBDD());
-		textFieldNumTrans.setEditable(false);
+		textFieldNumTrans.setText("0");
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		lblTransaccion = new JLabel("N\u00BA Transacci\u00F3n:");
@@ -262,7 +261,7 @@ public class PanelTickets extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes añadir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
+											"No puedes aï¿½adir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
 								} else {
 									productosAnadir = controladorPanelTickets.cambiarCantidadProductos(yaAnnadido,
 											Integer.parseInt(cantidad), producto);

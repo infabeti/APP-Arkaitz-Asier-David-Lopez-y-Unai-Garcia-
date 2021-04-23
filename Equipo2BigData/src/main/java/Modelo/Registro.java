@@ -9,11 +9,14 @@ public class Registro {
 	
 	public Registro(Modelo modelo) {
 		this.modelo = modelo;
-		this.consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 	}
 
 	public Modelo getModelo() {
 		return modelo;
+	}
+	
+	public void setConsultasComprobaciones(ConsultasComprobaciones consultasComprobaciones) {
+		this.consultasComprobaciones = consultasComprobaciones;
 	}
 
 	public boolean comprobarBBDDnif(String nif) {

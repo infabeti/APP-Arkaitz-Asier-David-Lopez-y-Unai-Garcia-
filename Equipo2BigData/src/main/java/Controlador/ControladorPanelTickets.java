@@ -42,11 +42,6 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 		this.panelTickets = makePanelTickets(this);
 		this.vista.mostrarPanel(this.panelTickets);
 	}
-
-	public String leerNumTransBBDD() {
-		this.consultas = new Consultas(modelo.getConexion());
-		return String.valueOf(this.consultas.leerNumTransBBDD());
-	}
 	
 	public int conseguirStock(String nif, String producto) {
 		this.consultas = new Consultas(modelo.getConexion());

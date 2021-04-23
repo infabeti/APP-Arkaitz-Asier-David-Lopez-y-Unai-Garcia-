@@ -48,10 +48,6 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		this.controlador.navegarPanelPrincipal();
 	}
 
-	public String leerNumTransBBDD() {
-		return String.valueOf(this.consultas.leerNumTransBBDD());
-	}
-
 	public String conseguirLocal() {
 
 		return this.modelo.getUser().getNifLocal();

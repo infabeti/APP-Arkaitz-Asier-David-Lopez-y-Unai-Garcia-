@@ -101,10 +101,9 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		inserciones.insertarPlatoActividad(transaccion, this.consultas.obtenerCodigoPlato(nombrePlato), cantidad); }
 	
 	public String[] conseguirDatosPanel() {
-		String[] devolver = new String[3];
+		String[] devolver = new String[2];
 		devolver[0] = modelo.getUser().getNifLocal();
 		devolver[1] = modelo.getFechaHoraSys();
-		devolver[2] = "0";
 		return devolver; }
 	
 	public void insertarComanda(int transaccion, String fecha, double totalOperacion, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
