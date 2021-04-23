@@ -34,6 +34,21 @@ public class Conversor {
 		return listaP;
 	}
 	
+	public ListaProductos listaStringAAlimentos(ArrayList<String[]> listaString) {
+		ListaProductos listaP = new ListaProductos();
+		for(int i = 0; i<listaString.size(); i++ ) {
+			String[] arrayString = listaString.get(i);
+			System.out.println(arrayString[0]+arrayString[1]+arrayString[2]+arrayString[3]);
+			String nombre = arrayString[0];
+			double pCompra = Double.parseDouble(arrayString[1]);
+			String tipo = arrayString[2];
+			Date feCad = Date.valueOf(arrayString[3]);
+			Producto prod = new Producto(nombre, feCad, tipo, pCompra);
+			listaP.addProducto(prod);
+		}
+		return listaP;
+	}
+	
 	public Usuario listaStringAUser(String[] listaString) {
 		Usuario usuario = new Usuario(listaString[0], listaString[1], listaString[2], listaString[3]);
 		return usuario;

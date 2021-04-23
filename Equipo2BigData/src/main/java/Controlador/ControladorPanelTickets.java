@@ -65,7 +65,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 		this.consultas = new Consultas(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
 				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad,
-				cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
+				cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada());
 	}
 
 	public String conseguirLocal() {

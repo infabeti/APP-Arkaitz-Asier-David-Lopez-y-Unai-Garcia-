@@ -111,7 +111,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
-				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
+				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
 	}
 
 	public boolean comprobarCampos(double total, String nif, String nombre, String apellido) {

@@ -101,7 +101,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), "12345678A", modelo.validaciones.fechaFormateada());
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, double totalOperacion, String nif, String domicilio, DefaultListModel<String> lista) {

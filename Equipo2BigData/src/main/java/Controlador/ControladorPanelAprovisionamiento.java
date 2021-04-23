@@ -64,16 +64,18 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 
 	public String[] pasarListaProductos() {
 		consultasListas = new ConsultasListas(modelo.getConexion());
-		listaP = modelo.conversor.listaStringAProductos(consultasListas.cogerProductosAprovisionamiento());
+		listaP = modelo.conversor.listaStringAAlimentos(consultasListas.cogerProductosAprovisionamiento());
 		return listaP.getListaProductosString();
 	}
 
-	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nifLocal) {
+	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans) {
 		InsercionesActividades insercionesActividades = new InsercionesActividades(modelo.getConexion());
+		consultasComprobaciones =  new ConsultasComprobaciones(modelo.getConexion());
+		consultas = new Consultas(modelo.getConexion());
 		double precioTotal = consultasComprobaciones.consultaComprobarPrecio(nombre) * cantidad;
-		insercionesActividades.insertarActividad(consultas.leerNumTransBBDD(), modelo.validaciones.fechaFormateada(), precioTotal, "aprovisionamiento", modelo.getUser().getNifLocal());
-		insercionesActividades.insertarAprovisionamiento(consultas.leerNumTransBBDD()-1);
+		insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), precioTotal, "aprovisionamiento", modelo.getUser().getNifLocal());
+		insercionesActividades.insertarAprovisionamiento(numTrans);
 		Inserciones inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nifLocal, modelo.validaciones.fechaFormateada() );
+		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada() );
 	}
 }

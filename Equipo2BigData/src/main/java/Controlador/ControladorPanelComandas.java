@@ -55,6 +55,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return modelo.getListaProductos().getListaProductosString(); }
 	
 	public int conseguirStockProductos(String nif, String producto) {
+		consultas = new Consultas(modelo.getConexion());
 		return this.consultas.obtenerStock(nif, producto); }
 	
 	public String[] cogerListaPlatos() {
@@ -94,7 +95,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 	
 	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal) {
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, "12345678A", modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, modelo.getUser().getNifLocal(), modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
 		inserciones = new Inserciones(modelo.getConexion());
