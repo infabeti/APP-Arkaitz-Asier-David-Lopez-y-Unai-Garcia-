@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -50,12 +51,6 @@ public class PanelTickets extends JPanel {
 		this.controladorPanelTickets = controladorPanelTickets;
 
 		setLayout(null);
-
-		lblTextoPanel = new JLabel("PANEL DE TICKETS");
-		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(139, 35, 556, 50);
-		add(lblTextoPanel);
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -178,6 +173,16 @@ public class PanelTickets extends JPanel {
 		textTotal.setColumns(10);
 		textTotal.setText("0");
 
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_ticket.jpg"));
+		lblBG.setBounds(0, 0, 834, 611);
+		add(lblBG);
+
+		lblTextoPanel = new JLabel("PANEL DE TICKETS");
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+		lblTextoPanel.setBounds(139, 35, 556, 50);
+		add(lblTextoPanel);
+
 		initializeEvents();
 
 	}
@@ -232,9 +237,9 @@ public class PanelTickets extends JPanel {
 				System.out.println(cantidad);
 				try {
 					producto = (String) listaProductos.getSelectedValue(); // Necesito hacer aqu� el cast porque
-																			// getSelectedValue() devuelve un objeto por
-																			// lo que no se le puede pasar directamente
-																			// a accionadoBotonAnadirProducto
+					// getSelectedValue() devuelve un objeto por
+					// lo que no se le puede pasar directamente
+					// a accionadoBotonAnadirProducto
 					if (producto != null) {
 						existeProd = true;
 					}

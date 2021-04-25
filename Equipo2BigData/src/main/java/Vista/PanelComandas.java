@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import Controlador.ControladorPanelComandas;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -50,25 +51,19 @@ public class PanelComandas extends JPanel {
 		this.controladorPanelComandas = controladorPanelComandas;
 
 		setLayout(null);
-		
-				textFieldFecha = new JTextField();
-				textFieldFecha.setHorizontalAlignment(SwingConstants.TRAILING);
-				textFieldFecha.setColumns(10);
-				textFieldFecha.setBounds(691, 117, 106, 20);
-				add(textFieldFecha);
-				textFieldFecha.setText(this.controladorPanelComandas.conseguirDatosPanel()[1]);
-				textFieldFecha.setEditable(false);
+
+		textFieldFecha = new JTextField();
+		textFieldFecha.setHorizontalAlignment(SwingConstants.TRAILING);
+		textFieldFecha.setColumns(10);
+		textFieldFecha.setBounds(691, 117, 106, 20);
+		add(textFieldFecha);
+		textFieldFecha.setText(this.controladorPanelComandas.conseguirDatosPanel()[1]);
+		textFieldFecha.setEditable(false);
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnVolver.setBounds(517, 545, 117, 25);
 		add(btnVolver);
-
-		JLabel lblComandas = new JLabel("COMANDAS");
-		lblComandas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblComandas.setFont(new Font("Arial", Font.BOLD, 50));
-		lblComandas.setBounds(36, 35, 761, 50);
-		add(lblComandas);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(332, 178, 216, 298);
@@ -195,11 +190,21 @@ public class PanelComandas extends JPanel {
 		lblError = new JLabel("");
 		lblError.setBounds(36, 148, 263, 23);
 		add(lblError);
-		
+
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
 		lblTotal.setBounds(36, 494, 50, 25);
 		add(lblTotal);
+
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_comandas.jpg"));
+		lblBG.setBounds(0, 0, 834, 611);
+		add(lblBG);
+
+		JLabel lblComandas = new JLabel("COMANDAS");
+		lblComandas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblComandas.setFont(new Font("Arial", Font.BOLD, 50));
+		lblComandas.setBounds(36, 35, 761, 50);
+		add(lblComandas);
 
 		initializeEvents();
 	}
@@ -233,9 +238,9 @@ public class PanelComandas extends JPanel {
 				System.out.println(cantidad);
 				try {
 					producto = (String) listaProductos.getSelectedValue(); // Necesito hacer aqu� el cast porque
-																			// getSelectedValue() devuelve un objeto por
-																			// lo que no se le puede pasar directamente
-																			// a accionadoBotonAnadirProducto
+					// getSelectedValue() devuelve un objeto por
+					// lo que no se le puede pasar directamente
+					// a accionadoBotonAnadirProducto
 					if (producto != null) {
 						existeProd = true;
 					}
@@ -265,7 +270,7 @@ public class PanelComandas extends JPanel {
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
 											"No puedes a�adir esa cantidad, el stock es de " + stock
-													+ " unidades y has seleccionado ya " + cantidadEnPanel[0]
+											+ " unidades y has seleccionado ya " + cantidadEnPanel[0]
 													+ " unidades");
 								} else {
 									productosAnadir = controladorPanelComandas.cambiarCantidadProductos(yaAnnadido,
