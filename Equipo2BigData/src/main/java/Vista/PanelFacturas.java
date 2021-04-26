@@ -313,7 +313,7 @@ public class PanelFacturas extends JPanel {
 					controladorPanelFacturas.insertarFactura(Integer.parseInt(textFieldNumTrans.getText()),
 							textFieldFecha.getText(), Double.parseDouble(textTotal.getText()), textLocal.getText() , textNombre.getText(), textApellido.getText(),annadidos,textNIF.getText());
 
-					JOptionPane.showMessageDialog(null, "Ticket introducido correctamente");
+					JOptionPane.showMessageDialog(null, "Factura introducida correctamente");
 					
 					controladorPanelFacturas.accionadoBottonVolverPanelPrincipal();
 

@@ -90,7 +90,6 @@ public class PanelPedidos extends JPanel {
 		textFieldLocal.setBounds(299, 180, 114, 19);
 		add(textFieldLocal);
 		textFieldLocal.setText(controladorPanelPedidos.conseguirLocal());
-		textFieldLocal.setEditable(false);
 		textFieldLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblTipoPed = new JLabel("*Solo rellenar si el pedido es a domicilio:");
@@ -286,7 +285,7 @@ public class PanelPedidos extends JPanel {
 							textFieldFecha.getText(), Double.parseDouble(textTotal.getText()), textFieldLocal.getText(),
 							domicilio, listaPAnnadidos);
 
-					JOptionPane.showMessageDialog(null, "Ticket introducido correctamente");
+					JOptionPane.showMessageDialog(null, "Pedido introducido correctamente");
 					controladorPanelPedidos.accionadoBottonVolverPanelPrincipal();
 
 				} else {
