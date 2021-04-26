@@ -113,6 +113,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
+		insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public PanelPedidos makePanelPedidos(ControladorPanelPedidos controladorPanelPedidos) {

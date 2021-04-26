@@ -120,5 +120,6 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");
 			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().getListaPlatosString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
 		}
+		insercionesActividades.ejecutarFuncion(transaccion);
 	}
 }

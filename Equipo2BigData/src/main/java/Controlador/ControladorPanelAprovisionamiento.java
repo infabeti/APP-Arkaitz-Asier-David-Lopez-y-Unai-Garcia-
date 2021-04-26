@@ -77,5 +77,6 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		insercionesActividades.insertarAprovisionamiento(numTrans);
 		Inserciones inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
+		insercionesActividades.ejecutarFuncion(numTrans);
 	}
 }

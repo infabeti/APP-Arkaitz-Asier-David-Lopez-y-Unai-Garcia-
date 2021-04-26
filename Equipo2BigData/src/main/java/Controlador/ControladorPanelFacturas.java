@@ -135,6 +135,13 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nifLocal);
 		}
+		try {
+			wait(1000);
+		}
+		catch(Exception e) {
+			
+		}
+		insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public PanelFacturas makePanelFacturas(ControladorPanelFacturas controladorPanelFacturas) {

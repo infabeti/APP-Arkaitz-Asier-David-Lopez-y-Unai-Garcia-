@@ -57,6 +57,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
+		insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
