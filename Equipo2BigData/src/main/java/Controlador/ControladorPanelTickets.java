@@ -49,10 +49,10 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	}
 	
 
-	public void insertarTicket(int transaccion, String fecha, double totalOperacion, String nif,
+	public void insertarTicket(int transaccion, String fecha, String nif,
 			DefaultListModel<String> lista) {
 		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "TICKET", nif);
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "TICKET", nif);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);

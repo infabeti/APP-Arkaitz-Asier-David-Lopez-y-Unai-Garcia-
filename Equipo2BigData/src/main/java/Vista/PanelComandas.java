@@ -268,7 +268,7 @@ public class PanelComandas extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes añadir esa cantidad, el stock es de " + stock
+											"No puedes aï¿½adir esa cantidad, el stock es de " + stock
 											+ " unidades y has seleccionado ya " + cantidadEnPanel[0]
 													+ " unidades");
 								} else {
@@ -371,7 +371,7 @@ public class PanelComandas extends JPanel {
 					if (Double.parseDouble(textTotal.getText()) > 0) {
 						// insertar datos en actividad
 						controladorPanelComandas.insertarComanda(Integer.parseInt(textFieldNumTrans.getText()),
-								textFieldFecha.getText(), Double.parseDouble(textTotal.getText()), textLocal.getText(),
+								textFieldFecha.getText(), textLocal.getText(),
 								productosAnadidosString, platosAnadidosString);
 
 						JOptionPane.showMessageDialog(null, "Comanda introducida correctamente");

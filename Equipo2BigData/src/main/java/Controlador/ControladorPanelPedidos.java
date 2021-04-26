@@ -105,9 +105,9 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 
-	public void insertarActividad(int transaccion, String fecha, double totalOperacion, String nif, String domicilio, DefaultListModel<String> lista) {
+	public void insertarActividad(int transaccion, String fecha, String nif, String domicilio, DefaultListModel<String> lista) {
 		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "PEDIDO", nif);
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "PEDIDO", nif);
 		insercionesActividades.insertarPedido(transaccion, domicilio);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");

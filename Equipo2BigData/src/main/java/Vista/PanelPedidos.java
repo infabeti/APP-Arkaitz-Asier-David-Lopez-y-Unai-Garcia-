@@ -244,7 +244,7 @@ public class PanelPedidos extends JPanel {
 								String cantidadEnPanel[] = yaAnnadido.split(" ");
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes añadir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
+											"No puedes aï¿½adir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
 								} else {
 									productosAnadir = controladorPanelPedidos.cambiarCantidadProductos(yaAnnadido,
 											Integer.parseInt(cantidad), producto);
@@ -282,7 +282,7 @@ public class PanelPedidos extends JPanel {
 					String domicilio = textFieldDomicilio.getText();
 					// insertar datos en actividad
 					controladorPanelPedidos.insertarActividad(Integer.parseInt(textFieldNumTrans.getText()),
-							textFieldFecha.getText(), Double.parseDouble(textTotal.getText()), textFieldLocal.getText(),
+							textFieldFecha.getText(), textFieldLocal.getText(),
 							domicilio, listaPAnnadidos);
 
 					JOptionPane.showMessageDialog(null, "Pedido introducido correctamente");
@@ -308,7 +308,7 @@ public class PanelPedidos extends JPanel {
 					textTotal.setText(total);
 					lblError.setText("");
 				} catch (Exception e) {
-					System.out.println("No se pudo borrar el producto seleccionado/No se ha seleccionado ningún producto");
+					System.out.println("No se pudo borrar el producto seleccionado/No se ha seleccionado ningï¿½n producto");
 					lblError.setText("No se pudo eliminar");
 				}
 			}

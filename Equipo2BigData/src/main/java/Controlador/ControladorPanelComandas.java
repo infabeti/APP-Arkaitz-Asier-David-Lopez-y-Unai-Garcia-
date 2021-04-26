@@ -107,9 +107,9 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		devolver[1] = modelo.getFechaHoraSys();
 		return devolver; }
 	
-	public void insertarComanda(int transaccion, String fecha, double totalOperacion, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
+	public void insertarComanda(int transaccion, String fecha, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
 		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha), totalOperacion,"COMANDA", nif);
+		insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha),"COMANDA", nif);
 		insercionesActividades.insertarComanda(transaccion);
 		for (int i = 0; i < listaProductos.getSize(); i++) {
 			String textoSpliteado[] = listaProductos.get(i).split(" ");

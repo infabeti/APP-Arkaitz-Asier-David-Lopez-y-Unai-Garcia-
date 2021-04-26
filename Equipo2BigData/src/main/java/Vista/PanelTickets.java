@@ -201,7 +201,7 @@ public class PanelTickets extends JPanel {
 				if (Double.parseDouble(textTotal.getText()) > 0) {
 					// insertar datos en actividad
 					controladorPanelTickets.insertarTicket(Integer.parseInt(textFieldNumTrans.getText()),
-							textFieldFecha.getText(), Double.parseDouble(textTotal.getText()), textLocal.getText(),
+							textFieldFecha.getText(), textLocal.getText(),
 							listaPAnnadidos);
 
 					JOptionPane.showMessageDialog(null, "Ticket introducido correctamente");
@@ -265,7 +265,7 @@ public class PanelTickets extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes añadir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
+											"No puedes aï¿½adir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
 								} else {
 									productosAnadir = controladorPanelTickets.cambiarCantidadProductos(yaAnnadido,
 											Integer.parseInt(cantidad), producto);

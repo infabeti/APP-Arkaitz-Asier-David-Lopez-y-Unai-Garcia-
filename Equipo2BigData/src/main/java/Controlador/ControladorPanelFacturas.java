@@ -118,12 +118,12 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		return total > 0 && this.modelo.validaciones.comprobarCamposString(nif, nombre, apellido);
 	}
 
-	public void insertarFactura(int transaccion, String fecha, double totalOperacion, String nifLocal, String nombre,
+	public void insertarFactura(int transaccion, String fecha, String nifLocal, String nombre,
 			String apellido, DefaultListModel<String> lista, String nifComprador) {
 		insercionesActividades = new InsercionesActividades(modelo.getConexion());
 		consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 		inserciones = new Inserciones(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "FACTURA",
+		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "FACTURA",
 				nifLocal);
 		if (this.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {
 			System.out.println("El comprador ya existe, no se hace la insert en la tabla comprador");
