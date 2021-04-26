@@ -133,7 +133,6 @@ public class PanelTickets extends JPanel {
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelTickets.conseguirLocal());
-		textLocal.setEditable(false);
 		textLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldFecha = new JTextField();
@@ -266,7 +265,7 @@ public class PanelTickets extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes aï¿½adir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
+											"No puedes añadir esa cantidad, el stock es de " + stock + " unidades y has seleccionado ya " + cantidadEnPanel[0] + " unidades");
 								} else {
 									productosAnadir = controladorPanelTickets.cambiarCantidadProductos(yaAnnadido,
 											Integer.parseInt(cantidad), producto);
@@ -301,7 +300,7 @@ public class PanelTickets extends JPanel {
 					listaPAnnadidos.remove(pos);
 					textTotal.setText(total);
 				} catch (Exception e) {
-					System.out.println("No se pudo borrar el producto seleccionado/No se seleccionado ningun producto");
+					System.out.println("No se pudo borrar el producto seleccionado/No se ha seleccionado ningun producto");
 				}
 			}
 		};

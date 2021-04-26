@@ -93,9 +93,9 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		this.total = this.modelo.funPlat.funcionalidadeliminarPlato(pos, eliminar, this.total);
 		return String.valueOf(total); }
 	
-	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal) {
+	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal, String nif) {
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, modelo.getUser().getNifLocal(), modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, nif, modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
 		inserciones = new Inserciones(modelo.getConexion());
@@ -114,7 +114,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		for (int i = 0; i < listaProductos.getSize(); i++) {
 			String textoSpliteado[] = listaProductos.get(i).split(" ");
 			String producto = this.modelo.getListaTemporal().getListaProductosString()[i];
-			insertarProductoActividad(producto, transaccion, Integer.parseInt(textoSpliteado[0]),this.modelo.getListaTemporal().precioProductoString(producto));
+			insertarProductoActividad(producto, transaccion, Integer.parseInt(textoSpliteado[0]),this.modelo.getListaTemporal().precioProductoString(producto), nif);
 		}
 		for (int i = 0; i < listaPlatos.getSize(); i++) {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");

@@ -68,14 +68,14 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		return listaP.getListaProductosString();
 	}
 
-	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans) {
+	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nif) {
 		InsercionesActividades insercionesActividades = new InsercionesActividades(modelo.getConexion());
 		consultasComprobaciones =  new ConsultasComprobaciones(modelo.getConexion());
 		consultas = new Consultas(modelo.getConexion());
 		double precioTotal = consultasComprobaciones.consultaComprobarPrecio(nombre) * cantidad;
-		insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), precioTotal, "aprovisionamiento", modelo.getUser().getNifLocal());
+		insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), precioTotal, "aprovisionamiento", nif);
 		insercionesActividades.insertarAprovisionamiento(numTrans);
 		Inserciones inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada() );
+		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
 	}
 }

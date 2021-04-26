@@ -180,7 +180,6 @@ public class PanelFacturas extends JPanel {
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelFacturas.conseguirLocal());
-		textLocal.setEditable(false);
 		textLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		lblLocal = new JLabel("Local:");

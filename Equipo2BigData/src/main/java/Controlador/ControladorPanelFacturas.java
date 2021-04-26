@@ -107,11 +107,11 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		return this.modelo.validaciones.contieneSoloLetras(cadena);
 	}
 
-	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
+	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
-				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
+				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
 	}
 
 	public boolean comprobarCampos(double total, String nif, String nombre, String apellido) {
@@ -133,7 +133,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		insercionesActividades.insertarFactura(transaccion, nifComprador);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
-			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));
+			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nifLocal);
 		}
 	}
 

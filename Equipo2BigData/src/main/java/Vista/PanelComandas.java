@@ -150,7 +150,6 @@ public class PanelComandas extends JPanel {
 		add(textLocal);
 		textLocal.setColumns(10);
 		textLocal.setText(controladorPanelComandas.conseguirDatosPanel()[0]);
-		textLocal.setEditable(false);
 		textLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldNumTrans = new JTextField();
@@ -269,7 +268,7 @@ public class PanelComandas extends JPanel {
 
 								if ((Integer.parseInt(cantidadEnPanel[0]) + Integer.parseInt(cantidad)) > stock) {
 									JOptionPane.showMessageDialog(null,
-											"No puedes aï¿½adir esa cantidad, el stock es de " + stock
+											"No puedes añadir esa cantidad, el stock es de " + stock
 											+ " unidades y has seleccionado ya " + cantidadEnPanel[0]
 													+ " unidades");
 								} else {

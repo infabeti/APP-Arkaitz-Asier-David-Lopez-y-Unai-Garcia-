@@ -55,17 +55,17 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), totalOperacion, "TICKET", nif);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
-			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));
+			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
 	}
 
-	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
+	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
 		this.inserciones = new Inserciones(modelo.getConexion());
 		this.consultas = new Consultas(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
 				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad,
-				cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada());
+				cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 
 	public String conseguirLocal() {

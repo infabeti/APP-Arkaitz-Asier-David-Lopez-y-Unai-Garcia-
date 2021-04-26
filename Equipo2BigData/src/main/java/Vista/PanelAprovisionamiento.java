@@ -103,7 +103,6 @@ public class PanelAprovisionamiento extends JPanel {
 		textFieldLocl = new JTextField();
 		textFieldLocl.setText(controladorPanelAprovisionamiento.conseguirLocal());
 		textFieldLocl.setHorizontalAlignment(SwingConstants.TRAILING);
-		textFieldLocl.setEditable(false);
 		textFieldLocl.setColumns(10);
 		textFieldLocl.setBounds(560, 326, 114, 20);
 		add(textFieldLocl);
@@ -166,7 +165,7 @@ public class PanelAprovisionamiento extends JPanel {
 					int cantidad = Integer.parseInt(textFieldCantidad.getText());
 					int seleccionado = listaProductos.getSelectedIndex();
 					String nombreAlimento = (String) listaProductos.getSelectedValue();
-					controladorPanelAprovisionamiento.accionadoBotonAnnadir(cantidad, seleccionado, nombreAlimento,Integer.parseInt(textFieldNumTrans.getText()));
+					controladorPanelAprovisionamiento.accionadoBotonAnnadir(cantidad, seleccionado, nombreAlimento, Integer.parseInt(textFieldNumTrans.getText()), textFieldLocl.getText());
 					JOptionPane.showMessageDialog(null, "Aprovisionado " + cantidad + " " + listaProductos.getSelectedValue() + " Correctamente");
 					controladorPanelAprovisionamiento.accionadoBottonVolverPanelPrincipal();
 				}

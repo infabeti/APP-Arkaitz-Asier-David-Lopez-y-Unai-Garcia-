@@ -99,10 +99,10 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 		return this.modelo.funProd.devolverNombreProducto(i);
 	}
 
-	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad) {
+	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), modelo.getUser().getNifLocal(), modelo.validaciones.fechaFormateada());
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, double totalOperacion, String nif, String domicilio, DefaultListModel<String> lista) {
@@ -111,7 +111,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 		insercionesActividades.insertarPedido(transaccion, domicilio);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
-			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]));
+			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
 	}
 
