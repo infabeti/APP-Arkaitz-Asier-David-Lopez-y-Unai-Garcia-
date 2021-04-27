@@ -22,6 +22,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.never;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -194,7 +195,7 @@ public class TestControlador {
 
 		spyControlador.navegarPanelPedidos();
 
-		// NO PUEDO VERIFICAR QUE ENTRE YA QUE NO DEBE ENTRAR
+		verify(spyControlador, never()).controladorPanelPedidosMostrarPanelPedidos();
 	}
 
 	@Test
@@ -390,7 +391,7 @@ public class TestControlador {
 
 		spyControlador.navegarPanelComandas();
 
-		// NO TENGO QUE VERIFICAR QUE ENTRE YA QUE NO PUEDE HACERLO
+		verify(spyControlador, never()).controladorPanelComandasMostrarPanelComandas();
 	}
 
 }
