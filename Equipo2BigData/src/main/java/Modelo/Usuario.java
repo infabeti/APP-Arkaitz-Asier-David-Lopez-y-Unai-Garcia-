@@ -14,6 +14,8 @@ public class Usuario {
 		this.nifLocal = nifLocal;
 	}
 	
+	public Usuario() {}
+
 	public String getNombre() {
 		return this.nombre;
 	}

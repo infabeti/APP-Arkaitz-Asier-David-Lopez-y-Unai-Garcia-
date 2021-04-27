@@ -26,7 +26,7 @@ public class Modelo {
 	}
 
 	public Modelo() {
-		user = new Usuario("", "", "", "");
+		user = new Usuario();
 		funProd = new FuncionesProductos(this);
 		funPlat = new FuncionesPlatos(this);
 		registro = new Registro(this);
