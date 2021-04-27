@@ -95,7 +95,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 	
 	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal, String nif) {
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, nif, modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys())); }
+		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
 		inserciones = new Inserciones(modelo.getConexion());
@@ -104,7 +104,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 	public String[] conseguirDatosPanel() {
 		String[] devolver = new String[2];
 		devolver[0] = modelo.getUser().getNifLocal();
-		devolver[1] = modelo.getFechaHoraSys();
+		devolver[1] = modelo.utiles.getFechaHoraSys();
 		return devolver; }
 	
 	public void insertarComanda(int transaccion, String fecha, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {

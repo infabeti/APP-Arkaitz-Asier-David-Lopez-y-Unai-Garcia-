@@ -9,12 +9,14 @@ import org.junit.Test;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Producto;
+import Modelo.Utiles;
 import Modelo.FuncionesProductos;
 
 public class TestFuncionesProductos {
 	
 	
 	private Modelo modeloMock = mock(Modelo.class);
+	private Utiles utilesMock = mock(Utiles.class);
 	private String resultadoEsperadoString, resultadoString;
 	private String[] resultadoArrayString;
 	private double resultadoEsperadoDouble, resultadoDouble;
@@ -79,6 +81,8 @@ public class TestFuncionesProductos {
 	
 	@Test
 	public void TestEliminarProducto() {
+		
+		modeloMock.utiles = utilesMock;
 
 		int pos = 0;
 		String eliminar = "1 Pepito";
@@ -86,7 +90,7 @@ public class TestFuncionesProductos {
 
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 
-		when(modeloMock.cogerCantidadString(eliminar)).thenReturn(1);
+		when(modeloMock.utiles.cogerCantidadString(eliminar)).thenReturn(1);
 
 		when(listaProductosMock.getPrecioProducto(pos)).thenReturn(16.0);
 

@@ -56,7 +56,7 @@ public class ControladorInicio implements ControladorInterfaz {
 		if (res.getNombre().equals("")) {
 			return false;
 		} else {
-			this.modelo.actualizarListaProductosLocal();
+			this.modelo.utiles.inicializarListaProductos();
 			if (this.modelo.getUser().getTipoLocal().equals("RESTAURANTE")) {
 				this.modelo.setListaPlatos(modelo.conversor.listaStringAPlatos(this.consultasListas.cogerListaPlatos(this.modelo.getUser().getNifLocal())));
 			}

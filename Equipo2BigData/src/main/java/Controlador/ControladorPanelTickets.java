@@ -74,7 +74,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	}
 
 	public String devolverFechaHora() {
-		return modelo.getFechaHoraSys();
+		return modelo.utiles.getFechaHoraSys();
 	}
 	@Override
 	public void accionadoBottonVolverPanelPrincipal() {

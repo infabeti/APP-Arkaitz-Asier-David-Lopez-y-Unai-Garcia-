@@ -15,6 +15,7 @@ import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Vista.Vista;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
@@ -49,10 +50,12 @@ public class TestControlador {
 	private ListaProductos listaProductosMock = mock(ListaProductos.class);
 	private ArrayList<String[]> arrayListMock = mock(ArrayList.class);
 	private String[] arrString = new String[] { "a", "b" };
+	private Utiles utilesMock = mock(Utiles.class);
 	
 	@Before
 	public void setNecesarios() {
 		modeloMock.setConexion(conexionMock);
+		modeloMock.utiles = utilesMock;
 	}
 
 	@Test

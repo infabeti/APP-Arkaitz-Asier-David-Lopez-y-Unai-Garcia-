@@ -54,7 +54,7 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public String devolverFechaHora() {
-		return this.modelo.getFechaHoraSys();
+		return this.modelo.utiles.getFechaHoraSys();
 	}
 
 	public PanelAprovisionamiento makePanelAprovisionamiento(

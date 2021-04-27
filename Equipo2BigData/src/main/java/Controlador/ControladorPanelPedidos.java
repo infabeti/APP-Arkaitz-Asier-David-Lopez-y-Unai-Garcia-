@@ -62,7 +62,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public String devolverFechaHora() {
-		return this.modelo.getFechaHoraSys();
+		return this.modelo.utiles.getFechaHoraSys();
 	}
 
 	public int existeProducto(String nombreProducto) {

@@ -3,12 +3,15 @@ package TestModelo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Plato;
+import Modelo.Utiles;
 import Modelo.FuncionesPlatos;
 
 public class TestFuncionesPlatos {
@@ -20,6 +23,8 @@ public class TestFuncionesPlatos {
 	private ListaPlatos listaPlatosMock = mock(ListaPlatos.class);
 	private Plato platoMock = mock(Plato.class);
 	private FuncionesPlatos funcionesPlatos = new FuncionesPlatos(modeloMock);
+	private Utiles utilesMock = mock(Utiles.class);
+
 	
 	@Test
 	public void TestAnnadirPlato() {
@@ -45,6 +50,8 @@ public class TestFuncionesPlatos {
 	
 	@Test
 	public void TestEliminarPlato() {
+		
+		modeloMock.utiles = utilesMock;
 
 		int pos = 0;
 		String eliminar = "1 Pepito";
@@ -52,7 +59,7 @@ public class TestFuncionesPlatos {
 
 		when(modeloMock.getListaTemporalPlatos()).thenReturn(listaPlatosMock);
 
-		when(modeloMock.cogerCantidadString(eliminar)).thenReturn(1);
+		when(modeloMock.utiles.cogerCantidadString(eliminar)).thenReturn(1);
 
 		when(listaPlatosMock.getPrecioPlato(pos)).thenReturn(16.0);
 

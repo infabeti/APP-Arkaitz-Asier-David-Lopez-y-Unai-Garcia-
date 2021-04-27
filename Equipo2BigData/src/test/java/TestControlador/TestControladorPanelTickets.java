@@ -18,6 +18,7 @@ import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Modelo.FuncionesProductos;
 import Modelo.Validaciones;
 import Vista.PanelTickets;
@@ -38,6 +39,7 @@ public class TestControladorPanelTickets {
 	private String[] listaProductos;
 	private FuncionesProductos funcionesProductosMock = mock(FuncionesProductos.class);
 	private Validaciones validacionesMock = mock(Validaciones.class);
+	private Utiles utilesMock = mock(Utiles.class);
 
 	private ControladorPanelTickets controladorPanelTickets = new ControladorPanelTickets(modeloMock, vistaMock,
 			controladorMock);
@@ -56,6 +58,9 @@ public class TestControladorPanelTickets {
 
 	@Test
 	public void testDevolverFechaHora() {
+		
+		modeloMock.utiles = utilesMock;
+		
 		when(controladorPanelTickets.devolverFechaHora()).thenReturn("999");
 
 		resultadoString = controladorPanelTickets.devolverFechaHora();

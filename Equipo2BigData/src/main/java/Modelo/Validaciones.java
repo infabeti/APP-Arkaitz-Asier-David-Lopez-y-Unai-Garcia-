@@ -83,7 +83,7 @@ public class Validaciones {
 	
 	public String fechaFormateada() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		String dateInString = modelo.getFechaHoraSys();
+		String dateInString = modelo.utiles.getFechaHoraSys();
 		try {
 			java.util.Date date1 = formatter.parse(dateInString);
 			return (new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date1));

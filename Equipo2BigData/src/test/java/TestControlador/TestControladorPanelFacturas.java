@@ -5,12 +5,15 @@ import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Modelo.FuncionesProductos;
 import Modelo.Validaciones;
 import Vista.PanelFacturas;
 import Vista.Vista;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestControladorPanelFacturas {
@@ -18,6 +21,7 @@ public class TestControladorPanelFacturas {
 	private Modelo modeloMock = mock(Modelo.class);
 	private Vista vistaMock = mock(Vista.class);
 	private Controlador controladorMock = mock(Controlador.class);
+	private Utiles utilesMock = mock(Utiles.class);
 	private String resultadoEsperadoString, resultadoString;
 	private int resultadoEsperadoInt, resultadoInt;
 	private double resultadoEsperadoDouble, resultadoDouble;
@@ -37,6 +41,11 @@ public class TestControladorPanelFacturas {
 	private PanelFacturas panelFacturasMock = mock(PanelFacturas.class);
 	private ControladorPanelFacturas spyControladorPanelFacturas = spy(
 			new ControladorPanelFacturas(modeloMock, vistaMock, controladorMock));
+	
+	@Before
+	public void inicializarNecesarios() {
+		this.modeloMock.utiles=utilesMock;
+	}
 
 	@Test
 	public void testConstructorControladorFacturas() {

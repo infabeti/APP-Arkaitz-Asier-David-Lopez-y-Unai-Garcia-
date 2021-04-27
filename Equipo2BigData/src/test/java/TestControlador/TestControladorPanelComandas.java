@@ -6,6 +6,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import Controlador.Controlador;
@@ -15,6 +17,7 @@ import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Modelo.FuncionesProductos;
 import Modelo.FuncionesPlatos;
 import principal.Consultas;
@@ -33,6 +36,7 @@ public class TestControladorPanelComandas {
 	private FuncionesProductos funcionesProductosMock = mock(FuncionesProductos.class);
 	private FuncionesPlatos funcionesPlatosMock = mock(FuncionesPlatos.class);
 	private String[] resultadoArrayString, resultadoEsperadoArrayString;
+	private Utiles utilesMock = mock(Utiles.class);
 	
 	private ControladorPanelComandas controladorPanelComandas = new ControladorPanelComandas(modeloMock, vistaMock,
 			controladorMock);
@@ -42,7 +46,11 @@ public class TestControladorPanelComandas {
 		private ControladorPanelComandas spyControladorPanelComandas= spy(
 				new ControladorPanelComandas(modeloMock, vistaMock, controladorMock));
 
-	
+	@Before
+	public void inicializarNecesarios() {
+		modeloMock.utiles = utilesMock;
+	}
+		
 	@Test
 	public void TestAccionadoBottonVolverPanelPrincipal() {
 
@@ -204,7 +212,7 @@ public class TestControladorPanelComandas {
 	public void TestConseguirDatosPanel() {
 		when(modeloMock.getUser()).thenReturn(userMock);
 		when(userMock.getNifLocal()).thenReturn("1");
-		when(modeloMock.getFechaHoraSys()).thenReturn("2");
+		when(modeloMock.utiles.getFechaHoraSys()).thenReturn("2");
 		
 		resultadoEsperadoArrayString = new String[] {"1","2"};
 		

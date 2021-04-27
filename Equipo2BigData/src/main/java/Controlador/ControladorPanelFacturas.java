@@ -41,7 +41,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	}
 
 	public String devolverFechaHora() {
-		return this.modelo.getFechaHoraSys();
+		return this.modelo.utiles.getFechaHoraSys();
 	}
 	
 	public int conseguirStock(String nif, String producto) {
@@ -111,7 +111,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
-				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.getFechaHoraSys()));
+				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys()));
 	}
 
 	public boolean comprobarCampos(double total, String nif, String nombre, String apellido) {

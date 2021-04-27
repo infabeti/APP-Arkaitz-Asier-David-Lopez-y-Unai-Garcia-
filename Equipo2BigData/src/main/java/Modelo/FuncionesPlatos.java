@@ -32,7 +32,7 @@ public class FuncionesPlatos {
 	
 	public double funcionalidadeliminarPlato(int pos, String eliminar, double total) {
 		ListaPlatos listaPlatos = modelo.getListaTemporalPlatos();
-		int cantidad = modelo.cogerCantidadString(eliminar);
+		int cantidad = modelo.utiles.cogerCantidadString(eliminar);
 		double precio = listaPlatos.getPrecioPlato(pos);
 		total = total - (precio * cantidad);
 		BigDecimal bd = BigDecimal.valueOf(total);

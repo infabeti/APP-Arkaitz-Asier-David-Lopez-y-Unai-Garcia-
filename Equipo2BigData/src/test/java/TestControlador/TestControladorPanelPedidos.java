@@ -4,7 +4,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
-
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -18,6 +18,7 @@ import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Modelo.FuncionesProductos;
 import Modelo.Validaciones;
 import Vista.PanelPedidos;
@@ -28,6 +29,7 @@ public class TestControladorPanelPedidos {
 	private Modelo modeloMock = mock(Modelo.class);
 	private Vista vistaMock = mock(Vista.class);
 	private Controlador controladorMock = mock(Controlador.class);
+	private Utiles utilesMock = mock(Utiles.class);
 	private String resultadoEsperadoString, resultadoString;
 	private int resultadoEsperadoInt, resultadoInt;
 
@@ -48,6 +50,11 @@ public class TestControladorPanelPedidos {
 	private PanelPedidos panelPedidosMock = mock(PanelPedidos.class);
 	private ControladorPanelPedidos spyControladorPanelPedidos = spy(
 			new ControladorPanelPedidos(modeloMock, vistaMock, controladorMock));
+	
+	@Before
+	public void inicializarNecesarios() {
+		modeloMock.utiles = utilesMock;
+	}
 
 	@Test
 	public void testConstructorControladorPedidos() {
@@ -59,7 +66,7 @@ public class TestControladorPanelPedidos {
 	@Test
 	public void testDevolverFechaHora() {
 
-		when(modeloMock.getFechaHoraSys()).thenReturn("999");
+		when(modeloMock.utiles.getFechaHoraSys()).thenReturn("999");
 
 		resultadoString = controladorPanelPedidos.devolverFechaHora();
 		resultadoEsperadoString = "999";

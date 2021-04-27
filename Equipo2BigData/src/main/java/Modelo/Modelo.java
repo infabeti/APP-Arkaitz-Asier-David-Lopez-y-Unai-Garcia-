@@ -1,9 +1,5 @@
 package Modelo;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import principal.ConsultasListas;
 
 public class Modelo {
@@ -20,6 +16,7 @@ public class Modelo {
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
 	public java.sql.Connection conexionConn = conexion.getConn();
 	public Conversor conversor = new Conversor();
+	public Utiles utiles;
 
 	public Registro getRegistro() {
 		return registro;
@@ -31,6 +28,7 @@ public class Modelo {
 		funPlat = new FuncionesPlatos(this);
 		registro = new Registro(this);
 		validaciones = new Validaciones(this);
+		utiles = new Utiles(this);
 	}
 
 	public void setConexion(principal.Conexion conexion) {
@@ -61,33 +59,16 @@ public class Modelo {
 		return this.listaProductos;
 	}
 	
+	public void setListaProductos(ListaProductos listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+	
 	public ListaPlatos getListaPlatos() {
 		return this.listaPlatos;
 	}
 	
 	public void setListaPlatos(ListaPlatos listaPlatos) {
 		this.listaPlatos = listaPlatos;
-	}
-
-	public String getFechaHoraSys() {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm");
-		Date date = new Date(Calendar.getInstance().getTime().getTime());
-		return dateFormat.format(date);
-	}
-
-	public int cogerCantidadString(String linea) {
-		int punt = 0;
-		for (int i = 0; linea.charAt(i) != ' '; i++) {
-			punt = i;
-		}
-		punt++;
-		int cantidad = Integer.parseInt(linea.substring(0, punt));
-		return cantidad;
-	}
-
-	public void actualizarListaProductosLocal() {
-		ConsultasListas consultasListas = new ConsultasListas(this.conexion);
-		this.listaProductos = conversor.listaStringAProductos(consultasListas.cogerProductosLocal(user.getNifLocal()));
 	}
 
 	public Usuario getUser() {

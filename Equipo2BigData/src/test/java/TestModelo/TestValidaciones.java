@@ -3,6 +3,7 @@ package TestModelo;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import Modelo.Modelo;
+import Modelo.Utiles;
 import Modelo.Validaciones;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,6 +14,7 @@ public class TestValidaciones {
 	private Validaciones validaciones = new Validaciones(modeloMock);
 	private String resultadoString, resultadoEsperadoString;
 	private boolean resultadoBoolean, resultadoEsperadoBoolean;
+	private Utiles utilesMock = mock(Utiles.class);
 	
 	
 	@Test
@@ -29,7 +31,9 @@ public class TestValidaciones {
 	@Test
 	public void fechaFormateada() {
 		
-		when(modeloMock.getFechaHoraSys()).thenReturn("01/03/2021 21:12");
+		modeloMock.utiles = utilesMock;
+		
+		when(modeloMock.utiles.getFechaHoraSys()).thenReturn("01/03/2021 21:12");
 		
 		resultadoString = validaciones.fechaFormateada();
 		
