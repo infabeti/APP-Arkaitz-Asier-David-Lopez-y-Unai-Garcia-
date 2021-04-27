@@ -16,7 +16,7 @@ public class Utiles {
 
 	public void inicializarListaProductos() {
 		ConsultasListas consultasListas = new ConsultasListas(modelo.getConexion());
-		ListaProductos listaProductos = modelo.conversor.listaStringAProductos(consultasListas.cogerProductosLocal("2345678J"));
+		ListaProductos listaProductos = modelo.conversor.listaStringAProductos(consultasListas.cogerProductosLocal(modelo.getUser().getNifLocal()));
 		this.modelo.setListaProductos(listaProductos);
 	}
 
