@@ -14,7 +14,7 @@ public class FuncionesPlatos {
 	public double cantidadTotalPlatos(String cantidad, String producto, double total) {
 		ListaPlatos listaPlatos = this.modelo.getListaPlatos();
 		int cantidadInt = Integer.parseInt(cantidad);
-		double precioTotalProducto = cantidadInt * listaPlatos.precioProductoString(producto);
+		double precioTotalProducto = cantidadInt * listaPlatos.precioElementoString(producto);
 		total = total + precioTotalProducto;
 		BigDecimal bd = BigDecimal.valueOf(total);
 	    bd = bd.setScale(2, RoundingMode.HALF_DOWN);
@@ -33,12 +33,12 @@ public class FuncionesPlatos {
 	public double funcionalidadeliminarPlato(int pos, String eliminar, double total) {
 		ListaPlatos listaPlatos = modelo.getListaTemporalPlatos();
 		int cantidad = modelo.utiles.cogerCantidadString(eliminar);
-		double precio = listaPlatos.getPrecioPlato(pos);
+		double precio = listaPlatos.getPrecioElementoPosicion(pos);
 		total = total - (precio * cantidad);
 		BigDecimal bd = BigDecimal.valueOf(total);
 	    bd = bd.setScale(2, RoundingMode.HALF_DOWN);
 	    total = bd.doubleValue();
-		listaPlatos.eliminarPlato(pos);
+		listaPlatos.eliminarElemento(pos);
 		return total;
 	}
 	

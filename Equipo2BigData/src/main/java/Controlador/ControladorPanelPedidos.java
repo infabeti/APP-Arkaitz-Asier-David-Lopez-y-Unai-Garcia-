@@ -58,7 +58,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().getListaProductosString();
+		return this.modelo.getListaProductos().convertirListaAString();
 	}
 
 	public String devolverFechaHora() {
@@ -66,11 +66,11 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public int existeProducto(String nombreProducto) {
-		return this.modelo.getListaTemporal().devolverPosProductoString(nombreProducto);
+		return this.modelo.getListaTemporal().devolverPosElementoString(nombreProducto);
 	}
 
 	public double cogerPrecioString(String nombreProducto) {
-		return this.modelo.getListaTemporal().precioProductoString(nombreProducto);
+		return this.modelo.getListaTemporal().precioElementoString(nombreProducto);
 	}
 
 	public String[] accionadoBotonAnnadirProducto(String producto, String cantidad) {

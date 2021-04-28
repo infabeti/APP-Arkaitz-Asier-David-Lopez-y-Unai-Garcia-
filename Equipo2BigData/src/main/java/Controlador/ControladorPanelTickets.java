@@ -84,15 +84,15 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().getListaProductosString();
+		return this.modelo.getListaProductos().convertirListaAString();
 	}
 
 	public int existeProducto(String nombreProducto) {
-		return modelo.getListaTemporal().devolverPosProductoString(nombreProducto);
+		return modelo.getListaTemporal().devolverPosElementoString(nombreProducto);
 	}
 
 	public double cogerPrecioString(String nombreProducto) {
-		return modelo.getListaTemporal().precioProductoString(nombreProducto);
+		return modelo.getListaTemporal().precioElementoString(nombreProducto);
 	}
 
 	public String[] accionadoBotonAnnadirProducto(String producto, String cantidad) {

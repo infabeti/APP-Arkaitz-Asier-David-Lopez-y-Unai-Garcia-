@@ -45,7 +45,7 @@ public class TestListaPlatos {
 	public void testEliminarPlato() {
 		lp = new ListaPlatos();	
 		lp.addPlato(platoMock);
-		resultadoBoolean = lp.eliminarPlato(0);
+		resultadoBoolean = lp.eliminarElemento(0);
 		assertTrue(resultadoBoolean);
 	}
 	
@@ -64,7 +64,7 @@ public class TestListaPlatos {
 		lp.addPlato(platoMock);
 		resultadoEsperadoDouble = 3.0;
 		when(platoMock.getPrecio()).thenReturn(3.0);
-		resultadoDouble = lp.getPrecioPlato(0);
+		resultadoDouble = lp.getPrecioElementoPosicion(0);
 		assertEquals(resultadoEsperadoDouble, resultadoDouble, 0);
 	}
 	
@@ -74,7 +74,7 @@ public class TestListaPlatos {
 		lp.addPlato(platoMock);
 		resultadoEsperadoString = "pepito";
 		when(platoMock.getNombre()).thenReturn(resultadoEsperadoString);
-		String[] listaString = lp.getListaPlatosString();
+		String[] listaString = lp.convertirListaAString();
 		resultadoString = listaString[0];
 		assertEquals(resultadoEsperadoString, resultadoString);
 	}
@@ -113,7 +113,7 @@ public class TestListaPlatos {
 		String input = "cebolla";
 		
 		when(platoMock.getNombre()).thenReturn(input);
-		resultadoInt = lp.devolverPosPlatoString(input);
+		resultadoInt = lp.devolverPosElementoString(input);
 		resultadoEsperadoInt = 0;
 		assertEquals(resultadoEsperadoInt, resultadoInt);
 	}
@@ -126,7 +126,7 @@ public class TestListaPlatos {
 		String input = "cebolla";
 		
 		when(platoMock.getNombre()).thenReturn(input);
-		resultadoInt = lp.devolverPosPlatoString("AA");
+		resultadoInt = lp.devolverPosElementoString("AA");
 		resultadoEsperadoInt = -1;
 		
 		assertEquals(resultadoEsperadoInt, resultadoInt);
@@ -144,7 +144,7 @@ public class TestListaPlatos {
 		
 		when(platoMock.getNombre()).thenReturn(input);
 		when(platoMock.getPrecio()).thenReturn(resultadoEsperadoDouble);
-		resultadoDouble = lp.precioProductoString(input);
+		resultadoDouble = lp.precioElementoString(input);
 		
 		assertEquals(resultadoEsperadoDouble, resultadoEsperadoDouble, 0);
 	}
@@ -159,7 +159,7 @@ public class TestListaPlatos {
 		
 		when(platoMock.getNombre()).thenReturn(input);
 		when(platoMock.getPrecio()).thenReturn(resultadoEsperadoDouble);
-		resultadoDouble = lp.precioProductoString("AA");
+		resultadoDouble = lp.precioElementoString("AA");
 		
 		assertEquals(resultadoEsperadoDouble, resultadoEsperadoDouble, 0);
 	}

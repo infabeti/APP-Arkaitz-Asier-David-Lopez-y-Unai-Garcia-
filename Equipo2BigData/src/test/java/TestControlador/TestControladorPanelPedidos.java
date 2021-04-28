@@ -129,7 +129,7 @@ public class TestControladorPanelPedidos {
 
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 
-		when(modeloMock.getListaTemporal().devolverPosProductoString(llamadaMetodo)).thenReturn(5);
+		when(modeloMock.getListaTemporal().devolverPosElementoString(llamadaMetodo)).thenReturn(5);
 
 		resultadoInt = controladorPanelPedidos.existeProducto(llamadaMetodo);
 		resultadoEsperadoInt = 5;
@@ -145,7 +145,7 @@ public class TestControladorPanelPedidos {
 
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 
-		when(modeloMock.getListaTemporal().precioProductoString(llamadaMetodo)).thenReturn(35.54);
+		when(modeloMock.getListaTemporal().precioElementoString(llamadaMetodo)).thenReturn(35.54);
 
 		resultadoDouble = controladorPanelPedidos.cogerPrecioString(llamadaMetodo);
 
@@ -215,7 +215,7 @@ public class TestControladorPanelPedidos {
 	public void testPasarListaProductos() {
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 		
-		when(listaProductosMock.getListaProductosString()).thenReturn(listaProductos);
+		when(listaProductosMock.convertirListaAString()).thenReturn(listaProductos);
 
 		resultadoEsperadoArrayString = controladorPanelPedidos.cogerListaProductos();
 

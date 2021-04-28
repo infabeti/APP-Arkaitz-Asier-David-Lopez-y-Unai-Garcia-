@@ -69,7 +69,7 @@ public class TestFuncionesProductos {
 
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 
-		when(listaProductosMock.precioProductoString(segun)).thenReturn(3.0);
+		when(listaProductosMock.precioElementoString(segun)).thenReturn(3.0);
 
 		resultadoDouble = funcionesProductos.cantidadTotal(primer, segun, tercer, "producto");
 
@@ -92,7 +92,7 @@ public class TestFuncionesProductos {
 
 		when(modeloMock.utiles.cogerCantidadString(eliminar)).thenReturn(1);
 
-		when(listaProductosMock.getPrecioProducto(pos)).thenReturn(16.0);
+		when(listaProductosMock.getPrecioElementoPosicion(pos)).thenReturn(16.0);
 
 		resultadoDouble = funcionesProductos.funcionalidadeliminarProducto(pos, eliminar, total);
 
@@ -111,7 +111,7 @@ public class TestFuncionesProductos {
 
 		String[] arrStringProductos = { "PepsiCola", "Zapatilla" };
 
-		when(listaProductosMock.getListaProductosString()).thenReturn(arrStringProductos);
+		when(listaProductosMock.convertirListaAString()).thenReturn(arrStringProductos);
 
 		resultadoString = funcionesProductos.devolverNombreProducto(i);
 
@@ -131,7 +131,7 @@ public class TestFuncionesProductos {
 		when(listaProductosMock.devolverProductoPorString(producto)).thenReturn(productoMock);
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 		when(productoMock.toString()).thenReturn("string");
-		when(listaProductosMock.precioProductoString(producto)).thenReturn(3.0);
+		when(listaProductosMock.precioElementoString(producto)).thenReturn(3.0);
 		
 		resultadoArrayString = funcionesProductos.funcionalidadAnadirProducto(producto, cantidad, total);
 		
@@ -150,7 +150,7 @@ public class TestFuncionesProductos {
 		double total = 3.0;
 		
 		when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
-		when(listaProductosMock.precioProductoString(nombreProducto)).thenReturn(3.0);
+		when(listaProductosMock.precioElementoString(nombreProducto)).thenReturn(3.0);
 		
 		resultadoArrayString = funcionesProductos.cambiarCantidadProductos(nombreProductoAnadido, cantidadAnadir, nombreProducto, total, "producto");
 		

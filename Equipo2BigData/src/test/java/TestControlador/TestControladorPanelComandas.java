@@ -108,7 +108,7 @@ public class TestControladorPanelComandas {
 	public void testExisteProducto() {
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 		
-		when(listaProductosMock.devolverPosProductoString("patata")).thenReturn(2);
+		when(listaProductosMock.devolverPosElementoString("patata")).thenReturn(2);
 		
 		int resultado = controladorPanelComandas.existeProducto("patata");
 		
@@ -141,7 +141,7 @@ public class TestControladorPanelComandas {
 		
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 		
-		when(listaProductosMock.precioProductoString(nombreProducto)).thenReturn(2.0);
+		when(listaProductosMock.precioElementoString(nombreProducto)).thenReturn(2.0);
 		
 		double resultado = controladorPanelComandas.cogerPrecioString(nombreProducto);
 		
@@ -167,7 +167,7 @@ public class TestControladorPanelComandas {
 	public void testExistePlato() {
 		when(modeloMock.getListaTemporalPlatos()).thenReturn(listaPlatosMock);
 		
-		when(listaPlatosMock.devolverPosPlatoString("patata")).thenReturn(2);
+		when(listaPlatosMock.devolverPosElementoString("patata")).thenReturn(2);
 		
 		int resultado = controladorPanelComandas.existePlato("patata");
 		

@@ -16,10 +16,10 @@ public class FuncionesProductos {
 		int cantidadInt = Integer.parseInt(cantidad);
 		if(tipo.equalsIgnoreCase("producto")) {
 			ListaProductos listaProd = this.modelo.getListaProductos();
-			precioTotalProducto = cantidadInt * listaProd.precioProductoString(producto);}
+			precioTotalProducto = cantidadInt * listaProd.precioElementoString(producto);}
 		else {
 			ListaPlatos listaPlatos = this.modelo.getListaPlatos();
-			precioTotalProducto = cantidadInt * listaPlatos.precioProductoString(producto);}
+			precioTotalProducto = cantidadInt * listaPlatos.precioElementoString(producto);}
 		total = total + precioTotalProducto;
 		BigDecimal bd = BigDecimal.valueOf(total);
 	    bd = bd.setScale(2, RoundingMode.HALF_DOWN);
@@ -48,19 +48,19 @@ public class FuncionesProductos {
 	
 	public String devolverNombreProducto(int i) {
 		ListaProductos listaTemporal = this.modelo.getListaTemporal();
-		String[] lista = listaTemporal.getListaProductosString();
+		String[] lista = listaTemporal.convertirListaAString();
 		return lista[i];
 	}
 
 	public double funcionalidadeliminarProducto(int pos, String eliminar, double total) {
 		ListaProductos listaProd = modelo.getListaTemporal();
 		int cantidad = modelo.utiles.cogerCantidadString(eliminar);
-		double precio = listaProd.getPrecioProducto(pos);
+		double precio = listaProd.getPrecioElementoPosicion(pos);
 		total = total - (precio * cantidad);
 		BigDecimal bd = BigDecimal.valueOf(total);
 	    bd = bd.setScale(2, RoundingMode.HALF_DOWN);
 	    total = bd.doubleValue();
-		listaProd.eliminarProducto(pos);
+		listaProd.eliminarElemento(pos);
 		return total;
 	}
 	

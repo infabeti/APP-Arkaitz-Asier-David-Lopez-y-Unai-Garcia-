@@ -34,7 +34,7 @@ public class TestListaProductos {
 	@Test
 	public void testEliminarProducto() {
 		lp.addProducto(mockP1);
-		boolean test = lp.eliminarProducto(0);
+		boolean test = lp.eliminarElemento(0);
 		assertTrue(test);
 	}
 	
@@ -42,7 +42,7 @@ public class TestListaProductos {
 	public void testGetPrecioProducto() {
 		lp.addProducto(mockP1);
 		when(mockP1.getPrecioVenta()).thenReturn(3.0);
-		double test = lp.getPrecioProducto(0);
+		double test = lp.getPrecioElementoPosicion(0);
 		assertEquals(3.0, test, 0);
 	}
 	
@@ -50,7 +50,7 @@ public class TestListaProductos {
 	public void testGetListaProductoString() {
 		lp.addProducto(mockP1);
 		when(mockP1.getNombre()).thenReturn("mockP1");
-		String[] listaString = lp.getListaProductosString();
+		String[] listaString = lp.convertirListaAString();
 		assertEquals("mockP1", listaString[0]);
 	}
 	
@@ -72,13 +72,13 @@ public class TestListaProductos {
 	public void testDevolverPosProductoString() {
 		lp.addProducto(mockP1);
 		when(mockP1.getNombre()).thenReturn("mockP1");
-		int pos = lp.devolverPosProductoString("mockP1");
+		int pos = lp.devolverPosElementoString("mockP1");
 		assertEquals(pos, 0);
 	}
 	
 	@Test
 	public void testDevolverPosProductoStringNoExiste() {
-		int pos = lp.devolverPosProductoString("mockP1");
+		int pos = lp.devolverPosElementoString("mockP1");
 		assertEquals(pos, -1);
 	}
 	
@@ -87,13 +87,13 @@ public class TestListaProductos {
 		lp.addProducto(mockP1);
 		when(mockP1.getNombre()).thenReturn("mockP1");
 		when(mockP1.getPrecioVenta()).thenReturn(3.0);
-		double test = lp.precioProductoString("mockP1");
+		double test = lp.precioElementoString("mockP1");
 		assertEquals(test, 3.0, 0);
 	}
 	
 	@Test
 	public void precioProductoPorStringNoExiste() {
-		double test = lp.precioProductoString("mock");
+		double test = lp.precioElementoString("mock");
 		assertEquals(test, -1, 0);
 	}
 	

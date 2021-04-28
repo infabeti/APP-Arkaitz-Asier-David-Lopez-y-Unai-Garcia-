@@ -65,7 +65,7 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	public String[] pasarListaProductos() {
 		consultasListas = new ConsultasListas(modelo.getConexion());
 		listaP = modelo.conversor.listaStringAAlimentos(consultasListas.cogerProductosAprovisionamiento());
-		return listaP.getListaProductosString();
+		return listaP.convertirListaAString();
 	}
 
 	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nif) {

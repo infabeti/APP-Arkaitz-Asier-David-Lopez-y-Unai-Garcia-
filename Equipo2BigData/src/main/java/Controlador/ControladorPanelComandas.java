@@ -52,14 +52,14 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return new PanelComandas(controladorPanelComandas); }
 	
 	public String[] cogerListaProductos() {
-		return modelo.getListaProductos().getListaProductosString(); }
+		return modelo.getListaProductos().convertirListaAString(); }
 	
 	public int conseguirStockProductos(String nif, String producto) {
 		consultas = new Consultas(modelo.getConexion());
 		return this.consultas.obtenerStock(nif, producto); }
 	
 	public String[] cogerListaPlatos() {
-		return modelo.getListaPlatos().getListaPlatosString(); }
+		return modelo.getListaPlatos().convertirListaAString(); }
 	
 	public String[] accionadoBotonAnnadirProducto(String producto, String cantidad) {
 		String[] devolver = this.modelo.funProd.funcionalidadAnadirProducto(producto, cantidad, this.total);
@@ -67,7 +67,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return devolver; }
 	
 	public int existeProducto(String nombreProducto) {
-		return this.modelo.getListaTemporal().devolverPosProductoString(nombreProducto); }
+		return this.modelo.getListaTemporal().devolverPosElementoString(nombreProducto); }
 	
 	public String[] cambiarCantidadProductos(String nombreProductoAnadido, int cantidadAnadir, String nombreProducto, String tipo) {
 		String[] devolver = this.modelo.funProd.cambiarCantidadProductos(nombreProductoAnadido, cantidadAnadir, nombreProducto, this.total, tipo);
@@ -75,14 +75,14 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return devolver; }
 	
 	public double cogerPrecioString(String nombreProducto) {
-		return this.modelo.getListaTemporal().precioProductoString(nombreProducto); }
+		return this.modelo.getListaTemporal().precioElementoString(nombreProducto); }
 	
 	public String accionadoBotonEliminar(int pos, String eliminar) {
 		this.total = this.modelo.funProd.funcionalidadeliminarProducto(pos, eliminar, this.total);
 		return String.valueOf(total); }
 	
 	public int existePlato(String plato) {
-		return modelo.getListaTemporalPlatos().devolverPosPlatoString(plato); }
+		return modelo.getListaTemporalPlatos().devolverPosElementoString(plato); }
 	
 	public String[] accionadoBotonAnnadirPlato(String plato, String cantidad) {
 		String[] devolver = this.modelo.funPlat.funcionalidadAnadirPlato(plato, cantidad, this.total);
@@ -113,12 +113,12 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		insercionesActividades.insertarComanda(transaccion);
 		for (int i = 0; i < listaProductos.getSize(); i++) {
 			String textoSpliteado[] = listaProductos.get(i).split(" ");
-			String producto = this.modelo.getListaTemporal().getListaProductosString()[i];
-			insertarProductoActividad(producto, transaccion, Integer.parseInt(textoSpliteado[0]),this.modelo.getListaTemporal().precioProductoString(producto), nif);
+			String producto = this.modelo.getListaTemporal().convertirListaAString()[i];
+			insertarProductoActividad(producto, transaccion, Integer.parseInt(textoSpliteado[0]),this.modelo.getListaTemporal().precioElementoString(producto), nif);
 		}
 		for (int i = 0; i < listaPlatos.getSize(); i++) {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");
-			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().getListaPlatosString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
+			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().convertirListaAString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
 		}
 		insercionesActividades.ejecutarFuncion(transaccion);
 	}

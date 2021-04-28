@@ -61,7 +61,7 @@ public class TestFuncionesPlatos {
 
 		when(modeloMock.utiles.cogerCantidadString(eliminar)).thenReturn(1);
 
-		when(listaPlatosMock.getPrecioPlato(pos)).thenReturn(16.0);
+		when(listaPlatosMock.getPrecioElementoPosicion(pos)).thenReturn(16.0);
 
 		resultadoDouble = funcionesPlatos.funcionalidadeliminarPlato(pos, eliminar, total);
 
@@ -81,7 +81,7 @@ public class TestFuncionesPlatos {
 		when(listaPlatosMock.devolverPlatoPorString(plato)).thenReturn(platoMock);
 		when(modeloMock.getListaTemporalPlatos()).thenReturn(listaPlatosMock);
 		when(platoMock.toString()).thenReturn("string");
-		when(listaPlatosMock.precioProductoString(plato)).thenReturn(3.0);
+		when(listaPlatosMock.precioElementoString(plato)).thenReturn(3.0);
 		
 		resultadoArrayString = funcionesPlatos.funcionalidadAnadirPlato(plato, cantidad, total);
 		

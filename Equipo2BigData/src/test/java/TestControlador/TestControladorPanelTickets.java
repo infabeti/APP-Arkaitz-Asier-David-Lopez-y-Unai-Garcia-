@@ -105,7 +105,7 @@ public class TestControladorPanelTickets {
 	public void testCogerListaProductos() {
 when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 		
-		when(listaProductosMock.getListaProductosString()).thenReturn(listaProductos);
+		when(listaProductosMock.convertirListaAString()).thenReturn(listaProductos);
 
 		resultadoEsperadoArrayString = controladorPanelTickets.cogerListaProductos();
 
@@ -150,7 +150,7 @@ when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 
-		when(modeloMock.getListaTemporal().devolverPosProductoString(llamadaMetodo)).thenReturn(5);
+		when(modeloMock.getListaTemporal().devolverPosElementoString(llamadaMetodo)).thenReturn(5);
 
 		resultadoInt = controladorPanelTickets.existeProducto(llamadaMetodo);
 		resultadoEsperadoInt = 5;
@@ -166,7 +166,7 @@ when(modeloMock.getListaProductos()).thenReturn(listaProductosMock);
 
 		when(modeloMock.getListaTemporal()).thenReturn(listaProductosMock);
 
-		when(modeloMock.getListaTemporal().precioProductoString(llamadaMetodo)).thenReturn(35.54);
+		when(modeloMock.getListaTemporal().precioElementoString(llamadaMetodo)).thenReturn(35.54);
 
 		resultadoDouble = controladorPanelTickets.cogerPrecioString(llamadaMetodo);
 

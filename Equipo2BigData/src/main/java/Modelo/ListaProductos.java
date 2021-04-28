@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public class ListaProductos {
+public class ListaProductos implements InterfazListas {
 	
 	private ArrayList<Producto> listaProd; 
 	
@@ -21,6 +21,7 @@ public class ListaProductos {
 		}
 	}
 	
+	@Override
 	public boolean limpiarLista() {
 		try {
 			listaProd.clear();
@@ -32,7 +33,8 @@ public class ListaProductos {
 		}
 	}
 	
-	public boolean eliminarProducto(int pos) {
+	@Override
+	public boolean eliminarElemento(int pos) {
 		try {
 			listaProd.remove(pos);
 			return true;
@@ -47,11 +49,13 @@ public class ListaProductos {
 		return listaProd.get(pos);
 	}
 	
-	public double getPrecioProducto(int pos) {
+	@Override
+	public double getPrecioElementoPosicion(int pos) {
 		return cogerProducto(pos).getPrecioVenta();
 	}
 	
-	public String[] getListaProductosString() {
+	@Override
+	public String[] convertirListaAString() {
 		String listaProductosString[] = new String[listaProd.size()];
 		
 		for(int i = 0; i < listaProd.size(); i++) {
@@ -70,7 +74,8 @@ public class ListaProductos {
 		return null;
 	}
 	
-	public int devolverPosProductoString(String nombre) { //Devuelve la posición de un producto dado su string
+	@Override
+	public int devolverPosElementoString(String nombre) { //Devuelve la posición de un producto dado su string
 		for(int i = 0; i <listaProd.size(); i++) {
 			if(listaProd.get(i).getNombre() == nombre) {
 				return i;
@@ -79,7 +84,8 @@ public class ListaProductos {
 		return -1;
 	}
 	
-	public double precioProductoString(String nombre) {
+	@Override
+	public double precioElementoString(String nombre) {
 		Producto prod = this.devolverProductoPorString(nombre);
 		if(prod != null) {
 			return prod.getPrecioVenta();
