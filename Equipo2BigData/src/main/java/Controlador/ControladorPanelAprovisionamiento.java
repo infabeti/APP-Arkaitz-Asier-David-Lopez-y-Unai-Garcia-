@@ -4,9 +4,6 @@ import Modelo.Modelo;
 import Modelo.ListaProductos;
 import Vista.PanelAprovisionamiento;
 import Vista.Vista;
-import principal.InsercionesActividades;
-import principal.Inserciones;
-import principal.Consultas;
 
 public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 
@@ -63,12 +60,10 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nif) {
-		InsercionesActividades insercionesActividades = new InsercionesActividades(modelo.getConexion());
 		double precioTotal = modelo.consultasComprobaciones.consultaComprobarPrecio(nombre) * cantidad;
-		insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), "aprovisionamiento", nif);
-		insercionesActividades.insertarAprovisionamiento(numTrans);
-		Inserciones inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(numTrans, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
-		insercionesActividades.ejecutarFuncion(numTrans);
+		this.modelo.insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), "aprovisionamiento", nif);
+		this.modelo.insercionesActividades.insertarAprovisionamiento(numTrans);
+		this.modelo.insercionesSimples.insertarProductoActividad(numTrans, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
+		this.modelo.insercionesActividades.ejecutarFuncion(numTrans);
 	}
 }

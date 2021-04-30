@@ -3,7 +3,6 @@ package Controlador;
 import Modelo.Modelo;
 import Vista.PanelRegistro;
 import Vista.Vista;
-import principal.Inserciones;
 
 public class ControladorPanelRegistro {
 
@@ -11,7 +10,6 @@ public class ControladorPanelRegistro {
 	private Vista vista;
 	private Controlador controlador;
 	private PanelRegistro panelRegistro;
-	private Inserciones inserciones;
 
 	public ControladorPanelRegistro(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -41,8 +39,7 @@ public class ControladorPanelRegistro {
 	}
 
 	public void insertarRegistro(String DNI, String Nombre, String Apellido, String contrasena, String nif) {
-		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarRegistro(DNI, Nombre, Apellido, contrasena, nif);
+		this.modelo.insercionesSimples.insertarRegistro(DNI, Nombre, Apellido, contrasena, nif);
 	}
 
 	public String comprobarCamposRegistro(String nombre, String apellido, String nif, String dni, String password) {

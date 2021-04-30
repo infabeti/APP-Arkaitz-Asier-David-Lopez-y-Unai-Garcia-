@@ -3,9 +3,6 @@ import javax.swing.DefaultListModel;
 import Modelo.Modelo;
 import Vista.Vista;
 import Vista.PanelComandas;
-import principal.Inserciones;
-import principal.InsercionesActividades;
-import principal.Consultas;
 
 public class ControladorPanelComandas implements ControladorInterfaz {
 
@@ -15,10 +12,6 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 	private Controlador controlador;
 	private PanelComandas panelComandas;
 	private double total;
-
-	private InsercionesActividades insercionesActividades;
-	private Inserciones inserciones;
-	private Consultas consultas;
 	
 	@Override
 	public Modelo getModelo() {
@@ -55,7 +48,6 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return modelo.getListaProductos().convertirListaAString(); }
 	
 	public int conseguirStockProductos(String nif, String producto) {
-		consultas = new Consultas(modelo.getConexion());
 		return modelo.consultasSimples.obtenerStock(nif, producto); }
 	
 	public String[] cogerListaPlatos() {
@@ -94,12 +86,10 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return String.valueOf(total); }
 	
 	public void insertarProductoActividad(String nombreProducto, int transaccion, int cantidad, double preciofinal, String nif) {
-		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys())); }
+		this.modelo.insercionesSimples.insertarProductoActividad(transaccion, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombreProducto), cantidad, preciofinal, nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys())); }
 	
 	public void insertarPlatoActividad(String nombrePlato, int transaccion, int cantidad) {
-		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarPlatoActividad(transaccion, this.modelo.consultasSimples.obtenerCodigoPlato(nombrePlato), cantidad); }
+		this.modelo.insercionesSimples.insertarPlatoActividad(transaccion, this.modelo.consultasSimples.obtenerCodigoPlato(nombrePlato), cantidad); }
 	
 	public String[] conseguirDatosPanel() {
 		String[] devolver = new String[2];
@@ -108,9 +98,8 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return devolver; }
 	
 	public void insertarComanda(int transaccion, String fecha, String nif, DefaultListModel<String> listaProductos, DefaultListModel<String> listaPlatos) {
-		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha),"COMANDA", nif);
-		insercionesActividades.insertarComanda(transaccion);
+		this.modelo.insercionesActividades.insertarActividad(transaccion, this.modelo.validaciones.devolverFechaFormateada(fecha),"COMANDA", nif);
+		this.modelo.insercionesActividades.insertarComanda(transaccion);
 		for (int i = 0; i < listaProductos.getSize(); i++) {
 			String textoSpliteado[] = listaProductos.get(i).split(" ");
 			String producto = this.modelo.getListaTemporal().convertirListaAString()[i];
@@ -120,6 +109,6 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");
 			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().convertirListaAString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
 		}
-		insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
 	}
 }

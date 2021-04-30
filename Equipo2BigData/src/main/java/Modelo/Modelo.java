@@ -18,6 +18,8 @@ public class Modelo {
 	public ConsultasSimples consultasSimples;
 	public ConsultasComprobaciones consultasComprobaciones;
 	public ConsultasListas consultasListas;
+	public InsercionesSimples insercionesSimples;
+	public InsercionesActividades insercionesActividades;
 	
 	public Registro getRegistro() {
 		return registro;
@@ -33,6 +35,8 @@ public class Modelo {
 		consultasSimples = new ConsultasSimples(conexion);
 		consultasComprobaciones = new ConsultasComprobaciones(conexion);
 		consultasListas = new ConsultasListas(conexion);
+		insercionesSimples = new InsercionesSimples(conexion);
+		insercionesActividades = new InsercionesActividades(conexion);
 	}
 
 	public void setConexion(principal.Conexion conexion) {

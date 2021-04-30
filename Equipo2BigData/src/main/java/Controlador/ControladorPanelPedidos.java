@@ -4,9 +4,6 @@ import Modelo.Modelo;
 import javax.swing.DefaultListModel;
 import Vista.PanelPedidos;
 import Vista.Vista;
-import principal.Consultas;
-import principal.Inserciones;
-import principal.InsercionesActividades;
 
 public class ControladorPanelPedidos  implements ControladorInterfaz {
 
@@ -15,9 +12,6 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	private Controlador controlador;
 	private PanelPedidos panelPedidos;
 	private double total;
-	private Inserciones inserciones;
-	private InsercionesActividades insercionesActividades;
-	private Consultas consultas;
 
 	public ControladorPanelPedidos(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -38,7 +32,6 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public int conseguirStock(String nif, String producto) {
-		consultas = new Consultas(modelo.getConexion());
 		return modelo.consultasSimples.obtenerStock(nif, producto);
 	}
 	
@@ -101,19 +94,17 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
-		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
+		this.modelo.insercionesSimples.insertarProductoActividad(transaccion, modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, String nif, String domicilio, DefaultListModel<String> lista) {
-		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "PEDIDO", nif);
-		insercionesActividades.insertarPedido(transaccion, domicilio);
+		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "PEDIDO", nif);
+		this.modelo.insercionesActividades.insertarPedido(transaccion, domicilio);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
-		insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public PanelPedidos makePanelPedidos(ControladorPanelPedidos controladorPanelPedidos) {

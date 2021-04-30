@@ -4,9 +4,6 @@ import Modelo.Modelo;
 import javax.swing.DefaultListModel;
 import Vista.PanelFacturas;
 import Vista.Vista;
-import principal.Inserciones;
-import principal.InsercionesActividades;
-import principal.Consultas;
 
 public class ControladorPanelFacturas implements ControladorInterfaz {
 
@@ -15,8 +12,6 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	private Controlador controlador;
 	private PanelFacturas panelFacturas;
 	private double total;
-	private InsercionesActividades insercionesActividades;
-	private Inserciones inserciones;
 
 	public ControladorPanelFacturas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -105,8 +100,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
-		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion,
+		this.modelo.insercionesSimples.insertarProductoActividad(transaccion,
 				modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys()));
 	}
 
@@ -116,21 +110,19 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 
 	public void insertarFactura(int transaccion, String fecha, String nifLocal, String nombre,
 			String apellido, DefaultListModel<String> lista, String nifComprador) {
-		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		inserciones = new Inserciones(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "FACTURA",
+		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "FACTURA",
 				nifLocal);
 		if (modelo.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {
 			System.out.println("El comprador ya existe, no se hace la insert en la tabla comprador");
 		} else {
-			inserciones.insertarComprador(nifComprador, nombre, apellido);
+			this.modelo.insercionesSimples.insertarComprador(nifComprador, nombre, apellido);
 		}
-		insercionesActividades.insertarFactura(transaccion, nifComprador);
+		this.modelo.insercionesActividades.insertarFactura(transaccion, nifComprador);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nifLocal);
 		}
-		insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public PanelFacturas makePanelFacturas(ControladorPanelFacturas controladorPanelFacturas) {

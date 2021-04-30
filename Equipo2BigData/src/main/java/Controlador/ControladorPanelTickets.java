@@ -4,9 +4,6 @@ import javax.swing.DefaultListModel;
 import Modelo.Modelo;
 import Vista.PanelTickets;
 import Vista.Vista;
-import principal.Consultas;
-import principal.Inserciones;
-import principal.InsercionesActividades;
 
 public class ControladorPanelTickets implements ControladorInterfaz{
 
@@ -15,9 +12,6 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	private Controlador controlador;
 	private PanelTickets panelTickets;
 	private double total;
-	private InsercionesActividades insercionesActividades;
-	private Inserciones inserciones;
-	private Consultas consultas;
 
 	public ControladorPanelTickets(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -44,27 +38,23 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	}
 	
 	public int conseguirStock(String nif, String producto) {
-		this.consultas = new Consultas(modelo.getConexion());
 		return modelo.consultasSimples.obtenerStock(nif, producto);
 	}
 	
 
 	public void insertarTicket(int transaccion, String fecha, String nif,
 			DefaultListModel<String> lista) {
-		this.insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "TICKET", nif);
+		this.modelo.insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "TICKET", nif);
 		for (int i = 0; i < lista.getSize(); i++) {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
-		insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
 	}
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
-		this.inserciones = new Inserciones(modelo.getConexion());
-		this.consultas = new Consultas(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion,
+		this.modelo.insercionesSimples.insertarProductoActividad(transaccion,
 				modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad,
 				cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
