@@ -45,7 +45,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	
 	public int conseguirStock(String nif, String producto) {
 		this.consultas = new Consultas(modelo.getConexion());
-		return this.consultas.obtenerStock(nif, producto);
+		return modelo.consultasSimples.obtenerStock(nif, producto);
 	}
 	
 
@@ -65,7 +65,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 		this.inserciones = new Inserciones(modelo.getConexion());
 		this.consultas = new Consultas(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
-				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad,
+				modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad,
 				cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 

@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.ConsultasComprobaciones;
+import Modelo.ConsultasComprobaciones;
 import Modelo.Modelo;
 import Modelo.Registro;
 import Modelo.Validaciones;

@@ -39,7 +39,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 
 	public int conseguirStock(String nif, String producto) {
 		consultas = new Consultas(modelo.getConexion());
-		return this.consultas.obtenerStock(nif, producto);
+		return modelo.consultasSimples.obtenerStock(nif, producto);
 	}
 	
 	public String conseguirLocal() {
@@ -102,7 +102,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(transaccion, this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
+		inserciones.insertarProductoActividad(transaccion, modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.fechaFormateada());
 	}
 
 	public void insertarActividad(int transaccion, String fecha, String nif, String domicilio, DefaultListModel<String> lista) {

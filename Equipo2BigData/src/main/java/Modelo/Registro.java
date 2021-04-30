@@ -1,6 +1,5 @@
 package Modelo;
 
-import principal.ConsultasComprobaciones;
 
 public class Registro {
 	

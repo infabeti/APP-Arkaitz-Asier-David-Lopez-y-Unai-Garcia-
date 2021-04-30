@@ -4,7 +4,7 @@ import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.PanelInicio;
 import Vista.Vista;
-import principal.Consultas; import principal.ConsultasListas;
+import principal.Consultas;
 
 public class ControladorInicio implements ControladorInterfaz {
 
@@ -12,8 +12,6 @@ public class ControladorInicio implements ControladorInterfaz {
 	private Vista vista;
 	private Controlador controlador;
 	private PanelInicio panelInicio;
-	private Consultas consultas;
-	private ConsultasListas consultasListas;
 
 	public ControladorInicio(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -47,10 +45,8 @@ public class ControladorInicio implements ControladorInterfaz {
 	}
 
 	public boolean login(String user, String password) {
-		consultas = new Consultas(modelo.getConexion());
-		consultasListas = new ConsultasListas(modelo.getConexion());
 
-		Usuario res = modelo.conversor.listaStringAUser(this.consultas.login(user, password));
+		Usuario res = modelo.conversor.listaStringAUser(this.modelo.consultasSimples.login(user, password));
 
 		this.modelo.setUser(res);
 		if (res.getNombre().equals("")) {
@@ -58,7 +54,7 @@ public class ControladorInicio implements ControladorInterfaz {
 		} else {
 			this.modelo.utiles.inicializarListaProductos();
 			if (this.modelo.getUser().getTipoLocal().equals("RESTAURANTE")) {
-				this.modelo.setListaPlatos(modelo.conversor.listaStringAPlatos(this.consultasListas.cogerListaPlatos(this.modelo.getUser().getNifLocal())));
+				this.modelo.setListaPlatos(modelo.conversor.listaStringAPlatos(this.modelo.consultasListas.cogerListaPlatos(this.modelo.getUser().getNifLocal())));
 			}
 			return true;
 		}

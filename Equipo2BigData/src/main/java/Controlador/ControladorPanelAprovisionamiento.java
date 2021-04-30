@@ -7,8 +7,6 @@ import Vista.Vista;
 import principal.InsercionesActividades;
 import principal.Inserciones;
 import principal.Consultas;
-import principal.ConsultasListas;
-import principal.ConsultasComprobaciones;
 
 public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 
@@ -17,9 +15,6 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	private Controlador controlador;
 	private PanelAprovisionamiento panelAprovisionamiento;
 	private ListaProductos listaP;
-	private Consultas consultas;
-	private ConsultasListas consultasListas;
-	private ConsultasComprobaciones consultasComprobaciones;
 
 	public ControladorPanelAprovisionamiento(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -63,20 +58,17 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public String[] pasarListaProductos() {
-		consultasListas = new ConsultasListas(modelo.getConexion());
-		listaP = modelo.conversor.listaStringAAlimentos(consultasListas.cogerProductosAprovisionamiento());
+		listaP = modelo.conversor.listaStringAAlimentos(this.modelo.consultasListas.cogerProductosAprovisionamiento());
 		return listaP.convertirListaAString();
 	}
 
 	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nif) {
 		InsercionesActividades insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		consultasComprobaciones =  new ConsultasComprobaciones(modelo.getConexion());
-		consultas = new Consultas(modelo.getConexion());
-		double precioTotal = consultasComprobaciones.consultaComprobarPrecio(nombre) * cantidad;
+		double precioTotal = modelo.consultasComprobaciones.consultaComprobarPrecio(nombre) * cantidad;
 		insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), "aprovisionamiento", nif);
 		insercionesActividades.insertarAprovisionamiento(numTrans);
 		Inserciones inserciones = new Inserciones(modelo.getConexion());
-		inserciones.insertarProductoActividad(numTrans, consultas.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
+		inserciones.insertarProductoActividad(numTrans, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
 		insercionesActividades.ejecutarFuncion(numTrans);
 	}
 }

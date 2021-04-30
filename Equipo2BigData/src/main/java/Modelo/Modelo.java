@@ -1,7 +1,5 @@
 package Modelo;
 
-import principal.ConsultasListas;
-
 public class Modelo {
 
 	private ListaProductos listaProductos = new ListaProductos();
@@ -11,13 +9,16 @@ public class Modelo {
 	public FuncionesPlatos funPlat;
 	private Registro registro;
 	public Validaciones validaciones;
-	private principal.Conexion conexion = new principal.Conexion("33060");
+	private principal.Conexion conexion = new principal.Conexion("3306");
 	private ListaProductos listaTemporal = new ListaProductos();
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
 	public java.sql.Connection conexionConn = conexion.getConn();
 	public Conversor conversor = new Conversor();
 	public Utiles utiles;
-
+	public ConsultasSimples consultasSimples;
+	public ConsultasComprobaciones consultasComprobaciones;
+	public ConsultasListas consultasListas;
+	
 	public Registro getRegistro() {
 		return registro;
 	}
@@ -29,6 +30,9 @@ public class Modelo {
 		registro = new Registro(this);
 		validaciones = new Validaciones(this);
 		utiles = new Utiles(this);
+		consultasSimples = new ConsultasSimples(conexion);
+		consultasComprobaciones = new ConsultasComprobaciones(conexion);
+		consultasListas = new ConsultasListas(conexion);
 	}
 
 	public void setConexion(principal.Conexion conexion) {

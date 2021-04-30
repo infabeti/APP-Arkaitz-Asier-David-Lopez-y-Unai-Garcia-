@@ -7,7 +7,6 @@ import Vista.Vista;
 import principal.Inserciones;
 import principal.InsercionesActividades;
 import principal.Consultas;
-import principal.ConsultasComprobaciones;
 
 public class ControladorPanelFacturas implements ControladorInterfaz {
 
@@ -18,8 +17,6 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	private double total;
 	private InsercionesActividades insercionesActividades;
 	private Inserciones inserciones;
-	private Consultas consultas;
-	private ConsultasComprobaciones consultasComprobaciones;
 
 	public ControladorPanelFacturas(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
@@ -45,8 +42,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	}
 	
 	public int conseguirStock(String nif, String producto) {
-		consultas = new Consultas(modelo.getConexion());
-		return this.consultas.obtenerStock(nif, producto);
+		return modelo.consultasSimples.obtenerStock(nif, producto);
 	}
 
 	public String conseguirLocal() {
@@ -111,7 +107,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 		String producto = devolverNombreProducto(nombreProducto);
 		inserciones = new Inserciones(modelo.getConexion());
 		inserciones.insertarProductoActividad(transaccion,
-				this.consultas.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys()));
+				modelo.consultasSimples.obtenerCodigoAlimentoProducto(producto), cantidad, cogerPrecioString(producto), nif, modelo.validaciones.devolverFechaFormateada(modelo.utiles.getFechaHoraSys()));
 	}
 
 	public boolean comprobarCampos(double total, String nif, String nombre, String apellido) {
@@ -121,11 +117,10 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	public void insertarFactura(int transaccion, String fecha, String nifLocal, String nombre,
 			String apellido, DefaultListModel<String> lista, String nifComprador) {
 		insercionesActividades = new InsercionesActividades(modelo.getConexion());
-		consultasComprobaciones = new ConsultasComprobaciones(modelo.getConexion());
 		inserciones = new Inserciones(modelo.getConexion());
 		insercionesActividades.insertarActividad(transaccion, devolverFechaFormateada(fecha), "FACTURA",
 				nifLocal);
-		if (this.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {
+		if (modelo.consultasComprobaciones.comprobarSiExisteComprador(nifComprador)) {
 			System.out.println("El comprador ya existe, no se hace la insert en la tabla comprador");
 		} else {
 			inserciones.insertarComprador(nifComprador, nombre, apellido);
