@@ -1,6 +1,7 @@
 package TestModelo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -102,7 +103,7 @@ public class TestListaPlatos {
 			
 		when(platoMock.getNombre()).thenReturn("a");
 		
-		//FUERZO UN RETURN NULL
+		assertNull(lp.devolverPlatoPorString("b"));
 	}
 	
 	@Test

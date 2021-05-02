@@ -128,7 +128,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(false);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nEl nif introducido no pertenece a ningun local", resultado);
 				
 	}
 	
@@ -153,7 +155,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(false);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("El nombre no puede contener caracteres que no sean letras ni puede ser mayor de 20 caracteres ni menor que 3", resultado);
 				
 	}
 	
@@ -178,8 +182,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(true);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
-				
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nEl Apellido no puede contener caracteres que no sean letras ni puede ser mayor de 25 caracteres ni menor que 2", resultado);
 	}
 	
 	@Test
@@ -204,7 +209,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(true);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nEl dni introducido es incorrecto", resultado);
 				
 	}
 	
@@ -229,7 +236,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(true);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nEl nif introducido es incorrecto", resultado);
 				
 	}
 	
@@ -254,7 +263,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(true);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nEl dni introducido ya existe en la BBDD", resultado);
 				
 	}
 	
@@ -279,8 +290,9 @@ public class TestRegistro {
 		when(registro.comprobarBBDDnif(nif)).thenReturn(true);
 		
 
-		registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
-				
+		String resultado = registro.comprobarCamposRegistro(nombre, apellido, nif, dni, password);
+		
+		assertEquals("\nla contrase�a tiene que tener un minimo de 5 caracteres", resultado);
 	}
 	
 }
