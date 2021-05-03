@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,21 +12,22 @@ import principal.SentenciasBBDD;
 
 public class ConsultasListas {
 	
-	private Conexion conexion;
+	private Modelo modelo;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
 	static final String Transaccion="select max(Transaccion) from actividad";
 	
-	public ConsultasListas(Conexion conexion) {
-		this.conexion =  conexion;
+	public ConsultasListas(Modelo modelo) {
+		this.modelo = modelo;
 	}
 	
 	public ArrayList<String[]> cogerProductosLocal(String NIFLocal) {
 		ArrayList<String[]> listaProductos = new ArrayList<String[]>();
 		
 		try {
+			Connection conn = modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			Consultas consultas = new Consultas(this.conexion);
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSULTAPRODUCTOLOCAL);
+			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAPRODUCTOLOCAL);
 			st.setString(1, NIFLocal);
 			ResultSet rs = consultas.realizarConsulta(st);
 			
@@ -46,6 +48,7 @@ public class ConsultasListas {
 				listaProductos.add(cuenta, datosProducto);
 				cuenta++;
 			}
+			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -55,9 +58,10 @@ public class ConsultasListas {
 	public ArrayList<String[]> cogerProductosAprovisionamiento() {
 		ArrayList<String[]> listaProductos = new ArrayList<String[]>();
 		try {
-			Consultas consultas = new Consultas(conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn())
+			st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.ALIMENTOORDENADO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			String nombre, pCompra, tipo, feCad = "";
@@ -73,6 +77,7 @@ public class ConsultasListas {
 				datosProducto[3] = feCad;
 				listaProductos.add(datosProducto);
 			}
+			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -82,9 +87,10 @@ public class ConsultasListas {
 	public ArrayList<String[]> cogerListaPlatos(String NIFLocal) {
 		ArrayList<String[]> listaPlatos = new ArrayList<String[]>();
 		try {
-			Consultas consultas = new Consultas(conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(
+			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(
 					sentenciasBBDD.PLATOJOINCARTA);
 			st.setString(1, NIFLocal);
 			ResultSet rs = consultas.realizarConsulta(st);
@@ -96,6 +102,7 @@ public class ConsultasListas {
 				datosPlato[1] = pvp;
 				listaPlatos.add(datosPlato);
 			}
+			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}

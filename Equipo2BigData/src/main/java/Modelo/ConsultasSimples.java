@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,18 +11,19 @@ import principal.Consultas;
 
 public class ConsultasSimples {
 	
-	private Conexion conexion;
+	private Modelo modelo;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
 
-	public ConsultasSimples(Conexion conexion) {
-		this.conexion = conexion;
+	public ConsultasSimples(Modelo modelo) {
+		this.modelo = modelo;
 	}
 	
 	public String[] login(String dni, String password) {
 		try {
-			Consultas consultas = new Consultas(conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSULTALOGUEAR);
+			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTALOGUEAR);
 			st.setString(1, dni);
 			st.setString(2, password);
 			ResultSet rs = consultas.realizarConsulta(st);
@@ -31,9 +33,11 @@ public class ConsultasSimples {
 				String tipoNegocio = rs.getString("tipoNegocio");
 				String NIF = rs.getString("NIF");
 				String[] user = {nombre, local, tipoNegocio, NIF};
+				conn.close();
 				return user;
 			} else {
 				String[] user = {"", "", "", ""};
+				conn.close();
 				return user;
 			}
 		} catch (SQLException sqlException) {
@@ -46,9 +50,10 @@ public class ConsultasSimples {
 	public int obtenerStock(String nif, String codigoAlimento) {
 		int cantidadActual = 0;
 		try {
-			Consultas consultas = new Consultas(this.conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) this.conexion.getConn())
+			st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CONSEGUIRCANTIDADSTOCK);
 			st.setString(1, codigoAlimento);
 			st.setString(2, nif);
@@ -56,6 +61,7 @@ public class ConsultasSimples {
 			while (rs.next()) {
 				cantidadActual = rs.getInt("cantidad");
 			}
+			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -64,14 +70,17 @@ public class ConsultasSimples {
 	
 	public String obtenerCodigoAlimentoProducto(String producto) {
 		try {
-			Consultas consultas = new Consultas(conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSULTAALIMENTO);
+			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAALIMENTO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
 				while (rs.next()) {
 					if (rs.getString("nombre").equalsIgnoreCase(producto)) {
-						return rs.getString("codigoalimento");
+						String devolver = rs.getString("codigoalimento");
+						conn.close();
+						return devolver;
 					}
 				}
 			} catch (Exception e) {
@@ -85,15 +94,18 @@ public class ConsultasSimples {
 
 	public String obtenerCodigoPlato(String plato) {
 		try {
-			Consultas consultas = new Consultas(conexion);
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn())
+			st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CONSULTAPLATO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
 				while (rs.next()) {
 					if (rs.getString("nombre").equalsIgnoreCase(plato)) {
-						return rs.getString("codigoplato");
+						String devolver = rs.getString("codigoplato");
+						conn.close();
+						return devolver;
 					}
 				}
 			} catch (Exception e) {

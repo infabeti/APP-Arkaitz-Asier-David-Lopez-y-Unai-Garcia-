@@ -32,11 +32,11 @@ public class Modelo {
 		registro = new Registro(this);
 		validaciones = new Validaciones(this);
 		utiles = new Utiles(this);
-		consultasSimples = new ConsultasSimples(conexion);
-		consultasComprobaciones = new ConsultasComprobaciones(conexion);
-		consultasListas = new ConsultasListas(conexion);
-		insercionesSimples = new InsercionesSimples(conexion);
-		insercionesActividades = new InsercionesActividades(conexion);
+		consultasSimples = new ConsultasSimples(this);
+		consultasComprobaciones = new ConsultasComprobaciones(this);
+		consultasListas = new ConsultasListas(this);
+		insercionesSimples = new InsercionesSimples(this);
+		insercionesActividades = new InsercionesActividades(this);
 	}
 
 	public void setConexion(principal.Conexion conexion) {
