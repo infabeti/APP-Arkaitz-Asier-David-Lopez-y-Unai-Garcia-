@@ -38,6 +38,14 @@ public class ControladorPanelAnalisis {
 		return this.modelo.getUser().getNifLocal();
 	}
 
+	public void accionadoBottonMostrarProdLocal() {
+		this.controlador.navegarPanelInicio();
+	}
+
+	public void accionadoBottonMostrarProdGeneral() {
+		this.controlador.navegarPanelInicio();
+	}
+
 	public void accionadoBottonDesconectarPanelAnalisis() {
 		this.controlador.navegarPanelInicio();
 	}

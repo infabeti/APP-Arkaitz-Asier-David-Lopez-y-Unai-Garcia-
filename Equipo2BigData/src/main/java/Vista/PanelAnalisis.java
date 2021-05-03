@@ -90,14 +90,25 @@ public class PanelAnalisis extends JPanel {
 	private void initializeEvents() {
 		this.btnProdLocal.addActionListener(listenerBotonProdLocal(this.controladorPanelAnalisis));
 		this.btnDesconectar.addActionListener(listenerBotonDesconectar(this.controladorPanelAnalisis));
-		this.btnProdGeneral.addActionListener(listenerBotonGeneral(this.controladorPanelAnalisis));
+		this.btnProdGeneral.addActionListener(listenerBotonProdGeneral(this.controladorPanelAnalisis));
 	}
 
 	private ActionListener listenerBotonProdLocal(ControladorPanelAnalisis controladorPanelAnalisis) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados del local");
-				//controladorPanelAnalisis.accionadoBottonMostrarPanelTickets();
+				//listaProductos.addElement("Texto de prueba: Productos Locales");
+				controladorPanelAnalisis.accionadoBottonMostrarProdLocal();
+			}
+		};
+	}
+
+	private ActionListener listenerBotonProdGeneral(ControladorPanelAnalisis controladorPanelAnalisis) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Productos relacionados generales");
+				//listaProductos.addElement("Texto de prueba: Productos Generales");
+				controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
 			}
 		};
 	}
@@ -107,15 +118,6 @@ public class PanelAnalisis extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectar");
 				controladorPanelAnalisis.accionadoBottonDesconectarPanelAnalisis();
-			}
-		};
-	}
-
-	private ActionListener listenerBotonGeneral(ControladorPanelAnalisis controladorPanelAnalisis) {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Productos relacionados generales");
-				//controladorPanelAnalisis.accionadoBottonMostrarPanelComandas();
 			}
 		};
 	}
