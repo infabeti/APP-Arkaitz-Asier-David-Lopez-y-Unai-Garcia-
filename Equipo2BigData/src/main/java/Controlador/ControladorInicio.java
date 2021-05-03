@@ -39,6 +39,10 @@ public class ControladorInicio implements ControladorInterfaz {
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
 	}
+	
+	public void accionadoBottonVolverPanelAnalisis() {
+		this.controlador.navegarPanelAnalisis();
+	}
 
 	public void accionadoBottonRegistroPanelInicio() {
 		this.controlador.navegarPanelRegistro();
