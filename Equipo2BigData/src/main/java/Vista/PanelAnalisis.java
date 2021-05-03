@@ -49,12 +49,6 @@ public class PanelAnalisis extends JPanel {
 		btnDesconectar.setBounds(358, 545, 117, 25);
 		add(btnDesconectar);
 
-		lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
-		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(139, 35, 556, 50);
-		add(lblTextoPanel);
-
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(139, 247, 556, 186);
 		add(scrollPane);
@@ -79,9 +73,15 @@ public class PanelAnalisis extends JPanel {
 		btnProdGeneral.setBounds(395, 210, 300, 25);
 		add(btnProdGeneral);
 
-		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_main.jpg"));
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_analisis.jpg"));
 		lblBG.setBounds(0, 0, 834, 611);
 		add(lblBG);
+		
+				lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
+				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+				lblTextoPanel.setBounds(139, 35, 556, 50);
+				add(lblTextoPanel);
 		
 		initializeEvents();
 
