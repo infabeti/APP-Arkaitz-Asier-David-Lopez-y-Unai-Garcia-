@@ -22,11 +22,13 @@ public class PanelAnalisis extends JPanel {
 
 	private static final long serialVersionUID = -2457862673139031544L;
 	private ControladorPanelAnalisis controladorPanelAnalisis;
-	private JButton btnTickets;
-	private JButton btnComandas;
+	private JButton btnProdLocal;
+	private JButton btnProdGeneral;
 	private JLabel lblTextoPanel;
 	private JButton btnDesconectar;
 	private JTextField textFieldLocal;
+	private JScrollPane scrollPane;
+	private JList listaProductos;
 
 
 	public PanelAnalisis(ControladorPanelAnalisis controladorPanelAnalisis, String tipoLocal, String nombreUsuario, String nombreLocal) {
@@ -37,28 +39,28 @@ public class PanelAnalisis extends JPanel {
 
 		setLayout(null);
 
-		btnTickets = new JButton("Productos relacionados del local");
-		btnTickets.setFont(new Font("Arial", Font.BOLD, 15));
-		btnTickets.setBounds(395, 173, 300, 25);
-		add(btnTickets);
+		btnProdLocal = new JButton("Productos relacionados del local");
+		btnProdLocal.setFont(new Font("Arial", Font.BOLD, 15));
+		btnProdLocal.setBounds(395, 173, 300, 25);
+		add(btnProdLocal);
 
 		btnDesconectar = new JButton("Salir");
 		btnDesconectar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnDesconectar.setBounds(358, 545, 117, 25);
 		add(btnDesconectar);
 
-		lblTextoPanel = new JLabel("PANEL AN\u00C1LISIS");
+		lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
 		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
 		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(139, 247, 556, 186);
 		add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		listaProductos = new JList();
+		scrollPane.setViewportView(listaProductos);
 
 		textFieldLocal = new JTextField();
 		textFieldLocal.setText(controladorPanelAnalisis.conseguirLocal());
@@ -72,24 +74,29 @@ public class PanelAnalisis extends JPanel {
 		lblLocal.setBounds(139, 173, 114, 25);
 		add(lblLocal);
 
-		btnComandas = new JButton("Productos relacionados generales");
-		btnComandas.setFont(new Font("Arial", Font.BOLD, 15));
-		btnComandas.setBounds(395, 210, 300, 25);
-		add(btnComandas);
+		btnProdGeneral = new JButton("Productos relacionados generales");
+		btnProdGeneral.setFont(new Font("Arial", Font.BOLD, 15));
+		btnProdGeneral.setBounds(395, 210, 300, 25);
+		add(btnProdGeneral);
+
+		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_main.jpg"));
+		lblBG.setBounds(0, 0, 834, 611);
+		add(lblBG);
+		
 		initializeEvents();
 
 	}
 
 	private void initializeEvents() {
-		this.btnTickets.addActionListener(listenerBotonTickets(this.controladorPanelAnalisis));
+		this.btnProdLocal.addActionListener(listenerBotonProdLocal(this.controladorPanelAnalisis));
 		this.btnDesconectar.addActionListener(listenerBotonDesconectar(this.controladorPanelAnalisis));
-		this.btnComandas.addActionListener(listenerBotonComandas(this.controladorPanelAnalisis));
+		this.btnProdGeneral.addActionListener(listenerBotonGeneral(this.controladorPanelAnalisis));
 	}
 
-	private ActionListener listenerBotonTickets(ControladorPanelAnalisis controladorPanelAnalisis) {
+	private ActionListener listenerBotonProdLocal(ControladorPanelAnalisis controladorPanelAnalisis) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Tickets");
+				System.out.println("Ejecutando evento Boton Productos relacionados del local");
 				//controladorPanelAnalisis.accionadoBottonMostrarPanelTickets();
 			}
 		};
@@ -104,10 +111,10 @@ public class PanelAnalisis extends JPanel {
 		};
 	}
 
-	private ActionListener listenerBotonComandas(ControladorPanelAnalisis controladorPanelAnalisis) {
+	private ActionListener listenerBotonGeneral(ControladorPanelAnalisis controladorPanelAnalisis) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Comandas");
+				System.out.println("Ejecutando evento Boton Productos relacionados generales");
 				//controladorPanelAnalisis.accionadoBottonMostrarPanelComandas();
 			}
 		};
