@@ -1,17 +1,20 @@
 package Modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Actividad {
 
 	private int numTransaccion;
 	private Date fecha;
 	private String local;
+	private ListaProductos listaProductos;
 
 	public Actividad(int numTransaccion, Date fecha, String local) {
 		this.numTransaccion = numTransaccion;
 		this.fecha = fecha;
 		this.local = local;
+		this.listaProductos = new ListaProductos();
 	}
 
 	public int getNumTransaccion() {
@@ -41,6 +44,10 @@ public class Actividad {
 	public Actividad(int numTransaccion) { // Este constructor existe únicamente para crear una Actividad que solo
 											// tiene el número de transacción y usarla para buscar en la lista ligada
 		this.numTransaccion = numTransaccion;
+	}
+	
+	public ListaProductos getListaProductos() {
+		return this.listaProductos;
 	}
 
 	@Override

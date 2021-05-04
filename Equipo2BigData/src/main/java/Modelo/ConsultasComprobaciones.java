@@ -26,8 +26,9 @@ public class ConsultasComprobaciones {
 			Consultas consultas = new Consultas();
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
+			boolean resultado = rs.next();
 			conn.close();
-			return rs.next();
+			return resultado;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,8 +44,9 @@ public class ConsultasComprobaciones {
 			Consultas consultas = new Consultas();
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
+			boolean resultado = rs.next();
 			conn.close();
-			return rs.next();
+			return resultado;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,8 +61,9 @@ public class ConsultasComprobaciones {
 			Consultas consultas = new Consultas();
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
+			boolean resultado = rs.next();
 			conn.close();
-			return rs.next();
+			return resultado;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -77,8 +80,9 @@ public class ConsultasComprobaciones {
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
 				rs.next();
+				double resultado = rs.getDouble("PCompra");
 				conn.close();
-				return rs.getDouble("PCompra");
+				return resultado;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
