@@ -22,7 +22,7 @@ public class ConsultasActividades {
 		Connection conn = modelo.getConexion().getConn();
 		PreparedStatement st = null;
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.DATOSACTIVIDADES);
+			//st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.DATOSACTIVIDADES);
 			Consultas consultas = new Consultas();
 			ResultSet rs = consultas.realizarConsulta(st);
 			ArrayList<Actividad> actividades = new ArrayList<Actividad>();

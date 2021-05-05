@@ -12,7 +12,6 @@ public class Modelo {
 	private principal.Conexion conexion = new principal.Conexion("33060");
 	private ListaProductos listaTemporal = new ListaProductos();
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
-	public java.sql.Connection conexionConn = conexion.getConn();
 	public Conversor conversor = new Conversor();
 	public Utiles utiles;
 	public ConsultasSimples consultasSimples;

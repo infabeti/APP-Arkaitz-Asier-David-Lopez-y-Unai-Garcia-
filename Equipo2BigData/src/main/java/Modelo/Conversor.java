@@ -38,7 +38,6 @@ public class Conversor {
 		ListaProductos listaP = new ListaProductos();
 		for(int i = 0; i<listaString.size(); i++ ) {
 			String[] arrayString = listaString.get(i);
-			System.out.println(arrayString[0]+arrayString[1]+arrayString[2]+arrayString[3]);
 			String nombre = arrayString[0];
 			double pCompra = Double.parseDouble(arrayString[1]);
 			String tipo = arrayString[2];

@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import principal.Conexion;
 import principal.Consultas;
 import principal.Inserciones;
 import principal.SentenciasBBDD;
@@ -43,16 +42,19 @@ public class InsercionesSimples {
 					ResultSet rs = consultas.realizarConsulta(st2);
 					rs.next();
 					if (rs.getString("tipo").equalsIgnoreCase("aprovisionamiento")) {
+						conn.close();
 						actualizarStockMenorQueCinco(codigoAlimento, nifLocal, transaccion, fechaFormateada);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				if (precioFinal != 0) {
+					conn.close();
 					actualizarStockMenorQueCinco(codigoAlimento, nifLocal, transaccion, fechaFormateada);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
 			conn.close();
 		} catch (SQLException sqlException) {
@@ -84,19 +86,22 @@ public class InsercionesSimples {
 						ResultSet rs1 = consultas.realizarConsulta(st1);
 						rs1.next();
 						double pcompra = rs1.getDouble("PCompra");
+						conn.close();
 						insercionesActividades.insertarActividad(numTransaccion+1, fechaFormateada, "aprovisionamiento", nifLocal);
 						insercionesActividades.insertarAprovisionamiento(numTransaccion+1);
 						insertarProductoActividad(numTransaccion+1, codigoAlimento, 50, pcompra, nifLocal, fechaFormateada);
 					} catch (Exception e) {
 						e.printStackTrace();
+						conn.close();
 					}
-
+				}
+				else {
+					conn.close();
 				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -116,10 +121,11 @@ public class InsercionesSimples {
 			try {
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
-		conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -138,10 +144,10 @@ public class InsercionesSimples {
 			try {
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -161,9 +167,11 @@ public class InsercionesSimples {
 				st.setString(5, nif);
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 				return false;
 			}
 		} catch (SQLException sqlException) {
@@ -182,8 +190,10 @@ public class InsercionesSimples {
 			try {
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();

@@ -1,12 +1,10 @@
 package Modelo;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import principal.Conexion;
 import principal.Inserciones;
 import principal.SentenciasBBDD;
 
@@ -33,8 +31,10 @@ public class InsercionesActividades {
 			try {
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
@@ -54,10 +54,11 @@ public class InsercionesActividades {
 				}
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
-			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -72,10 +73,11 @@ public class InsercionesActividades {
 			try {
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 			}
-			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
@@ -89,9 +91,11 @@ public class InsercionesActividades {
 				st.setInt(1, transaccion);	
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 				return false;
 			}
 		} catch (SQLException sqlException) {
@@ -108,9 +112,11 @@ public class InsercionesActividades {
 				st.setInt(1, transaccion);
 				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
 				inserciones.realizarInsercion(st);
+				conn.close();
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
+				conn.close();
 				return false;
 			}
 		} catch (SQLException sqlException) {
