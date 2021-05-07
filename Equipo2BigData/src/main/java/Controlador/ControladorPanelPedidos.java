@@ -110,4 +110,8 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	public PanelPedidos makePanelPedidos(ControladorPanelPedidos controladorPanelPedidos) {
 		return new PanelPedidos(controladorPanelPedidos);
 	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
+	}
 }

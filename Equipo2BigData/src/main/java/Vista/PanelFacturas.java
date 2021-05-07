@@ -88,8 +88,9 @@ public class PanelFacturas extends JPanel {
 		textFieldNumTrans = new JTextField();
 		textFieldNumTrans.setBounds(299, 165, 114, 20);
 		add(textFieldNumTrans);
+		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelFacturas.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNIF = new JLabel("NIF:");

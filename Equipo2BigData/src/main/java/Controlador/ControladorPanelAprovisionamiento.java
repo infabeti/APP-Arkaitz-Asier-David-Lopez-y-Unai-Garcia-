@@ -66,4 +66,8 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		this.modelo.insercionesSimples.insertarProductoActividad(numTrans, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
 		this.modelo.insercionesActividades.ejecutarFuncion(numTrans);
 	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
+	}
 }

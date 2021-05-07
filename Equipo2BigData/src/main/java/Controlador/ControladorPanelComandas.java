@@ -111,4 +111,8 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		}
 		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
 	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
+	}
 }

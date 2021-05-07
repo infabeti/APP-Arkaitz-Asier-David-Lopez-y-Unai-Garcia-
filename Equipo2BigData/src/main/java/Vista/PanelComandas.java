@@ -155,8 +155,9 @@ public class PanelComandas extends JPanel {
 		textFieldNumTrans = new JTextField();
 		textFieldNumTrans.setBounds(185, 117, 114, 20);
 		add(textFieldNumTrans);
+		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelComandas.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNumTrans = new JLabel("N\u00BA Transacci\u00F3n:");

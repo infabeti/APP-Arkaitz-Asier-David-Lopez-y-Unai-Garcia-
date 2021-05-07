@@ -128,4 +128,7 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	public PanelFacturas makePanelFacturas(ControladorPanelFacturas controladorPanelFacturas) {
 		return new PanelFacturas(controladorPanelFacturas);
 	}
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
+	}
 }

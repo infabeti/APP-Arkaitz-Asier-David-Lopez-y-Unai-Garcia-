@@ -61,7 +61,8 @@ public class PanelTickets extends JPanel {
 		textFieldNumTrans.setBounds(299, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setEditable(false);
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelTickets.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		lblTransaccion = new JLabel("N\u00BA Transacci\u00F3n:");

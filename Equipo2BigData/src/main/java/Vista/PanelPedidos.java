@@ -63,7 +63,8 @@ public class PanelPedidos extends JPanel {
 		textFieldNumTrans.setBounds(299, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setEditable(false);
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelPedidos.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblFecha = new JLabel("Fecha y hora: ");

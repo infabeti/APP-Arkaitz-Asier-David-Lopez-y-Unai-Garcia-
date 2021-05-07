@@ -113,4 +113,8 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	public PanelTickets makePanelTickets(ControladorPanelTickets controladorPanelTickets) {
 		return new PanelTickets(controladorPanelTickets);
 	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
+	}
 }

@@ -116,5 +116,30 @@ public class ConsultasSimples {
 		}
 		return null;
 	}
+	
+	public int leerNumTransBBDD() {
+		try {
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
+			PreparedStatement st = null;
+			st = (PreparedStatement) ((java.sql.Connection) conn)
+					.prepareStatement(sentenciasBBDD.CONSULTAACTIVIDAD);
+			ResultSet rs = consultas.realizarConsulta(st);
+			int numero = 1;
+			try {
+				while (rs.next()) {
+					numero++;
+				}
+				conn.close();
+				return numero;
+			} catch (Exception e) {
+				e.printStackTrace();
+				conn.close();
+			}
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return 1;
+	}
 
 }
