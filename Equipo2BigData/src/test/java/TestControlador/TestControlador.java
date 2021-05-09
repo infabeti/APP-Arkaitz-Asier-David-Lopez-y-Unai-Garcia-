@@ -11,6 +11,8 @@ import Controlador.ControladorPanelTickets;
 import principal.Conexion;
 import principal.Consultas;
 import Modelo.ConsultasListas;
+import Modelo.ConsultasSimples;
+import Modelo.Conversor;
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
@@ -44,18 +46,21 @@ public class TestControlador {
 	private Controlador spyControlador;
 	private Usuario userMock = mock(Usuario.class);
 	private Conexion conexionMock = mock(Conexion.class);
-	private Consultas consultasMock = mock(Consultas.class);
 	private ConsultasListas consultasListasMock = mock(ConsultasListas.class);
+	private ConsultasSimples consultasSimplesMock = mock(ConsultasSimples.class);
 	private ListaPlatos listaPlatosMock = mock(ListaPlatos.class);
 	private ListaProductos listaProductosMock = mock(ListaProductos.class);
 	private ArrayList<String[]> arrayListMock = mock(ArrayList.class);
 	private String[] arrString = new String[] { "a", "b" };
 	private Utiles utilesMock = mock(Utiles.class);
+	private Conversor conversorMock = mock(Conversor.class);
 	
 	@Before
 	public void setNecesarios() {
 		modeloMock.setConexion(conexionMock);
 		modeloMock.utiles = utilesMock;
+		modeloMock.consultasSimples = consultasSimplesMock;
+		when(consultasSimplesMock.leerNumTransBBDD()).thenReturn(0);
 	}
 
 	@Test
@@ -274,8 +279,14 @@ public class TestControlador {
 				any(Vista.class), any(Controlador.class));
 
 		when(modeloMock.getConexion()).thenReturn(conexionMock);
+		
+		modeloMock.consultasListas = consultasListasMock;
 
 		when(consultasListasMock.cogerProductosAprovisionamiento()).thenReturn(arrayListMock);
+		
+		modeloMock.conversor = conversorMock;
+		
+		when(conversorMock.listaStringAAlimentos(arrayListMock)).thenReturn(listaProductosMock);
 
 		when(modeloMock.getUser()).thenReturn(userMock);
 
