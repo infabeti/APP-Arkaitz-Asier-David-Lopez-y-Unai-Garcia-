@@ -31,7 +31,7 @@ public class InsercionesSimples {
 			st.setInt(3, cantidad);
 			st.setDouble(4, precioFinal);
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				try {
 					Consultas consultas = new Consultas();
@@ -119,7 +119,7 @@ public class InsercionesSimples {
 			st.setString(3, codigoAlimento);
 
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -142,7 +142,7 @@ public class InsercionesSimples {
 			st.setString(2, nombre);
 			st.setString(3, apellido);
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -165,7 +165,7 @@ public class InsercionesSimples {
 				st.setString(3, Apellido);
 				st.setString(4, contrasena);
 				st.setString(5, nif);
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -188,7 +188,7 @@ public class InsercionesSimples {
 					.prepareStatement("insert into lineaplato (codigoplato,transaccion,cantidad)" + " values("
 							+ codigoPlato + "," + transaccion + "," + cantidad + ");");
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {

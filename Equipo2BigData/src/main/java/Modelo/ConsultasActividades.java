@@ -57,7 +57,7 @@ public class ConsultasActividades {
 		try {
 			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CANTIDADPRODUCTOS);
 			Consultas consultas = new Consultas();
-			Inserciones inserciones = new Inserciones(modelo.getConexion());
+			Inserciones inserciones = new Inserciones();
 			ResultSet rs = consultas.realizarConsulta(st);
 			int max = rs.getInt("maximo");
 			conn.close();

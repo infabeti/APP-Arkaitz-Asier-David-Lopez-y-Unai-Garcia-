@@ -30,7 +30,7 @@ public class InsercionesActividades {
 			st.setString(4, tipo);
 			st.setString(5, nif);
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -53,7 +53,7 @@ public class InsercionesActividades {
 				} else {
 					st.setString(2, domicilio);
 				}
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -72,7 +72,7 @@ public class InsercionesActividades {
 			st.setInt(1, transaccion);
 			st.setString(2, nif);
 			try {
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -90,7 +90,7 @@ public class InsercionesActividades {
 			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARCOMANDA);
 			try {
 				st.setInt(1, transaccion);	
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -111,7 +111,7 @@ public class InsercionesActividades {
 			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARAPROVISIONAMIENTO);
 			try {
 				st.setInt(1, transaccion);
-				Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -127,7 +127,7 @@ public class InsercionesActividades {
 	}
 
 	public void ejecutarProcedimientoCalcularPrecios(int transaccion) {
-		Inserciones inserciones = new Inserciones(this.modelo.getConexion());
+		Inserciones inserciones = new Inserciones();
 		Connection conn = modelo.getConexion().getConn();
 		CallableStatement cs = null;
 		try {
