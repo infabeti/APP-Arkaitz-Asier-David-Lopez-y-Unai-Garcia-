@@ -140,5 +140,29 @@ public class ConsultasSimples {
 		}
 		return 1;
 	}
+	
+	public String obtenerNombreCodAl(int codAl) {
+		String devolver = "";
+		try {
+			Connection conn = this.modelo.getConexion().getConn();
+			Consultas consultas = new Consultas();
+			PreparedStatement st = null;
+			st = (PreparedStatement) ((java.sql.Connection) conn)
+					.prepareStatement(sentenciasBBDD.NOMBRECODIGO);
+			ResultSet rs = consultas.realizarConsulta(st);
+			st.setInt(1, codAl);
+			try {
+				devolver = rs.getString(1);
+				conn.close();
+				return devolver;
+			} catch (Exception e) {
+				e.printStackTrace();
+				conn.close();
+			}
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return devolver;
+	}
 
 }

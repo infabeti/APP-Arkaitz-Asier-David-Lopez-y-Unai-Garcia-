@@ -98,6 +98,7 @@ public class PanelAnalisis extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados del local");
+				listaCombinaciones.clear();
 				String [] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
 				for(int i = 0; listaAnnadir[i]!=null; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
@@ -110,6 +111,7 @@ public class PanelAnalisis extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados generales");
+				listaCombinaciones.clear();
 				String[] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
 				for(int i = 0; listaAnnadir[i]!=null; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
