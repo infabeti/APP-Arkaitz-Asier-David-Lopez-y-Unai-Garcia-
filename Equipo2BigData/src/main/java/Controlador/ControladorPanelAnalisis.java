@@ -48,7 +48,7 @@ public class ControladorPanelAnalisis {
 			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
 			String fecha = listaCombinaciones[cuenta].getFecha();
 			float probabilidad = listaCombinaciones[cuenta].getProbabilidad();
-			listaString[cuenta] = nombreA1 + " " + nombreA2 + " " + fecha + " " + probabilidad;
+			listaString[cuenta] = nombreA1 + " " + nombreA2 + " " + fecha + " " + probabilidad+"%";
 			cuenta++;
 		}
 		return listaString;
@@ -63,7 +63,7 @@ public class ControladorPanelAnalisis {
 			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
 			String fecha = listaCombinaciones[cuenta].getFecha();
 			float probabilidad = listaCombinaciones[cuenta].getProbabilidad();
-			listaString[cuenta] = nombreA1 + " " + nombreA2 + " " + fecha + " " + probabilidad;
+			listaString[cuenta] = nombreA1 + " " + nombreA2 + " " + fecha + " " + probabilidad +"%";
 			cuenta++;
 		}
 		return listaString;
