@@ -87,4 +87,18 @@ public class TestConversor {
 		assertEquals(productoMock.getPrecioVenta(), 0.1, 0);
 		assertEquals(productoMock.getTipo(), "BEBIDA");
 	}
+	
+	@Test
+	public void TestListaStringAUser() {
+		arrayString[0] = "pepito";
+		arrayString[1] = "grillo";
+		arrayString[2] = "restaurante";
+		arrayString[3] = "12345678A";
+		Usuario usuario = conversor.listaStringAUser(arrayString);
+		
+		assertEquals(arrayString[0], usuario.getNombre());
+		assertEquals(arrayString[1], usuario.getLocal());
+		assertEquals(arrayString[2], usuario.getTipoLocal());
+		assertEquals(arrayString[3], usuario.getNifLocal());
+	}
 }

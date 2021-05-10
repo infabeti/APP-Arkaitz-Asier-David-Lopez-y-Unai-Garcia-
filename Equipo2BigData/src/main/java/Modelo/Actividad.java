@@ -44,10 +44,6 @@ public class Actividad {
 											// tiene el número de transacción y usarla para buscar en la lista ligada
 		this.numTransaccion = numTransaccion;
 	}
-	
-	public ListaProductos getListaProductos() {
-		return this.listaProductos;
-	}
 
 	@Override
 	public boolean equals(Object o) {
