@@ -1,7 +1,7 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Conversor {
 	

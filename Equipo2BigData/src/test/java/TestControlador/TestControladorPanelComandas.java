@@ -1,5 +1,7 @@
 package TestControlador;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -9,20 +11,19 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import Controlador.Controlador;
 import Controlador.ControladorPanelComandas;
-import principal.Conexion;
+import Modelo.FuncionesPlatos;
+import Modelo.FuncionesProductos;
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.Utiles;
-import Modelo.FuncionesProductos;
-import Modelo.FuncionesPlatos;
-import principal.Consultas;
 import Vista.PanelComandas;
 import Vista.Vista;
+import principal.Conexion;
 
 public class TestControladorPanelComandas {
 

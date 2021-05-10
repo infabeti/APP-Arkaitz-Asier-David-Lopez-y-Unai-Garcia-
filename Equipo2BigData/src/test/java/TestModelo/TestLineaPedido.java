@@ -2,6 +2,7 @@ package TestModelo;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+
 import org.junit.Test;
 
 import Modelo.LineaPedido;
@@ -22,7 +23,7 @@ public class TestLineaPedido {
 	
 	@Test
 	public void testToString() {
-		String test = "2 x null 19.95€";
+		String test = "2 x null 19.95ï¿½";
 		assertEquals(test, lp.toString());
 	}
 	

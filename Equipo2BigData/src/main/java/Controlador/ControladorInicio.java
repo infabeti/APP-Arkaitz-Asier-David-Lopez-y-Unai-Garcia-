@@ -4,7 +4,6 @@ import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.PanelInicio;
 import Vista.Vista;
-import principal.Consultas;
 
 public class ControladorInicio implements ControladorInterfaz {
 

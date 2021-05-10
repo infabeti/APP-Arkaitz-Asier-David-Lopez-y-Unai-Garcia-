@@ -1,21 +1,20 @@
 package Vista;
 
-import javax.swing.JPanel;
-
-
-import Controlador.ControladorPanelAnalisis;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.SwingConstants;
-import java.awt.Color;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JList;
+import javax.swing.SwingConstants;
+
+import Controlador.ControladorPanelAnalisis;
 
 public class PanelAnalisis extends JPanel {
 

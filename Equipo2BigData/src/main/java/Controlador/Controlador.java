@@ -1,8 +1,8 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.Vista;
 import Modelo.Usuario;
+import Vista.Vista;
 
 public class Controlador {
 

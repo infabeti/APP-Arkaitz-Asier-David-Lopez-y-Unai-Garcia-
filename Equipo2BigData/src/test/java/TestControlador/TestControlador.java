@@ -1,5 +1,18 @@
 package TestControlador;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import Controlador.Controlador;
 import Controlador.ControladorInicio;
 import Controlador.ControladorPanelAprovisionamiento;
@@ -8,8 +21,6 @@ import Controlador.ControladorPanelFacturas;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelRegistro;
 import Controlador.ControladorPanelTickets;
-import principal.Conexion;
-import principal.Consultas;
 import Modelo.ConsultasListas;
 import Modelo.ConsultasSimples;
 import Modelo.Conversor;
@@ -19,17 +30,7 @@ import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.Utiles;
 import Vista.Vista;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.never;
-import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Test;
+import principal.Conexion;
 
 public class TestControlador {
 

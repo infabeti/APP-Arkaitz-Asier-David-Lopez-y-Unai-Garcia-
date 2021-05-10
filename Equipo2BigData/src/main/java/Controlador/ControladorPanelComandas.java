@@ -1,8 +1,9 @@
 package Controlador;
 import javax.swing.DefaultListModel;
+
 import Modelo.Modelo;
-import Vista.Vista;
 import Vista.PanelComandas;
+import Vista.Vista;
 
 public class ControladorPanelComandas implements ControladorInterfaz {
 
@@ -109,7 +110,7 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");
 			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().convertirListaAString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
 	}
 	
 	public int conseguirNumTrans() {

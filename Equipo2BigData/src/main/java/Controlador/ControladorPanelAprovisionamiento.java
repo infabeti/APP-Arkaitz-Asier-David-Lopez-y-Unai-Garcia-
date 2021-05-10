@@ -1,7 +1,7 @@
 package Controlador;
 
-import Modelo.Modelo;
 import Modelo.ListaProductos;
+import Modelo.Modelo;
 import Vista.PanelAprovisionamiento;
 import Vista.Vista;
 
@@ -64,7 +64,7 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		this.modelo.insercionesActividades.insertarActividad(numTrans, modelo.validaciones.fechaFormateada(), "aprovisionamiento", nif);
 		this.modelo.insercionesActividades.insertarAprovisionamiento(numTrans);
 		this.modelo.insercionesSimples.insertarProductoActividad(numTrans, modelo.consultasSimples.obtenerCodigoAlimentoProducto(nombre), cantidad, precioTotal, nif, modelo.validaciones.fechaFormateada() );
-		this.modelo.insercionesActividades.ejecutarFuncion(numTrans);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(numTrans);
 	}
 	
 	public int conseguirNumTrans() {

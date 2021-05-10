@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -125,9 +126,19 @@ public class InsercionesActividades {
 		}
 	}
 
-	public void ejecutarFuncion(int transaccion) {
+	public void ejecutarProcedimientoCalcularPrecios(int transaccion) {
 		Inserciones inserciones = new Inserciones(this.modelo.getConexion());
-		inserciones.ejecutarFuncion(transaccion);
+		Connection conn = modelo.getConexion().getConn();
+		CallableStatement cs = null;
+		try {
+			cs = conn.prepareCall(sentenciasBBDD.LLAMADAPROCEDIMIENTO);  
+			cs.setInt(1, transaccion);
+			inserciones.ejecutarFuncion(cs);
+			conn.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

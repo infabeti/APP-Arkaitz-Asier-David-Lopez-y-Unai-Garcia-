@@ -1,7 +1,8 @@
 package Controlador;
 
-import Modelo.Modelo;
 import javax.swing.DefaultListModel;
+
+import Modelo.Modelo;
 import Vista.PanelPedidos;
 import Vista.Vista;
 
@@ -104,7 +105,7 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
 	}
 
 	public PanelPedidos makePanelPedidos(ControladorPanelPedidos controladorPanelPedidos) {

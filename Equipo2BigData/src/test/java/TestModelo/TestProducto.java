@@ -1,9 +1,12 @@
 package TestModelo;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.Date;
-import Modelo.Producto;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
+
+import Modelo.Producto;
 
 public class TestProducto {
 	
@@ -55,7 +58,7 @@ public class TestProducto {
 	@Test
 	public void testToString() {
 		String resultadoString = prod.toString();
-		String resultadoEsperadoString = " - prod x 4.5€";
+		String resultadoEsperadoString = " - prod x 4.5ï¿½";
 		
 		assertEquals(resultadoEsperadoString, resultadoString);
 	}

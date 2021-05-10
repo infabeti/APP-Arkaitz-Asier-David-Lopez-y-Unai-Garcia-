@@ -14,15 +14,15 @@ import org.junit.Test;
 
 import Controlador.Controlador;
 import Controlador.ControladorPanelTickets;
-import principal.Conexion;
+import Modelo.FuncionesProductos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.Utiles;
-import Modelo.FuncionesProductos;
 import Modelo.Validaciones;
 import Vista.PanelTickets;
 import Vista.Vista;
+import principal.Conexion;
 
 public class TestControladorPanelTickets {
 
