@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,6 +28,7 @@ public class PanelAnalisis extends JPanel {
 	private JButton btnDesconectar;
 	private JTextField textFieldLocal;
 	private JScrollPane scrollPane;
+	private DefaultListModel<String> listaCombinaciones = new DefaultListModel<String>();
 	private JList listaProductos;
 
 
@@ -52,7 +54,7 @@ public class PanelAnalisis extends JPanel {
 		scrollPane.setBounds(139, 247, 556, 186);
 		add(scrollPane);
 		
-		listaProductos = new JList();
+		listaProductos = new JList(listaCombinaciones);
 		scrollPane.setViewportView(listaProductos);
 
 		textFieldLocal = new JTextField();
@@ -97,7 +99,10 @@ public class PanelAnalisis extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados del local");
 				//listaProductos.addElement("Texto de prueba: Productos Locales");
-				controladorPanelAnalisis.accionadoBottonMostrarProdLocal();
+				String [] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
+				for(int i = 0; listaAnnadir[i]!=null; i++) {
+					listaCombinaciones.addElement(listaAnnadir[i]);
+				}
 			}
 		};
 	}
@@ -107,7 +112,10 @@ public class PanelAnalisis extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados generales");
 				//listaProductos.addElement("Texto de prueba: Productos Generales");
-				controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
+				String[] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
+				for(int i = 0; listaAnnadir[i]!=null; i++) {
+					listaCombinaciones.addElement(listaAnnadir[i]);
+				}
 			}
 		};
 	}

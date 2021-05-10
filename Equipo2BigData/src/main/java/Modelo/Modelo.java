@@ -17,6 +17,7 @@ public class Modelo {
 	public ConsultasSimples consultasSimples;
 	public ConsultasComprobaciones consultasComprobaciones;
 	public ConsultasListas consultasListas;
+	public ConsultasActividades consultasActividades;
 	public InsercionesSimples insercionesSimples;
 	public InsercionesActividades insercionesActividades;
 	
@@ -34,6 +35,7 @@ public class Modelo {
 		consultasSimples = new ConsultasSimples(this);
 		consultasComprobaciones = new ConsultasComprobaciones(this);
 		consultasListas = new ConsultasListas(this);
+		consultasActividades = new ConsultasActividades(this);
 		insercionesSimples = new InsercionesSimples(this);
 		insercionesActividades = new InsercionesActividades(this);
 	}

@@ -1,4 +1,5 @@
 package Controlador;
+import Modelo.Combinacion;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.PanelAnalisis;
@@ -38,12 +39,26 @@ public class ControladorPanelAnalisis {
 		return this.modelo.getUser().getNifLocal();
 	}
 
-	public void accionadoBottonMostrarProdLocal() {
-		this.controlador.navegarPanelInicio();
+	public String[] accionadoBottonMostrarProdLocal(String NIF) {
+		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
+		String[] listaString = new String[3];
+		int cuenta = 0;
+		while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
+			listaString[cuenta] = listaCombinaciones[cuenta].toString();
+			cuenta++;
+		}
+		return listaString;
 	}
 
-	public void accionadoBottonMostrarProdGeneral() {
-		this.controlador.navegarPanelInicio();
+	public String[] accionadoBottonMostrarProdGeneral() {
+		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
+		String[] listaString = new String[10];
+		int cuenta = 0;
+		while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
+			listaString[cuenta] = listaCombinaciones[cuenta].toString();
+			cuenta++;
+		}
+		return listaString;
 	}
 
 	public void accionadoBottonDesconectarPanelAnalisis() {
