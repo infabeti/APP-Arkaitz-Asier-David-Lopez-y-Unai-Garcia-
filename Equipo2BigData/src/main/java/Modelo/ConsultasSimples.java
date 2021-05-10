@@ -149,9 +149,10 @@ public class ConsultasSimples {
 			PreparedStatement st = null;
 			st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.NOMBRECODIGO);
-			ResultSet rs = consultas.realizarConsulta(st);
 			st.setInt(1, codAl);
+			ResultSet rs = consultas.realizarConsulta(st);
 			try {
+				rs.next();
 				devolver = rs.getString(1);
 				conn.close();
 				return devolver;

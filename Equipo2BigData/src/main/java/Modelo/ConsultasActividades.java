@@ -59,6 +59,7 @@ public class ConsultasActividades {
 			Consultas consultas = new Consultas();
 			Inserciones inserciones = new Inserciones();
 			ResultSet rs = consultas.realizarConsulta(st);
+			rs.next();
 			int max = rs.getInt("maximo");
 			conn.close();
 			st.close();
