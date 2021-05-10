@@ -153,5 +153,9 @@ public class Controlador {
 	public ControladorPanelComandas makecontroladorPanelComandas(Modelo modelo, Vista vista, Controlador controlador) {
 		return new ControladorPanelComandas(this.modelo, this.vista, this);
 	}
+	
+	public ControladorPanelAnalisis makeControladorPanelAnalisis(Modelo modelo, Vista vista, Controlador controlador) {
+		return new ControladorPanelAnalisis(this.modelo, this.vista, this);
+	}
 
 }
