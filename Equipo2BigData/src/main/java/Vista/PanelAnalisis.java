@@ -12,8 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelAnalisis;
 
@@ -28,6 +30,7 @@ public class PanelAnalisis extends JPanel {
 	private JButton btnDesconectar;
 	private JTextField textFieldLocal;
 	private JScrollPane scrollPane;
+	private JTable table;
 	private DefaultListModel<String> listaCombinaciones = new DefaultListModel<String>();
 	private JList listaProductos;
 
@@ -53,9 +56,14 @@ public class PanelAnalisis extends JPanel {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(139, 247, 556, 186);
 		add(scrollPane);
-		
-		listaProductos = new JList(listaCombinaciones);
-		scrollPane.setViewportView(listaProductos);
+
+		//listaProductos = new JList(listaCombinaciones);
+		//scrollPane.setViewportView(listaProductos);
+
+		table = new JTable();
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] {	"Primer Producto", "Segundo Producto", "Fecha", "Probabilidad"	}));
+		scrollPane.setViewportView(table);
 
 		textFieldLocal = new JTextField();
 		textFieldLocal.setText(controladorPanelAnalisis.conseguirLocal());
@@ -77,13 +85,13 @@ public class PanelAnalisis extends JPanel {
 		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_analisis.jpg"));
 		lblBG.setBounds(0, 0, 834, 611);
 		add(lblBG);
-		
-				lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
-				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-				lblTextoPanel.setBounds(139, 35, 556, 50);
-				add(lblTextoPanel);
-		
+
+		lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+		lblTextoPanel.setBounds(139, 35, 556, 50);
+		add(lblTextoPanel);
+
 		initializeEvents();
 
 	}
@@ -98,11 +106,15 @@ public class PanelAnalisis extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados del local");
-				listaCombinaciones.clear();
-				listaCombinaciones.addElement("Primer Producto / Segundo Producto / Fecha / Probabilidad");
-				String [] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
-				for(int i = 0; listaAnnadir.length > i; i++) {
-					listaCombinaciones.addElement(listaAnnadir[i]);
+				DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+				int rowCount = modeloTabla.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+					modeloTabla.removeRow(i);
+				}
+				String lista[][] = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
+				for(int i = 0;i<lista.length;i++) {
+					String temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
+					modeloTabla.addRow(temp);
 				}
 			}
 		};
@@ -112,11 +124,15 @@ public class PanelAnalisis extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados generales");
-				listaCombinaciones.clear();
-				listaCombinaciones.addElement("Primer Producto / Segundo Producto / Fecha / Probabilidad");
-				String[] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
-				for(int i = 0; listaAnnadir.length > i; i++) {
-					listaCombinaciones.addElement(listaAnnadir[i]);
+				DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+				int rowCount = modeloTabla.getRowCount();
+				for (int i = rowCount - 1; i >= 0; i--) {
+					modeloTabla.removeRow(i);
+				}
+				String lista[][] = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
+				for(int i = 0;i<lista.length;i++) {
+					String temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
+					modeloTabla.addRow(temp);
 				}
 			}
 		};

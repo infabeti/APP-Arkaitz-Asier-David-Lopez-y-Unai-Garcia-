@@ -39,31 +39,29 @@ public class ControladorPanelAnalisis {
 		return this.modelo.getUser().getNifLocal();
 	}
 
-	public String[] accionadoBottonMostrarProdLocal(String NIF) {
+	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
 		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
-		String[] listaString = new String[3];
+		String[][] listaString = new String[3][4];
 		int cuenta = 0;
 		while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
-			String nombreA1 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-			String fecha = listaCombinaciones[cuenta].getFecha();
-			float probabilidad = listaCombinaciones[cuenta].getProbabilidad();
-			listaString[cuenta] = nombreA1 + " / " + nombreA2 + " / " + fecha + " / " + probabilidad*100 +"%";
+			listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
+			listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
+			listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
+			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
 			cuenta++;
 		}
 		return listaString;
 	}
 
-	public String[] accionadoBottonMostrarProdGeneral() {
+	public String[][] accionadoBottonMostrarProdGeneral() {
 		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
-		String[] listaString = new String[10];
+		String[][] listaString = new String[10][4];
 		int cuenta = 0;
 		while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
-			String nombreA1 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-			String fecha = listaCombinaciones[cuenta].getFecha();
-			float probabilidad = listaCombinaciones[cuenta].getProbabilidad();
-			listaString[cuenta] = nombreA1 + " / " + nombreA2 + " / " + fecha + " / " + probabilidad*100 +"%";
+			listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
+			listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
+			listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
+			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
 			cuenta++;
 		}
 		return listaString;
