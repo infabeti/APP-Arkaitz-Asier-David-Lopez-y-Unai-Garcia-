@@ -43,7 +43,7 @@ public class ControladorPanelAnalisis {
 		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
 		String[] listaString = new String[3];
 		int cuenta = 0;
-		while(cuenta < 3 && listaCombinaciones.length > cuenta) {
+		while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
 			String nombreA1 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
 			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
 			String fecha = listaCombinaciones[cuenta].getFecha();
@@ -58,7 +58,7 @@ public class ControladorPanelAnalisis {
 		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
 		String[] listaString = new String[10];
 		int cuenta = 0;
-		while(cuenta < 10 && listaCombinaciones.length > cuenta) {
+		while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
 			String nombreA1 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
 			String nombreA2 = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
 			String fecha = listaCombinaciones[cuenta].getFecha();
