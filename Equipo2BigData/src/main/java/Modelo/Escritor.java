@@ -14,25 +14,27 @@ import java.nio.file.Paths;
 public class Escritor {
 
 	public void escribirHistoricoGeneral(String[][]HistoricoGeneral) {
-		
-		try {
-			
-		Path path = Paths.get("C:\\eclipse-workspace\\APP-Arkaitz-Asier-David-Lopez-y-Unai-Garcia-\\Equipo2BigData\\historico");
 
-	    if (!Files.exists(path)) 		           
-	            Files.createDirectory(path);
-	    
-	    FileWriter fich = new FileWriter("C:\\eclipse-workspace\\APP-Arkaitz-Asier-David-Lopez-y-Unai-Garcia-\\Equipo2BigData\\historico\\historico.csv");
-	    
-	    fich.write(HistoricoGeneral[0][0]+","+HistoricoGeneral[0][1]);
-		
-		fich.close();
-		
+		try {
+			Path path = Paths.get("historico");
+
+			if (!Files.exists(path)) 		           
+				Files.createDirectory(path);
+
+			FileWriter fich = new FileWriter("historico\\historico.csv");
+			fich.write("Primer Producto,Segundo Producto,Fecha,Porcentaje");
+			for (int i=0;i<HistoricoGeneral.length;i++) {
+			fich.write("\n"+HistoricoGeneral[i][0]+","+HistoricoGeneral[i][1]+","+HistoricoGeneral[i][2]+","+HistoricoGeneral[i][3]);
+			}
+			fich.close();
+
 		} catch (IOException ex) {
 			System.err.println("No se puede leer del archivo");
 			System.exit(-1);
 		}
+	}
+
+	public void escribirHistoricoLocal(String[][]HistoricoGeneral, String NIF) {
 		
 	}
-	
 }

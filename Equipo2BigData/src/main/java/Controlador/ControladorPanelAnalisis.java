@@ -51,8 +51,7 @@ public class ControladorPanelAnalisis {
 			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";	
 			cuenta++;
 		}
-		
-		this.modelo.escritor.escribirHistoricoGeneral(listaString);
+		this.modelo.escritor.escribirHistoricoLocal(listaString,NIF);
 		return listaString;
 	}
 
@@ -67,6 +66,7 @@ public class ControladorPanelAnalisis {
 			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
 			cuenta++;
 		}
+		this.modelo.escritor.escribirHistoricoGeneral(listaString);
 		return listaString;
 	}
 
