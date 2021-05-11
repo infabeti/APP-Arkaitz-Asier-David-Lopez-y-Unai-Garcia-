@@ -113,6 +113,7 @@ public class PanelAnalisis extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados generales");
 				listaCombinaciones.clear();
+				listaCombinaciones.addElement("Primer Producto - Segundo Producto - Fecha - Probabilidad");
 				String[] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
 				for(int i = 0; listaAnnadir[i]!=null; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
