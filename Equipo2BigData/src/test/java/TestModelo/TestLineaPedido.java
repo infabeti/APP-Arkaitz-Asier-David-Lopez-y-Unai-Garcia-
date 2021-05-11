@@ -23,7 +23,7 @@ public class TestLineaPedido {
 	
 	@Test
 	public void testToString() {
-		String test = "2 x null 19.95â‚¬";
+		String test = "2 x null 19.95€";
 		assertEquals(test, lp.toString());
 	}
 	

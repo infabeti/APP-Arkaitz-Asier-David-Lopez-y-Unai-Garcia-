@@ -58,7 +58,7 @@ public class TestProducto {
 	@Test
 	public void testToString() {
 		String resultadoString = prod.toString();
-		String resultadoEsperadoString = " - prod x 4.5â‚¬";
+		String resultadoEsperadoString = " - prod x 4.5€";
 		
 		assertEquals(resultadoEsperadoString, resultadoString);
 	}

@@ -44,18 +44,19 @@ public class TestControladorPanelAnalisis {
 	@Test
 	public void testAccionadoBottonMostrarProductoLocal() {
 		String NIF = "23456789J";
-		Combinacion[] listaComb = {combinacionMock};
+		Combinacion[] listaComb = {combinacionMock,combinacionMock,combinacionMock};
 		when(consultasActividadesMock.conseguirDatosNaiveBayes("23456789J")).thenReturn(listaComb);
-		String[] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(NIF);
-		assertEquals("patata banana 1-1-2021 1.1%", listaResultado[0]);
+		String[][] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(NIF);
+		assertEquals("patata", listaResultado[0][0]);
 	}
 	
 	@Test
 	public void testAccionadoBottonMostrarProductoGlobal() {
-		Combinacion[] listaComb = {combinacionMock};
+		Combinacion[] listaComb = {combinacionMock,combinacionMock,combinacionMock,combinacionMock,combinacionMock,
+				combinacionMock,combinacionMock,combinacionMock,combinacionMock,combinacionMock};
 		when(consultasActividadesMock.conseguirDatosNaiveBayes("")).thenReturn(listaComb);
-		String[] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
-		assertEquals("patata banana 1-1-2021 1.1%", listaResultado[0]);
+		String[][] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
+		assertEquals("patata", listaResultado[0][0]);
 	}
 	
 }
