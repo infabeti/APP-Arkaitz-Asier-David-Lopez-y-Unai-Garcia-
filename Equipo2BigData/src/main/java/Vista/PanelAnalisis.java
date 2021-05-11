@@ -101,7 +101,7 @@ public class PanelAnalisis extends JPanel {
 				listaCombinaciones.clear();
 				listaCombinaciones.addElement("Primer Producto / Segundo Producto / Fecha / Probabilidad");
 				String [] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
-				for(int i = 0; listaAnnadir[i]!=null; i++) {
+				for(int i = 0; listaAnnadir.length > i; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
 				}
 			}
@@ -115,7 +115,7 @@ public class PanelAnalisis extends JPanel {
 				listaCombinaciones.clear();
 				listaCombinaciones.addElement("Primer Producto / Segundo Producto / Fecha / Probabilidad");
 				String[] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
-				for(int i = 0; listaAnnadir[i]!=null; i++) {
+				for(int i = 0; listaAnnadir.length > i; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
 				}
 			}

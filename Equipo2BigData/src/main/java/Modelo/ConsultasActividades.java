@@ -66,14 +66,15 @@ public class ConsultasActividades {
 			try {
 				conn = modelo.getConexion().getConn();
 				CallableStatement cs = null;
-				for(int i = 0; i<=max;i++) {
-					for(int j = 0; i<=max;i++) {
+				for(int i = 1 ; i<=max;i++) {
+					for(int j = 1 ; j<=max;j++) {
 						if(i!=j) {
 							if(NIF.equals("")) {
 								cs = conn.prepareCall(sentenciasBBDD.NAIVEGLOBAL);
 								cs.setInt(1, i);
 								cs.setInt(2, j);
 								inserciones.ejecutarFuncion(cs);
+								cs.close();
 							}
 							else {
 								cs = conn.prepareCall(sentenciasBBDD.NAIVEESPECIFICO);
@@ -81,6 +82,7 @@ public class ConsultasActividades {
 								cs.setInt(2, i);
 								cs.setInt(3, j);
 								inserciones.ejecutarFuncion(cs);
+								cs.close();
 							}
 						}
 					}
