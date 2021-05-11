@@ -99,7 +99,7 @@ public class PanelAnalisis extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Productos relacionados del local");
 				listaCombinaciones.clear();
-				listaCombinaciones.addElement("Primer Alimento Segundo Alimento Fecha Probabilidad");
+				listaCombinaciones.addElement("Primer Producto - Segundo Producto - Fecha - Probabilidad");
 				String [] listaAnnadir = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(textFieldLocal.getText());
 				for(int i = 0; listaAnnadir[i]!=null; i++) {
 					listaCombinaciones.addElement(listaAnnadir[i]);
