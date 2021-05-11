@@ -20,6 +20,7 @@ public class Modelo {
 	public ConsultasActividades consultasActividades;
 	public InsercionesSimples insercionesSimples;
 	public InsercionesActividades insercionesActividades;
+	public Escritor escritor;
 	
 	public Registro getRegistro() {
 		return registro;
@@ -38,6 +39,15 @@ public class Modelo {
 		consultasActividades = new ConsultasActividades(this);
 		insercionesSimples = new InsercionesSimples(this);
 		insercionesActividades = new InsercionesActividades(this);
+		escritor = new Escritor();
+	}
+
+	public Escritor getEscritor() {
+		return escritor;
+	}
+
+	public void setEscritor(Escritor escritor) {
+		this.escritor = escritor;
 	}
 
 	public void setConexion(principal.Conexion conexion) {

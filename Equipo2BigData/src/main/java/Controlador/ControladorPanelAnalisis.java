@@ -2,6 +2,7 @@ package Controlador;
 import Modelo.Combinacion;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Escritor;
 import Vista.PanelAnalisis;
 import Vista.Vista;
 
@@ -47,9 +48,11 @@ public class ControladorPanelAnalisis {
 			listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
 			listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
 			listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
-			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
+			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";	
 			cuenta++;
 		}
+		
+		this.modelo.escritor.escribirHistoricoGeneral(listaString);
 		return listaString;
 	}
 
