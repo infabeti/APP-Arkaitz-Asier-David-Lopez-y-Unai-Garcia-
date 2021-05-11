@@ -42,14 +42,6 @@ public class Modelo {
 		escritor = new Escritor();
 	}
 
-	public Escritor getEscritor() {
-		return escritor;
-	}
-
-	public void setEscritor(Escritor escritor) {
-		this.escritor = escritor;
-	}
-
 	public void setConexion(principal.Conexion conexion) {
 		this.conexion = conexion;
 	}

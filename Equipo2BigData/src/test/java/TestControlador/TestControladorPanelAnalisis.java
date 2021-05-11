@@ -11,6 +11,7 @@ import Controlador.ControladorPanelAnalisis;
 import Modelo.Combinacion;
 import Modelo.ConsultasActividades;
 import Modelo.ConsultasSimples;
+import Modelo.Escritor;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.Vista;
@@ -27,6 +28,7 @@ public class TestControladorPanelAnalisis {
 	private ConsultasActividades consultasActividadesMock = mock(ConsultasActividades.class);
 	private ControladorPanelAnalisis controladorPanelAnalisis = new ControladorPanelAnalisis(modeloMock, vistaMock, controladorMock);
 	private Combinacion combinacionMock = mock(Combinacion.class);
+	private Escritor escritorMock = mock(Escritor.class);
 	
 	@Before
 	public void setNecesarios() {
@@ -39,6 +41,7 @@ public class TestControladorPanelAnalisis {
 		when(combinacionMock.getFecha()).thenReturn("1-1-2021");
 		when(combinacionMock.getProbabilidad()).thenReturn((float) 1.1);
 		when(modeloMock.getUser()).thenReturn(userMock);
+		modeloMock.escritor = escritorMock;
 	}
 	
 	@Test
