@@ -52,7 +52,13 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().convertirListaAString();
+		try {
+			return this.modelo.getListaProductos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
 	}
 
 	public String devolverFechaHora() {

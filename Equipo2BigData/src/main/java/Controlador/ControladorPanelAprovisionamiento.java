@@ -55,7 +55,14 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public String[] pasarListaProductos() {
-		listaP = modelo.conversor.listaStringAAlimentos(this.modelo.consultasListas.cogerProductosAprovisionamiento());
+		try {
+			listaP = modelo.conversor.listaStringAAlimentos(this.modelo.consultasListas.cogerProductosAprovisionamiento());
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
+		
 		return listaP.convertirListaAString();
 	}
 

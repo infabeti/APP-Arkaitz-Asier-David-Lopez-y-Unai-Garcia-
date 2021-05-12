@@ -73,7 +73,8 @@ public class ControladorPanelAnalisis {
 			this.modelo.escritor.escribirHistoricoLocal(listaString,NIF,fich);
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			String[][] listaError = {{"Se ha producido un error", "Compruebe que la base de datos esta conectada","",""}};
+			return listaError;
 		}
 		return listaString;
 	}
@@ -103,7 +104,8 @@ public class ControladorPanelAnalisis {
 		}
 			
 		catch(Exception e) {
-			e.printStackTrace();
+			String[][] listaError = {{"Se ha producido un error", "Compruebe que la base de datos esta conectada","",""}};
+			return listaError;
 		}
 		return listaString;
 	}
