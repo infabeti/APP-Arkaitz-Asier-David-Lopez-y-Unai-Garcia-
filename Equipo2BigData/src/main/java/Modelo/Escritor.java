@@ -51,9 +51,9 @@ public class Escritor {
 			String DiaHora =dateFormat.format(cal.getTime());
 
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+DiaHora+"-"+NIF+".csv");
-			fich.write("Primer Producto,Segundo Producto,Fecha,Porcentaje,NIF");
+			fich.write("Primer Producto,Segundo Producto,Fecha,Porcentaje");
 			for (int i=0;i<HistoricoGeneral.length;i++) {
-			fich.write("\n"+HistoricoGeneral[i][0]+","+HistoricoGeneral[i][1]+","+HistoricoGeneral[i][2]+","+HistoricoGeneral[i][3]+","+NIF);
+			fich.write("\n"+HistoricoGeneral[i][0]+","+HistoricoGeneral[i][1]+","+HistoricoGeneral[i][2]+","+HistoricoGeneral[i][3]);
 			}
 			fich.close();
 
