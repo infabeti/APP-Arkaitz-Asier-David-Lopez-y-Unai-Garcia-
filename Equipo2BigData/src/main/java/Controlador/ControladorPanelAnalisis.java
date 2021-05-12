@@ -1,4 +1,12 @@
 package Controlador;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import Modelo.Combinacion;
 import Modelo.Modelo;
 import Modelo.Usuario;
@@ -41,32 +49,60 @@ public class ControladorPanelAnalisis {
 	}
 
 	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
-		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
+		Path path = Paths.get("historico");
 		String[][] listaString = new String[3][4];
-		int cuenta = 0;
-		while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
-			listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-			listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-			listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
-			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";	
-			cuenta++;
+		try{
+			if (!Files.exists(path)) 		           
+				{Files.createDirectory(path);}
+			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.HHmmss");
+			Calendar cal = Calendar.getInstance();
+			String DiaHora =dateFormat.format(cal.getTime());
+			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+DiaHora+"-"+NIF+".csv");
+		
+			Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
+			int cuenta = 0;
+			while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
+				listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
+				listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
+				listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
+				listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";	
+				cuenta++;
+			}
+			this.modelo.escritor.escribirHistoricoLocal(listaString,NIF,fich);
 		}
-		this.modelo.escritor.escribirHistoricoLocal(listaString,NIF);
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		return listaString;
 	}
 
 	public String[][] accionadoBottonMostrarProdGeneral() {
-		Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
 		String[][] listaString = new String[10][4];
-		int cuenta = 0;
-		while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
-			listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-			listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-			listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
-			listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
-			cuenta++;
+		try {
+			Path path = Paths.get("historico");
+
+			if (!Files.exists(path)) 		           
+				Files.createDirectory(path);
+			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.HHmmss");
+			Calendar cal = Calendar.getInstance();
+			String DiaHora =dateFormat.format(cal.getTime());
+			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+DiaHora+".csv");
+			Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
+			int cuenta = 0;
+			while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
+				listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
+				listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
+				listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
+				listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
+				cuenta++;
+			}
+			this.modelo.escritor.escribirHistoricoGeneral(listaString, fich);
 		}
-		this.modelo.escritor.escribirHistoricoGeneral(listaString);
+			
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		return listaString;
 	}
 
