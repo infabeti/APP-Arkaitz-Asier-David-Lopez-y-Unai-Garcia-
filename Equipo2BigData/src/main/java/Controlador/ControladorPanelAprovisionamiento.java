@@ -1,5 +1,7 @@
 package Controlador;
 
+import java.util.ArrayList;
+
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Vista.PanelAprovisionamiento;
@@ -55,15 +57,15 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	}
 
 	public String[] pasarListaProductos() {
-		try {
-			listaP = modelo.conversor.listaStringAAlimentos(this.modelo.consultasListas.cogerProductosAprovisionamiento());
+		ArrayList<String[]> listaArray = this.modelo.consultasListas.cogerProductosAprovisionamiento();
+		if(listaArray == null) {
+			String [] listaDevolver = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaDevolver;
 		}
-		catch(Exception e) {
-			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
-			return listaError;
+		else {
+			listaP = modelo.conversor.listaStringAAlimentos(listaArray);
+			return listaP.convertirListaAString();
 		}
-		
-		return listaP.convertirListaAString();
 	}
 
 	public void accionadoBotonAnnadir(int cantidad, int indice, String nombre, int numTrans, String nif) {

@@ -58,9 +58,9 @@ public class PanelAprovisionamiento extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(160, 158, 295, 304);
 		add(scrollPane);
-
+		
 		listaProductos = new JList(this.controladorPanelAprovisionamiento.pasarListaProductos());
-
+		
 		scrollPane.setViewportView(listaProductos);
 
 		NumberFormat format = NumberFormat.getInstance();
