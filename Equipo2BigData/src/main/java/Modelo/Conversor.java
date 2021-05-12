@@ -8,6 +8,9 @@ public class Conversor {
 	public Conversor() {}
 	
 	public ListaProductos listaStringAProductos(ArrayList<String[]> listaString) {
+		if(listaString == null) {
+			return null;
+		}
 		ListaProductos listaP = new ListaProductos();
 		for(int i = 0; i<listaString.size(); i++ ) {
 			String[] arrayString = listaString.get(i);

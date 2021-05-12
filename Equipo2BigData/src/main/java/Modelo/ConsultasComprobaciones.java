@@ -29,9 +29,8 @@ public class ConsultasComprobaciones {
 			conn.close();
 			return resultado;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 	public boolean comprobarSiExisteComprador(String nif) {
@@ -47,9 +46,8 @@ public class ConsultasComprobaciones {
 			conn.close();
 			return resultado;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 	public boolean comprobarSiExisteDNI(String nif) {
@@ -64,9 +62,8 @@ public class ConsultasComprobaciones {
 			conn.close();
 			return resultado;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 	
 	public double consultaComprobarPrecio(String nombre) {
@@ -83,12 +80,12 @@ public class ConsultasComprobaciones {
 				conn.close();
 				return resultado;
 			} catch (Exception e) {
-				e.printStackTrace();
+				return 0.0;
 			}
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
+			return 0.0;
 		}
-		return 0.0;
 	}
 
 }

@@ -15,6 +15,11 @@ public class Utiles {
 
 	public void inicializarListaProductos() {
 		ListaProductos listaProductos = modelo.conversor.listaStringAProductos(this.modelo.consultasListas.cogerProductosLocal(modelo.getUser().getNifLocal()));
+		if (listaProductos == null) {
+			listaProductos = new ListaProductos();
+			Producto prod = new Producto("Error en la base de datos");
+			listaProductos.addProducto(prod);
+		}
 		this.modelo.setListaProductos(listaProductos);
 	}
 

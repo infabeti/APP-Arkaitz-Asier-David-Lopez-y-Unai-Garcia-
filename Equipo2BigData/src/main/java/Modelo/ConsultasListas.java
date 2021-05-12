@@ -50,6 +50,7 @@ public class ConsultasListas {
 			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
+			return null;
 		}
 		return listaProductos;
 	}
@@ -79,6 +80,7 @@ public class ConsultasListas {
 			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
+			return listaProductos;
 		}
 		return listaProductos;
 	}
@@ -104,6 +106,7 @@ public class ConsultasListas {
 			conn.close();
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
+			return listaPlatos;
 		}
 		return listaPlatos;
 	}

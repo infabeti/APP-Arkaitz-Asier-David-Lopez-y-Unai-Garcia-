@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import principal.Consultas;
 import principal.Inserciones;
@@ -46,7 +47,8 @@ public class ConsultasActividades {
 			}
 			conn.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Ha habido un error al conectar con la base de datos");
+			Arrays.fill(listaCombinaciones, null);
 		}
 		return listaCombinaciones;
 	}
@@ -90,11 +92,11 @@ public class ConsultasActividades {
 				conn.close();
 			}
 			catch(Exception e) {
-				e.printStackTrace();
+				System.out.println("Ha habido un error al ejecutar la funcion");
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Ha habido un error al conectarse a la base de datos");
 		}	
 	}
 }

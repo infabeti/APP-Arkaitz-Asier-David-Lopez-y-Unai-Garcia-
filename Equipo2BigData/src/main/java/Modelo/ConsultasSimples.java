@@ -113,7 +113,7 @@ public class ConsultasSimples {
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
-		return null;
+		return "0";
 	}
 	
 	public int leerNumTransBBDD() {
@@ -134,11 +134,11 @@ public class ConsultasSimples {
 			} catch (Exception e) {
 				e.printStackTrace();
 				conn.close();
+				return 0;
 			}
 		} catch (SQLException sqlException) {
-			sqlException.printStackTrace();
+			return 0;
 		}
-		return 1;
 	}
 	
 	public String obtenerNombreCodAl(int codAl) {

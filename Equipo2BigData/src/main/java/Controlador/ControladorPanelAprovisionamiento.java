@@ -59,7 +59,7 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 	public String[] pasarListaProductos() {
 		ArrayList<String[]> listaArray = this.modelo.consultasListas.cogerProductosAprovisionamiento();
 		if(listaArray == null) {
-			String [] listaDevolver = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			String [] listaDevolver = {"Se ha producido un error", "Compruebe que la base de datos", "Esta conectada"};
 			return listaDevolver;
 		}
 		else {
@@ -76,7 +76,15 @@ public class ControladorPanelAprovisionamiento  implements ControladorInterfaz {
 		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(numTrans);
 	}
 	
-	public int conseguirNumTrans() {
-		return this.modelo.consultasSimples.leerNumTransBBDD();
+	public String conseguirNumTrans() {
+		int numero = this.modelo.consultasSimples.leerNumTransBBDD();
+		String devolver = "";
+		if(numero == 0) {
+			devolver = "Error en BBDD";
+		}
+		else {
+			devolver = Integer.toString(numero);
+		}
+		return devolver;
 	}
 }

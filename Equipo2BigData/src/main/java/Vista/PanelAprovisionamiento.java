@@ -43,7 +43,7 @@ public class PanelAprovisionamiento extends JPanel {
 		setLayout(null);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setText(Integer.toString(this.controladorPanelAprovisionamiento.conseguirNumTrans()));
+		textFieldNumTrans.setText(this.controladorPanelAprovisionamiento.conseguirNumTrans());
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldNumTrans.setColumns(10);
 		textFieldNumTrans.setEditable(false);
@@ -137,8 +137,16 @@ public class PanelAprovisionamiento extends JPanel {
 		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 
+		
+		comprobarError();
 		initializeEvents();
 
+	}
+	
+	private void comprobarError() {
+		if(textFieldNumTrans.getText().equals("Error en BBDD")) {
+			btnAnnadir.setEnabled(false);
+		}
 	}
 
 	private void initializeEvents() {

@@ -14,6 +14,7 @@ import Modelo.ConsultasSimples;
 import Modelo.Escritor;
 import Modelo.Modelo;
 import Modelo.Usuario;
+import Modelo.Utiles;
 import Vista.Vista;
 import principal.Conexion;
 
@@ -29,6 +30,7 @@ public class TestControladorPanelAnalisis {
 	private ControladorPanelAnalisis controladorPanelAnalisis = new ControladorPanelAnalisis(modeloMock, vistaMock, controladorMock);
 	private Combinacion combinacionMock = mock(Combinacion.class);
 	private Escritor escritorMock = mock(Escritor.class);
+	private Utiles utilesMock = mock(Utiles.class);
 	
 	@Before
 	public void setNecesarios() {
@@ -42,6 +44,7 @@ public class TestControladorPanelAnalisis {
 		when(combinacionMock.getProbabilidad()).thenReturn((float) 1.1);
 		when(modeloMock.getUser()).thenReturn(userMock);
 		modeloMock.escritor = escritorMock;
+		modeloMock.utiles = utilesMock;
 	}
 	
 	@Test
