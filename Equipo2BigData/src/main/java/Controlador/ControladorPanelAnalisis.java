@@ -52,7 +52,7 @@ public class ControladorPanelAnalisis {
 	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
 		Path path = Paths.get("historico");
 		String[][] listaString = new String[3][4];
-		Arrays.fill(listaString, "");
+		this.modelo.utiles.rellenarArrayDobleString(listaString, "",3,4);
 		try{
 			if (!Files.exists(path)) 		           
 				{Files.createDirectory(path);}
@@ -81,6 +81,7 @@ public class ControladorPanelAnalisis {
 
 	public String[][] accionadoBottonMostrarProdGeneral() {
 		String[][] listaString = new String[10][4];
+		this.modelo.utiles.rellenarArrayDobleString(listaString, "",10,4);
 		try {
 			Path path = Paths.get("historico");
 

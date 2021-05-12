@@ -34,4 +34,13 @@ public class Utiles {
 		return cantidad;
 	}
 	
+	public String[][] rellenarArrayDobleString(String[][] array, String valor,int primeraLongitud, int segundaLongitud) {
+		for(int i = 0; i < primeraLongitud; i++) {
+			for(int j = 0; j < segundaLongitud; j++){
+				array[i][j] = valor;
+			}
+		}
+		return array;
+	}
+	
 }
