@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import Modelo.Combinacion;
@@ -51,6 +52,7 @@ public class ControladorPanelAnalisis {
 	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
 		Path path = Paths.get("historico");
 		String[][] listaString = new String[3][4];
+		Arrays.fill(listaString, "");
 		try{
 			if (!Files.exists(path)) 		           
 				{Files.createDirectory(path);}
