@@ -50,7 +50,7 @@ public class ConsultasActividades {
 	
 	public ResultadosHistorico[] conseguirDatosNaiveBayesGlobal() {
 		Connection conn = modelo.getConexion().getConn();
-		ResultadosHistorico[] listaResultados = new ResultadosHistorico[3];
+		ResultadosHistorico[] listaResultados = new ResultadosHistorico[10];
 		try {
 			ejecutarNaiveBayesGlobal();
 			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.OBTENERHISTORICOGLOBAL);

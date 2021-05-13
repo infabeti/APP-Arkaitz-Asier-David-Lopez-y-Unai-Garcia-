@@ -9,7 +9,7 @@ public class Modelo {
 	public FuncionesPlatos funPlat;
 	private Registro registro;
 	public Validaciones validaciones;
-	private principal.Conexion conexion = new principal.Conexion("3306");
+	private principal.Conexion conexion = new principal.Conexion("33060");
 	private ListaProductos listaTemporal = new ListaProductos();
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
 	public Conversor conversor = new Conversor();

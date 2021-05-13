@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import Modelo.ResultadosHistorico;
 import Modelo.Modelo;
