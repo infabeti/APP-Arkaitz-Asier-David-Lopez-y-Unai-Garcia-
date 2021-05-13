@@ -57,9 +57,6 @@ public class PanelAnalisis extends JPanel {
 		scrollPane.setBounds(139, 247, 556, 186);
 		add(scrollPane);
 
-		//listaProductos = new JList(listaCombinaciones);
-		//scrollPane.setViewportView(listaProductos);
-
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {},
 				new String[] {	"Primer Producto", "Segundo Producto", "Fecha", "Probabilidad"	}));

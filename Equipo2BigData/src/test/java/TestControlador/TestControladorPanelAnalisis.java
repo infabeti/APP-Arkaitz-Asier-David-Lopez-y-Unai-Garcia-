@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import Controlador.Controlador;
 import Controlador.ControladorPanelAnalisis;
-import Modelo.Combinacion;
+import Modelo.ResultadosHistorico;
 import Modelo.ConsultasActividades;
 import Modelo.ConsultasSimples;
-import Modelo.Escritor;
+import Modelo.ManejadorFicheros;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.Utiles;
@@ -28,8 +28,8 @@ public class TestControladorPanelAnalisis {
 	private ConsultasSimples consultasSimplesMock = mock(ConsultasSimples.class);
 	private ConsultasActividades consultasActividadesMock = mock(ConsultasActividades.class);
 	private ControladorPanelAnalisis controladorPanelAnalisis = new ControladorPanelAnalisis(modeloMock, vistaMock, controladorMock);
-	private Combinacion combinacionMock = mock(Combinacion.class);
-	private Escritor escritorMock = mock(Escritor.class);
+	private ResultadosHistorico combinacionMock = mock(ResultadosHistorico.class);
+	private ManejadorFicheros escritorMock = mock(ManejadorFicheros.class);
 	private Utiles utilesMock = mock(Utiles.class);
 	
 	@Before
@@ -50,17 +50,17 @@ public class TestControladorPanelAnalisis {
 	@Test
 	public void testAccionadoBottonMostrarProductoLocal() {
 		String NIF = "23456789J";
-		Combinacion[] listaComb = {combinacionMock,combinacionMock,combinacionMock};
-		when(consultasActividadesMock.conseguirDatosNaiveBayes("23456789J")).thenReturn(listaComb);
+		ResultadosHistorico[] listaComb = {combinacionMock,combinacionMock,combinacionMock};
+		when(consultasActividadesMock.conseguirDatosNaiveBayesLocal("23456789J")).thenReturn(listaComb);
 		String[][] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdLocal(NIF);
 		assertEquals("patata", listaResultado[0][0]);
 	}
 	
 	@Test
 	public void testAccionadoBottonMostrarProductoGlobal() {
-		Combinacion[] listaComb = {combinacionMock,combinacionMock,combinacionMock,combinacionMock,combinacionMock,
+		ResultadosHistorico[] listaComb = {combinacionMock,combinacionMock,combinacionMock,combinacionMock,combinacionMock,
 				combinacionMock,combinacionMock,combinacionMock,combinacionMock,combinacionMock};
-		when(consultasActividadesMock.conseguirDatosNaiveBayes("")).thenReturn(listaComb);
+		when(consultasActividadesMock.conseguirDatosNaiveBayesLocal("")).thenReturn(listaComb);
 		String[][] listaResultado = controladorPanelAnalisis.accionadoBottonMostrarProdGeneral();
 		assertEquals("patata", listaResultado[0][0]);
 	}

@@ -13,7 +13,7 @@ public class ConsultasListas {
 	
 	private Modelo modelo;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
-	static final String Transaccion="select max(Transaccion) from actividad";
+	private Consultas consultas = new Consultas();
 	
 	public ConsultasListas(Modelo modelo) {
 		this.modelo = modelo;
@@ -21,12 +21,9 @@ public class ConsultasListas {
 	
 	public ArrayList<String[]> cogerProductosLocal(String NIFLocal) {
 		ArrayList<String[]> listaProductos = new ArrayList<String[]>();
-		
 		try {
 			Connection conn = modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAPRODUCTOLOCAL);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAPRODUCTOLOCAL);
 			st.setString(1, NIFLocal);
 			ResultSet rs = consultas.realizarConsulta(st);
 			
@@ -59,9 +56,7 @@ public class ConsultasListas {
 		ArrayList<String[]> listaProductos = new ArrayList<String[]>();
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.ALIMENTOORDENADO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			String nombre, pCompra, tipo, feCad = "";
@@ -89,9 +84,7 @@ public class ConsultasListas {
 		ArrayList<String[]> listaPlatos = new ArrayList<String[]>();
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(
 					sentenciasBBDD.PLATOJOINCARTA);
 			st.setString(1, NIFLocal);
 			ResultSet rs = consultas.realizarConsulta(st);

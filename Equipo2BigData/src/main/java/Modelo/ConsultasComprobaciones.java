@@ -12,6 +12,7 @@ public class ConsultasComprobaciones {
 	
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
 	private Modelo modelo;
+	private Consultas consultas = new Consultas();
 
 	public ConsultasComprobaciones(Modelo modelo) {
 		this.modelo = modelo;
@@ -19,10 +20,8 @@ public class ConsultasComprobaciones {
 	
 	public boolean comprobarSiExisteNIF(String nif) {
 		Connection conn = modelo.getConexion().getConn();
-		PreparedStatement st = null;
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTANIF);
-			Consultas consultas = new Consultas();
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTANIF);
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
 			boolean resultado = rs.next();
@@ -35,11 +34,9 @@ public class ConsultasComprobaciones {
 
 	public boolean comprobarSiExisteComprador(String nif) {
 		Connection conn = modelo.getConexion().getConn();
-		PreparedStatement st = null;
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.EXISTECOMPRADOR);
-			Consultas consultas = new Consultas();
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
 			boolean resultado = rs.next();
@@ -52,10 +49,8 @@ public class ConsultasComprobaciones {
 
 	public boolean comprobarSiExisteDNI(String nif) {
 		Connection conn = modelo.getConexion().getConn();
-		PreparedStatement st = null;
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULATDNI);
-			Consultas consultas = new Consultas();
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULATDNI);
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
 			boolean resultado = rs.next();
@@ -68,10 +63,8 @@ public class ConsultasComprobaciones {
 	
 	public double consultaComprobarPrecio(String nombre) {
 		try {
-			Consultas consultas = new Consultas();
 			Connection conn = modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSEGUIRPRECIOPRODUCTO);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSEGUIRPRECIOPRODUCTO);
 			st.setString(1, nombre);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {

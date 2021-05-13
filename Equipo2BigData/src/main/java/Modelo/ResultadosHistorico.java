@@ -1,13 +1,13 @@
 package Modelo;
 
-public class Combinacion {
+public class ResultadosHistorico {
 	
 	private int codAl1;
 	private int codAl2;
 	private String fecha;
 	private float probabilidad;
 	
-	public Combinacion(int codAl1, int codAl2, String fecha, float probabilidad) {
+	public ResultadosHistorico(int codAl1, int codAl2, String fecha, float probabilidad) {
 		this.codAl1 = codAl1;
 		this.codAl2 = codAl2;
 		this.fecha = fecha;

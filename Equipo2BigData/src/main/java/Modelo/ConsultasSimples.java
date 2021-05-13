@@ -12,6 +12,7 @@ public class ConsultasSimples {
 	
 	private Modelo modelo;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
+	private Consultas consultas = new Consultas();
 
 	public ConsultasSimples(Modelo modelo) {
 		this.modelo = modelo;
@@ -20,7 +21,6 @@ public class ConsultasSimples {
 	public String[] login(String dni, String password) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
 			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTALOGUEAR);
 			st.setString(1, dni);
@@ -50,7 +50,6 @@ public class ConsultasSimples {
 		int cantidadActual = 0;
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
 			PreparedStatement st = null;
 			st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CONSEGUIRCANTIDADSTOCK);
@@ -70,9 +69,7 @@ public class ConsultasSimples {
 	public String obtenerCodigoAlimentoProducto(String producto) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAALIMENTO);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTAALIMENTO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
 				while (rs.next()) {
@@ -94,9 +91,7 @@ public class ConsultasSimples {
 	public String obtenerCodigoPlato(String plato) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CONSULTAPLATO);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
@@ -119,9 +114,7 @@ public class ConsultasSimples {
 	public int leerNumTransBBDD() {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CONSULTAACTIVIDAD);
 			ResultSet rs = consultas.realizarConsulta(st);
 			int numero = 1;
@@ -145,9 +138,7 @@ public class ConsultasSimples {
 		String devolver = "";
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.NOMBRECODIGO);
 			st.setInt(1, codAl);
 			ResultSet rs = consultas.realizarConsulta(st);

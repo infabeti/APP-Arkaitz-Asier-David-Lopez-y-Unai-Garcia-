@@ -13,6 +13,7 @@ public class InsercionesActividades {
 
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
 	private Modelo modelo;
+	private Inserciones inserciones = new Inserciones();
 
 	public InsercionesActividades(Modelo modelo) {
 		this.modelo = modelo;
@@ -21,16 +22,13 @@ public class InsercionesActividades {
 	public void insertarActividad(int transaccion, String fecha, String tipo, String nif) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARACTIVIDAD);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARACTIVIDAD);
 			st.setInt(1, transaccion);
 			st.setString(2, fecha);
 			st.setDouble(3, 0);
 			st.setString(4, tipo);
 			st.setString(5, nif);
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -44,8 +42,7 @@ public class InsercionesActividades {
 	public void insertarPedido(int transaccion, String domicilio) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARPEDIDO);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARPEDIDO);
 			try {
 				st.setInt(1, transaccion);
 				if (domicilio.equalsIgnoreCase("")) {
@@ -53,7 +50,6 @@ public class InsercionesActividades {
 				} else {
 					st.setString(2, domicilio);
 				}
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -67,12 +63,10 @@ public class InsercionesActividades {
 	public void insertarFactura(int transaccion, String nif) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARFACTURA);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARFACTURA);
 			st.setInt(1, transaccion);
 			st.setString(2, nif);
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -86,11 +80,9 @@ public class InsercionesActividades {
 	public boolean insertarComanda(int transaccion) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARCOMANDA);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARCOMANDA);
 			try {
 				st.setInt(1, transaccion);	
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -107,11 +99,9 @@ public class InsercionesActividades {
 	public boolean insertarAprovisionamiento(int transaccion) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARAPROVISIONAMIENTO);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.INSERTARAPROVISIONAMIENTO);
 			try {
 				st.setInt(1, transaccion);
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -127,11 +117,9 @@ public class InsercionesActividades {
 	}
 
 	public void ejecutarProcedimientoCalcularPrecios(int transaccion) {
-		Inserciones inserciones = new Inserciones();
 		Connection conn = modelo.getConexion().getConn();
-		CallableStatement cs = null;
 		try {
-			cs = conn.prepareCall(sentenciasBBDD.LLAMADAPROCEDIMIENTO);  
+			CallableStatement cs = conn.prepareCall(sentenciasBBDD.LLAMADAPROCEDIMIENTO);  
 			cs.setInt(1, transaccion);
 			inserciones.ejecutarFuncion(cs);
 			conn.close();

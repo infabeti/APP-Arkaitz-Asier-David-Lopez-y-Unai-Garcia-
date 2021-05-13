@@ -15,25 +15,20 @@ public class ConsultasActividades {
 	
 	private Modelo modelo;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
+	private Consultas consultas = new Consultas();
+	private Inserciones inserciones = new Inserciones();
 	
 	public ConsultasActividades(Modelo modelo) {
 		this.modelo = modelo;
 	}
 	
-	public Combinacion[] conseguirDatosNaiveBayes(String NIF) {
+	public ResultadosHistorico[] conseguirDatosNaiveBayesLocal(String NIF) {
 		Connection conn = modelo.getConexion().getConn();
-		PreparedStatement st = null;
-		Combinacion[] listaCombinaciones = new Combinacion[10]; //10 porque el máximo de combinaciones que se puede devolver es 10
+		ResultadosHistorico[] listaResultados = new ResultadosHistorico[3];
 		try {
-			ejecutarNaiveBayes(NIF);
-			if(NIF.equals("")) {
-				st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.OBTENERHISTORICOGLOBAL);
-			}
-			else {
-				st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.OBTENERHISTORICOLOCAL);
-				st.setString(1, NIF);
-			}
-			Consultas consultas = new Consultas();
+			ejecutarNaiveBayesLocal(NIF);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.OBTENERHISTORICOLOCAL);
+			st.setString(1, NIF);
 			ResultSet rs = consultas.realizarConsulta(st);
 			int cuenta = 0;
 			while(rs.next()) {
@@ -41,45 +36,52 @@ public class ConsultasActividades {
 				int codAl2 = rs.getInt(2);
 				String fecha = rs.getDate(3).toString();
 				float probabilidad = rs.getFloat(4);
-				Combinacion comb = new Combinacion(codAl1, codAl2, fecha, probabilidad);
-				listaCombinaciones[cuenta] = comb;
+				ResultadosHistorico comb = new ResultadosHistorico(codAl1, codAl2, fecha, probabilidad);
+				listaResultados[cuenta] = comb;
 				cuenta++;
 			}
 			conn.close();
 		} catch (SQLException e) {
 			System.out.println("Ha habido un error al conectar con la base de datos");
-			Arrays.fill(listaCombinaciones, null);
+			Arrays.fill(listaResultados, null);
 		}
-		return listaCombinaciones;
+		return listaResultados;
 	}
 	
-	public void ejecutarNaiveBayes(String NIF) {
+	public ResultadosHistorico[] conseguirDatosNaiveBayesGlobal() {
 		Connection conn = modelo.getConexion().getConn();
-		PreparedStatement st = null;
+		ResultadosHistorico[] listaResultados = new ResultadosHistorico[3];
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CANTIDADPRODUCTOS);
-			Consultas consultas = new Consultas();
-			Inserciones inserciones = new Inserciones();
+			ejecutarNaiveBayesGlobal();
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.OBTENERHISTORICOGLOBAL);
 			ResultSet rs = consultas.realizarConsulta(st);
-			rs.next();
-			int max = rs.getInt("maximo");
+			int cuenta = 0;
+			while(rs.next()) {
+				int codAl1 = rs.getInt(1);
+				int codAl2 = rs.getInt(2);
+				String fecha = rs.getDate(3).toString();
+				float probabilidad = rs.getFloat(4);
+				ResultadosHistorico comb = new ResultadosHistorico(codAl1, codAl2, fecha, probabilidad);
+				listaResultados[cuenta] = comb;
+				cuenta++;
+			}
 			conn.close();
-			st.close();
+		} catch (SQLException e) {
+			System.out.println("Ha habido un error al conectar con la base de datos");
+			Arrays.fill(listaResultados, null);
+		}
+		return listaResultados;
+	}
+	
+	public void ejecutarNaiveBayesLocal(String NIF) {
+		try {
+			int max = this.conseguirProductoMaximo();
 			try {
-				conn = modelo.getConexion().getConn();
-				CallableStatement cs = null;
+				Connection conn = modelo.getConexion().getConn();
 				for(int i = 1 ; i<=max;i++) {
 					for(int j = 1 ; j<=max;j++) {
 						if(i!=j) {
-							if(NIF.equals("")) {
-								cs = conn.prepareCall(sentenciasBBDD.NAIVEGLOBAL);
-								cs.setInt(1, i);
-								cs.setInt(2, j);
-								inserciones.ejecutarFuncion(cs);
-								cs.close();
-							}
-							else {
-								cs = conn.prepareCall(sentenciasBBDD.NAIVEESPECIFICO);
+								CallableStatement cs = conn.prepareCall(sentenciasBBDD.NAIVEESPECIFICO);
 								cs.setString(1, NIF);
 								cs.setInt(2, i);
 								cs.setInt(3, j);
@@ -88,7 +90,6 @@ public class ConsultasActividades {
 							}
 						}
 					}
-				}
 				conn.close();
 			}
 			catch(Exception e) {
@@ -98,5 +99,47 @@ public class ConsultasActividades {
 		catch(Exception e) {
 			System.out.println("Ha habido un error al conectarse a la base de datos");
 		}	
+	}
+	
+	public void ejecutarNaiveBayesGlobal () {
+		try {
+			int max = this.conseguirProductoMaximo();
+			try {
+				Connection conn = modelo.getConexion().getConn();
+				for(int i = 1 ; i<=max;i++) {
+					for(int j = 1 ; j<=max;j++) {
+						if(i!=j) {
+							CallableStatement cs = conn.prepareCall(sentenciasBBDD.NAIVEGLOBAL);
+							cs.setInt(1, i);
+							cs.setInt(2, j);
+							inserciones.ejecutarFuncion(cs);
+							cs.close();
+						}
+					}
+				}
+			conn.close();
+		}
+		catch(Exception e) {
+			System.out.println("Ha habido un error al ejecutar la funcion");
+		}
+	}
+	catch(Exception e) {
+		System.out.println("Ha habido un error al conectarse a la base de datos");
+	}	
+	}
+	
+	public int conseguirProductoMaximo() {
+		Connection conn = this.modelo.getConexion().getConn();
+		try {
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CANTIDADPRODUCTOS);
+			ResultSet rs = consultas.realizarConsulta(st);
+			rs.next();
+			int max = rs.getInt("maximo");
+			conn.close();
+			return max;
+		}
+		catch(Exception e) {
+			return 0;
+		}
 	}
 }

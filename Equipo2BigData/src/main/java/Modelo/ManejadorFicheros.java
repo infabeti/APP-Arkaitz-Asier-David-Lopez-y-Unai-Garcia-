@@ -3,9 +3,7 @@ package Modelo;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Escritor {
-	
-	public Escritor() {}
+public class ManejadorFicheros {
 
 	public void escribirHistoricoGeneral(String[][]historicoGeneral, FileWriter fich) {
 

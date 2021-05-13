@@ -5,13 +5,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 
-import Modelo.Combinacion;
+import Modelo.ResultadosHistorico;
 import Modelo.Modelo;
 import Modelo.Usuario;
-import Modelo.Escritor;
 import Vista.PanelAnalisis;
 import Vista.Vista;
 
@@ -52,7 +50,6 @@ public class ControladorPanelAnalisis {
 	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
 		Path path = Paths.get("historico");
 		String[][] listaString = new String[3][4];
-		this.modelo.utiles.rellenarArrayDobleString(listaString, "",3,4);
 		try{
 			if (!Files.exists(path)) 		           
 				{Files.createDirectory(path);}
@@ -60,16 +57,8 @@ public class ControladorPanelAnalisis {
 			Calendar cal = Calendar.getInstance();
 			String DiaHora =dateFormat.format(cal.getTime());
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+DiaHora+"-"+NIF+".csv");
-		
-			Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes(NIF);
-			int cuenta = 0;
-			while(cuenta < 3 && listaCombinaciones[cuenta] != null) {
-				listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-				listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-				listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
-				listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";	
-				cuenta++;
-			}
+			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesLocal(NIF);
+			listaString = modelo.utiles.listaResultadosAString(listaResultados, 3);
 			this.modelo.escritor.escribirHistoricoLocal(listaString,NIF,fich);
 		}
 		catch(Exception e) {
@@ -81,29 +70,18 @@ public class ControladorPanelAnalisis {
 
 	public String[][] accionadoBottonMostrarProdGeneral() {
 		String[][] listaString = new String[10][4];
-		this.modelo.utiles.rellenarArrayDobleString(listaString, "",10,4);
 		try {
 			Path path = Paths.get("historico");
-
 			if (!Files.exists(path)) 		           
 				Files.createDirectory(path);
-			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.HHmmss");
 			Calendar cal = Calendar.getInstance();
 			String DiaHora =dateFormat.format(cal.getTime());
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+DiaHora+".csv");
-			Combinacion[] listaCombinaciones = this.modelo.consultasActividades.conseguirDatosNaiveBayes("");
-			int cuenta = 0;
-			while(cuenta < 10 && listaCombinaciones[cuenta] != null) {
-				listaString[cuenta][0] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl1());
-				listaString[cuenta][1] = this.modelo.consultasSimples.obtenerNombreCodAl(listaCombinaciones[cuenta].getCodAl2());
-				listaString[cuenta][2] = listaCombinaciones[cuenta].getFecha();
-				listaString[cuenta][3] = Float.toString(listaCombinaciones[cuenta].getProbabilidad()*100)+"%";
-				cuenta++;
-			}
-			this.modelo.escritor.escribirHistoricoGeneral(listaString, fich);
+			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesGlobal();
+			listaString = modelo.utiles.listaResultadosAString(listaResultados, 10);
+			this.modelo.escritor.escribirHistoricoGeneral(listaString,fich);
 		}
-			
 		catch(Exception e) {
 			String[][] listaError = {{"Se ha producido un error", "Compruebe que la base de datos esta conectada","",""}};
 			return listaError;

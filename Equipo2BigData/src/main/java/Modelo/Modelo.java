@@ -20,7 +20,7 @@ public class Modelo {
 	public ConsultasActividades consultasActividades;
 	public InsercionesSimples insercionesSimples;
 	public InsercionesActividades insercionesActividades;
-	public Escritor escritor;
+	public ManejadorFicheros escritor = new ManejadorFicheros();
 	
 	public Registro getRegistro() {
 		return registro;
@@ -39,7 +39,6 @@ public class Modelo {
 		consultasActividades = new ConsultasActividades(this);
 		insercionesSimples = new InsercionesSimples(this);
 		insercionesActividades = new InsercionesActividades(this);
-		escritor = new Escritor();
 	}
 
 	public void setConexion(principal.Conexion conexion) {

@@ -8,13 +8,13 @@ import static org.mockito.Mockito.doThrow;
 import org.junit.Before;
 import org.junit.Test;
 
-import Modelo.Escritor;
+import Modelo.ManejadorFicheros;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class TestEscritor {
 	
-	private Escritor escritor = new Escritor();
+	private ManejadorFicheros escritor = new ManejadorFicheros();
 	private FileWriter fileWriterMock = mock(FileWriter.class);
 	private String[][] historicoGeneralPrueba = new String[10][4];
 	private String[][] historicoLocalPrueba = new String[3][4];

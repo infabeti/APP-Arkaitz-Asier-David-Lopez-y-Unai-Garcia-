@@ -14,6 +14,8 @@ public class InsercionesSimples {
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
 	private InsercionesActividades insercionesActividades;
 	private Modelo modelo;
+	private Inserciones inserciones = new Inserciones();
+	private Consultas consultas = new Consultas();
 
 	public InsercionesSimples(Modelo modelo) {
 		this.modelo =  modelo;
@@ -23,15 +25,13 @@ public class InsercionesSimples {
 	public void insertarProductoActividad(int transaccion, String codigoAlimento, int cantidad, double precioFinal, String nifLocal, String fechaFormateada) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.INSERTARPRODUCTOACTIVIDAD);
 			st.setString(1, codigoAlimento);
 			st.setInt(2, transaccion);
 			st.setInt(3, cantidad);
 			st.setDouble(4, precioFinal);
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				try {
 					Consultas consultas = new Consultas();
@@ -63,12 +63,9 @@ public class InsercionesSimples {
 	}
 
 	public void actualizarStockMenorQueCinco(String codigoAlimento, String nifLocal, int numTransaccion, String fechaFormateada) {
-
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			Consultas consultas = new Consultas();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.CODIGOALIMENTO);
 			st.setString(1, codigoAlimento);
 			st.setString(2, nifLocal);
@@ -108,18 +105,15 @@ public class InsercionesSimples {
 	}
 
 	public void updateStock(String nif, String codigoAlimento, int cantidad) {
-
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.ACTUALIZARSTOCK);
 			st.setInt(1, (cantidad + 50));
 			st.setString(2, nif);
 			st.setString(3, codigoAlimento);
 
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -134,15 +128,12 @@ public class InsercionesSimples {
 	public void insertarComprador(String nif, String nombre, String apellido) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.INSERTARCOMPRADOR);
 			st.setString(1, nif);
 			st.setString(2, nombre);
 			st.setString(3, apellido);
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
@@ -156,8 +147,7 @@ public class InsercionesSimples {
 	public boolean insertarRegistro(String dni, String Nombre, String Apellido, String contrasena, String nif) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.INSERTAREMPLEADO);
 			try {
 				st.setString(1, dni);
@@ -165,7 +155,6 @@ public class InsercionesSimples {
 				st.setString(3, Apellido);
 				st.setString(4, contrasena);
 				st.setString(5, nif);
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 				return true;
@@ -183,12 +172,10 @@ public class InsercionesSimples {
 	public void insertarPlatoActividad(int transaccion, String codigoPlato, int cantidad) {
 		try {
 			Connection conn = this.modelo.getConexion().getConn();
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conn)
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement("insert into lineaplato (codigoplato,transaccion,cantidad)" + " values("
 							+ codigoPlato + "," + transaccion + "," + cantidad + ");");
 			try {
-				Inserciones inserciones = new Inserciones();
 				inserciones.realizarInsercion(st);
 				conn.close();
 			} catch (Exception e) {
