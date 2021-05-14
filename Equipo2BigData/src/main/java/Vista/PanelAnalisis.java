@@ -85,16 +85,18 @@ public class PanelAnalisis extends JPanel {
 		comboBox.setBounds(139, 210, 240, 25);
 		add(comboBox);
 		comboBox.addItem("Naive Bayes");
+		comboBox.addItem("Binomial");
+		comboBox.addItem("Montecarlo");
 
 		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_analisis.jpg"));
 		lblBG.setBounds(0, 0, 834, 611);
 		add(lblBG);
-		
-				lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
-				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-				lblTextoPanel.setBounds(139, 35, 556, 50);
-				add(lblTextoPanel);
+
+		lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
+		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+		lblTextoPanel.setBounds(139, 35, 556, 50);
+		add(lblTextoPanel);
 
 		initializeEvents();
 
