@@ -67,7 +67,6 @@ public class ControladorPanelAnalisis {
 	public String[][] accionadoBottonMostrarProdGeneral() {
 		String[][] listaString = new String[10][4];
 		try {
-			this.modelo.escritor.crearCarpeta("historico");
 			String diaHora = this.modelo.escritor.crearCarpeta("historico");
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+diaHora+".csv");
 			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesGlobal();
