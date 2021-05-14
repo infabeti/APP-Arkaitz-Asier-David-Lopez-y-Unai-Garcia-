@@ -12,10 +12,19 @@ public class ManejadorFicheros {
 			for (int i=0;i<historicoGeneral.length;i++) {
 			fich.write("\n"+historicoGeneral[i][0]+","+historicoGeneral[i][1]+","+historicoGeneral[i][2]+","+historicoGeneral[i][3]);
 			}
-			fich.close();
 
 		} catch (IOException ex) {
 			System.err.println("No se puede leer del archivo");
+		}
+		finally {
+			try {
+				if(fich != null) {
+					fich.close();
+				}
+			}
+			catch(Exception e) {
+				System.err.println("No se puede leer del archivo");
+			}
 		}
 	}
 
@@ -31,6 +40,16 @@ public class ManejadorFicheros {
 
 		} catch (IOException ex) {
 			System.err.println("No se puede leer del archivo");
+		}
+		finally {
+			try {
+				if(fich != null) {
+					fich.close();
+				}
+			}
+			catch(Exception e) {
+				System.err.println("No se puede leer del archivo");
+			}
 		}
 	}
 			
