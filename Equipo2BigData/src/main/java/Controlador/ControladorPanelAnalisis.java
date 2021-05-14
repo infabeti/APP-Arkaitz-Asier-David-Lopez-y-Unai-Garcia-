@@ -51,11 +51,8 @@ public class ControladorPanelAnalisis {
 	public String[][] accionadoBottonMostrarProdLocal(String NIF) {
 		String[][] listaString = new String[3][4];
 		try{
-			this.modelo.escritor.crearCarpeta("historico");
-			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.HHmmss");
-			Calendar cal = Calendar.getInstance();
-			String DiaHora =dateFormat.format(cal.getTime());
-			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+DiaHora+"-"+NIF+".csv");
+			String diaHora = this.modelo.escritor.crearCarpeta("historico");
+			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+diaHora+"-"+NIF+".csv");
 			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesLocal(NIF);
 			listaString = modelo.utiles.listaResultadosAString(listaResultados, 3);
 			this.modelo.escritor.escribirHistoricoLocal(listaString,NIF,fich);
@@ -71,10 +68,8 @@ public class ControladorPanelAnalisis {
 		String[][] listaString = new String[10][4];
 		try {
 			this.modelo.escritor.crearCarpeta("historico");
-			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd.HHmmss");
-			Calendar cal = Calendar.getInstance();
-			String DiaHora =dateFormat.format(cal.getTime());
-			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+DiaHora+".csv");
+			String diaHora = this.modelo.escritor.crearCarpeta("historico");
+			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+diaHora+".csv");
 			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesGlobal();
 			listaString = modelo.utiles.listaResultadosAString(listaResultados, 10);
 			this.modelo.escritor.escribirHistoricoGeneral(listaString,fich);
