@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelAnalisis;
+import javax.swing.JComboBox;
 
 public class PanelAnalisis extends JPanel {
 
@@ -26,6 +27,7 @@ public class PanelAnalisis extends JPanel {
 	private ControladorPanelAnalisis controladorPanelAnalisis;
 	private JButton btnProdLocal;
 	private JButton btnProdGeneral;
+	private JComboBox comboBox;
 	private JLabel lblTextoPanel;
 	private JButton btnDesconectar;
 	private JTextField textFieldLocal;
@@ -66,7 +68,7 @@ public class PanelAnalisis extends JPanel {
 		textFieldLocal.setText(controladorPanelAnalisis.conseguirLocal());
 		textFieldLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldLocal.setColumns(10);
-		textFieldLocal.setBounds(139, 210, 114, 25);
+		textFieldLocal.setBounds(265, 173, 114, 25);
 		add(textFieldLocal);
 
 		JLabel lblLocal = new JLabel("NIF del Local:\r\n");
@@ -79,15 +81,20 @@ public class PanelAnalisis extends JPanel {
 		btnProdGeneral.setBounds(395, 210, 300, 25);
 		add(btnProdGeneral);
 
+		comboBox = new JComboBox();
+		comboBox.setBounds(139, 210, 240, 25);
+		add(comboBox);
+		comboBox.addItem("Naive Bayes");
+
 		JLabel lblBG = new JLabel(new ImageIcon("media\\bg_analisis.jpg"));
 		lblBG.setBounds(0, 0, 834, 611);
 		add(lblBG);
-
-		lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
-		lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
-		lblTextoPanel.setBounds(139, 35, 556, 50);
-		add(lblTextoPanel);
+		
+				lblTextoPanel = new JLabel("PANEL DE AN\u00C1LISIS");
+				lblTextoPanel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblTextoPanel.setFont(new Font("Arial", Font.BOLD, 50));
+				lblTextoPanel.setBounds(139, 35, 556, 50);
+				add(lblTextoPanel);
 
 		initializeEvents();
 
