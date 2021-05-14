@@ -11,36 +11,12 @@ import java.util.Calendar;
 
 public class ManejadorFicheros {
 	
-	public void escribirHistoricoGeneral(String[][]historicoGeneral, FileWriter fich) {
+	public void escribirHistorico(String[][]historicoGeneral, FileWriter fich) {
 		try {
 			fich.write("Primer Producto,Segundo Producto,Fecha,Porcentaje");
 			for (int i=0;i<historicoGeneral.length;i++) {
 			fich.write("\n"+historicoGeneral[i][0]+","+historicoGeneral[i][1]+","+historicoGeneral[i][2]+","+historicoGeneral[i][3]);
 			}
-
-		} catch (IOException ex) {
-			System.err.println("No se puede leer del archivo");
-		}
-		finally {
-			try {
-				if(fich != null) {
-					fich.close();
-				}
-			}
-			catch(Exception e) {
-				System.err.println("No se puede leer del archivo");
-			}
-		}
-	}
-
-	public void escribirHistoricoLocal(String[][]historicoGeneral, String NIF, FileWriter fich) {	
-		try {
-			fich.write("Primer Producto,Segundo Producto,Fecha,Porcentaje");
-			for (int i=0;i<historicoGeneral.length;i++) {
-			fich.write("\n"+historicoGeneral[i][0]+","+historicoGeneral[i][1]+","+historicoGeneral[i][2]+","+historicoGeneral[i][3]);
-
-			}
-			fich.close();
 
 		} catch (IOException ex) {
 			System.err.println("No se puede leer del archivo");

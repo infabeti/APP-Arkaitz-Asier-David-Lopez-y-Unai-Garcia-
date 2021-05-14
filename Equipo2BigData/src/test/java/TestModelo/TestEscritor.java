@@ -17,12 +17,11 @@ public class TestEscritor {
 	private ManejadorFicheros escritor = new ManejadorFicheros();
 	private FileWriter fileWriterMock = mock(FileWriter.class);
 	private String[][] historicoGeneralPrueba = new String[10][4];
-	private String[][] historicoLocalPrueba = new String[3][4];
-	private String NIF = "12345678A";
+
 	
 	@Test
-	public void testEscribirHistoricoGeneral() {
-		escritor.escribirHistoricoGeneral(historicoGeneralPrueba, fileWriterMock);
+	public void testEscribirHistorico() {
+		escritor.escribirHistorico(historicoGeneralPrueba, fileWriterMock);
 		try {
 			verify(fileWriterMock).close();
 		}
@@ -33,35 +32,10 @@ public class TestEscritor {
 	}
 	
 	@Test
-	public void testEscribirHistoricoGeneralExcepcion() {
+	public void testEscribirHistoricoExcepcion() {
 		try {
 			doThrow(IOException.class).when(fileWriterMock).close();
-			escritor.escribirHistoricoGeneral(historicoGeneralPrueba, fileWriterMock);
-			verify(fileWriterMock).close();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	@Test
-	public void testEscribirHistoricoLocal() {
-		escritor.escribirHistoricoLocal(historicoLocalPrueba,NIF, fileWriterMock);
-		try {
-			verify(fileWriterMock).close();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	@Test
-	public void testEscribirHistoricoLocalExcepcion() {
-		try {
-			doThrow(IOException.class).when(fileWriterMock).close();
-			escritor.escribirHistoricoLocal(historicoLocalPrueba, NIF, fileWriterMock);
+			escritor.escribirHistorico(historicoGeneralPrueba, fileWriterMock);
 			verify(fileWriterMock).close();
 		}
 		catch(IOException e) {

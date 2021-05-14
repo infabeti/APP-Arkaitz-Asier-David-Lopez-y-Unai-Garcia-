@@ -55,7 +55,7 @@ public class ControladorPanelAnalisis {
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesEspecifico-"+diaHora+"-"+NIF+".csv");
 			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesLocal(NIF);
 			listaString = modelo.utiles.listaResultadosAString(listaResultados, 3);
-			this.modelo.escritor.escribirHistoricoLocal(listaString,NIF,fich);
+			this.modelo.escritor.escribirHistorico(listaString,fich);
 		}
 		catch(Exception e) {
 			String[][] listaError = {{"Se ha producido un error", "Compruebe que la base de datos esta conectada","",""}};
@@ -72,7 +72,7 @@ public class ControladorPanelAnalisis {
 			FileWriter fich = new FileWriter("historico\\AlgoritmoNaiveBayesGeneral-"+diaHora+".csv");
 			ResultadosHistorico[] listaResultados = this.modelo.consultasActividades.conseguirDatosNaiveBayesGlobal();
 			listaString = modelo.utiles.listaResultadosAString(listaResultados, 10);
-			this.modelo.escritor.escribirHistoricoGeneral(listaString,fich);
+			this.modelo.escritor.escribirHistorico(listaString,fich);
 		}
 		catch(Exception e) {
 			String[][] listaError = {{"Se ha producido un error", "Compruebe que la base de datos esta conectada","",""}};
