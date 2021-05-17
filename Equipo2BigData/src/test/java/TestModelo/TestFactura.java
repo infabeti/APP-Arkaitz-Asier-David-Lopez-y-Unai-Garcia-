@@ -1,9 +1,12 @@
 package TestModelo;
 
-import static org.junit.Assert.*;
-import Modelo.Factura;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 import java.sql.Date;
+
+import org.junit.Test;
+
+import Modelo.Factura;
 
 public class TestFactura {
 	

@@ -1,7 +1,8 @@
 package Controlador;
 
-import Modelo.Modelo;
 import javax.swing.DefaultListModel;
+
+import Modelo.Modelo;
 import Vista.PanelFacturas;
 import Vista.Vista;
 
@@ -50,8 +51,15 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().convertirListaAString();
+		try {
+			return this.modelo.getListaProductos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
 	}
+	
 	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
@@ -122,10 +130,13 @@ public class ControladorPanelFacturas implements ControladorInterfaz {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nifLocal);
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
 	}
 
 	public PanelFacturas makePanelFacturas(ControladorPanelFacturas controladorPanelFacturas) {
 		return new PanelFacturas(controladorPanelFacturas);
+	}
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
 	}
 }

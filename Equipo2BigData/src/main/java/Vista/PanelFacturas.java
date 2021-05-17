@@ -1,25 +1,25 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import Controlador.ControladorPanelFacturas;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.text.NumberFormatter;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 
-import java.awt.Color;
+import Controlador.ControladorPanelFacturas;
 
 public class PanelFacturas extends JPanel {
 
@@ -88,8 +88,9 @@ public class PanelFacturas extends JPanel {
 		textFieldNumTrans = new JTextField();
 		textFieldNumTrans.setBounds(299, 165, 114, 20);
 		add(textFieldNumTrans);
+		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelFacturas.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNIF = new JLabel("NIF:");

@@ -1,20 +1,29 @@
 package TestControlador;
 
-import Controlador.*;
-import principal.Conexion;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Controlador.Controlador;
+import Controlador.ControladorPanelFacturas;
+import Modelo.FuncionesProductos;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Modelo.Utiles;
-import Modelo.FuncionesProductos;
 import Modelo.Validaciones;
 import Vista.PanelFacturas;
 import Vista.Vista;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import principal.Conexion;
 
 public class TestControladorPanelFacturas {
 

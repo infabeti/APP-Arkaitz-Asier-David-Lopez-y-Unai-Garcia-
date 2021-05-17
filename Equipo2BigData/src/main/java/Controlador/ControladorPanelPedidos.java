@@ -1,7 +1,8 @@
 package Controlador;
 
-import Modelo.Modelo;
 import javax.swing.DefaultListModel;
+
+import Modelo.Modelo;
 import Vista.PanelPedidos;
 import Vista.Vista;
 
@@ -51,7 +52,13 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().convertirListaAString();
+		try {
+			return this.modelo.getListaProductos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
 	}
 
 	public String devolverFechaHora() {
@@ -104,10 +111,14 @@ public class ControladorPanelPedidos  implements ControladorInterfaz {
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
 	}
 
 	public PanelPedidos makePanelPedidos(ControladorPanelPedidos controladorPanelPedidos) {
 		return new PanelPedidos(controladorPanelPedidos);
+	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
 	}
 }

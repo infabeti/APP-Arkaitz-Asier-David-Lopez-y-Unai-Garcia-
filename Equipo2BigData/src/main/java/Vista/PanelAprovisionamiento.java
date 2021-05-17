@@ -1,7 +1,7 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -10,16 +10,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import Controlador.ControladorPanelAprovisionamiento;
-import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.text.NumberFormatter;
 import javax.swing.SwingConstants;
-import java.awt.Color;
+import javax.swing.text.NumberFormatter;
+
+import Controlador.ControladorPanelAprovisionamiento;
 
 public class PanelAprovisionamiento extends JPanel {
 
@@ -44,9 +43,10 @@ public class PanelAprovisionamiento extends JPanel {
 		setLayout(null);
 
 		textFieldNumTrans = new JTextField();
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setText(this.controladorPanelAprovisionamiento.conseguirNumTrans());
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldNumTrans.setColumns(10);
+		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setBounds(560, 214, 114, 20);
 		add(textFieldNumTrans);
 
@@ -58,9 +58,9 @@ public class PanelAprovisionamiento extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(160, 158, 295, 304);
 		add(scrollPane);
-
+		
 		listaProductos = new JList(this.controladorPanelAprovisionamiento.pasarListaProductos());
-
+		
 		scrollPane.setViewportView(listaProductos);
 
 		NumberFormat format = NumberFormat.getInstance();
@@ -137,8 +137,16 @@ public class PanelAprovisionamiento extends JPanel {
 		lblTextoPanel.setBounds(139, 35, 556, 50);
 		add(lblTextoPanel);
 
+		
+		comprobarError();
 		initializeEvents();
 
+	}
+	
+	private void comprobarError() {
+		if(textFieldNumTrans.getText().equals("Error en BBDD")) {
+			btnAnnadir.setEnabled(false);
+		}
 	}
 
 	private void initializeEvents() {

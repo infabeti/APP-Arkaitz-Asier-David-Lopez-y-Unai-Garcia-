@@ -1,9 +1,12 @@
 package TestModelo;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.Date;
-import Modelo.Producto;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
+
+import Modelo.Producto;
 
 public class TestProducto {
 	

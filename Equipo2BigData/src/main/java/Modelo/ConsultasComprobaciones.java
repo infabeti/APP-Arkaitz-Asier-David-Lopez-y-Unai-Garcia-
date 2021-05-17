@@ -1,85 +1,84 @@
 package Modelo;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import principal.Conexion;
 import principal.Consultas;
 import principal.SentenciasBBDD;
 
 public class ConsultasComprobaciones {
 	
-	private Conexion conexion;
 	private final SentenciasBBDD sentenciasBBDD = new SentenciasBBDD();
+	private Modelo modelo;
+	private Consultas consultas = new Consultas();
 
-	public ConsultasComprobaciones(Conexion conexion) {
-		this.conexion = conexion;
+	public ConsultasComprobaciones(Modelo modelo) {
+		this.modelo = modelo;
 	}
 	
 	public boolean comprobarSiExisteNIF(String nif) {
-
-		PreparedStatement st = null;
+		Connection conn = modelo.getConexion().getConn();
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSULTANIF);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULTANIF);
+			st.setString(1, nif);
+			ResultSet rs = consultas.realizarConsulta(st);
+			boolean resultado = rs.next();
+			conn.close();
+			return resultado;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		}
-		return consultaReal(st, nif);
 	}
 
 	public boolean comprobarSiExisteComprador(String nif) {
-		PreparedStatement st = null;
+		Connection conn = modelo.getConexion().getConn();
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn())
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn)
 					.prepareStatement(sentenciasBBDD.EXISTECOMPRADOR);
+			st.setString(1, nif);
+			ResultSet rs = consultas.realizarConsulta(st);
+			boolean resultado = rs.next();
+			conn.close();
+			return resultado;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return false;
 		}
-		return consultaReal(st, nif);
 	}
 
 	public boolean comprobarSiExisteDNI(String nif) {
-		PreparedStatement st = null;
+		Connection conn = modelo.getConexion().getConn();
 		try {
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSULATDNI);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return consultaReal(st, nif);
-	}
-
-	public boolean consultaReal(PreparedStatement st, String nif) {
-		try {
-			Consultas consultas = new Consultas(conexion);
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSULATDNI);
 			st.setString(1, nif);
 			ResultSet rs = consultas.realizarConsulta(st);
-
-			return rs.next();
-
-		} catch (SQLException sqlException) {
-			sqlException.printStackTrace();
+			boolean resultado = rs.next();
+			conn.close();
+			return resultado;
+		} catch (SQLException e) {
+			return false;
 		}
-		return false;
 	}
 	
 	public double consultaComprobarPrecio(String nombre) {
 		try {
-			Consultas consultas = new Consultas(conexion);
-			PreparedStatement st = null;
-			st = (PreparedStatement) ((java.sql.Connection) conexion.getConn()).prepareStatement(sentenciasBBDD.CONSEGUIRPRECIOPRODUCTO);
+			Connection conn = modelo.getConexion().getConn();
+			PreparedStatement st = (PreparedStatement) ((java.sql.Connection) conn).prepareStatement(sentenciasBBDD.CONSEGUIRPRECIOPRODUCTO);
 			st.setString(1, nombre);
 			ResultSet rs = consultas.realizarConsulta(st);
 			try {
 				rs.next();
-				return rs.getDouble("PCompra");
+				double resultado = rs.getDouble("PCompra");
+				conn.close();
+				return resultado;
 			} catch (Exception e) {
-				e.printStackTrace();
+				return 0.0;
 			}
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
+			return 0.0;
 		}
-		return 0.0;
 	}
 
 }

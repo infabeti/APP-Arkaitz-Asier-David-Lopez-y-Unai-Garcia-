@@ -1,10 +1,15 @@
 package TestModelo;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.junit.Test;
+
 import Modelo.ListaProductos;
 import Modelo.Producto;
-import static org.junit.Assert.*;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 public class TestListaProductos {
 	

@@ -1,17 +1,19 @@
 package TestModelo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Modelo.Conversor;
 import Modelo.ListaPlatos;
 import Modelo.ListaProductos;
-import Modelo.Usuario;
-import Modelo.Producto;
 import Modelo.Plato;
-import java.util.ArrayList;
+import Modelo.Producto;
+import Modelo.Usuario;
 
 public class TestConversor {
 	
@@ -84,5 +86,19 @@ public class TestConversor {
 		assertEquals(productoMock.getNombre(), "prueba");
 		assertEquals(productoMock.getPrecioVenta(), 0.1, 0);
 		assertEquals(productoMock.getTipo(), "BEBIDA");
+	}
+	
+	@Test
+	public void TestListaStringAUser() {
+		arrayString[0] = "pepito";
+		arrayString[1] = "grillo";
+		arrayString[2] = "restaurante";
+		arrayString[3] = "12345678A";
+		Usuario usuario = conversor.listaStringAUser(arrayString);
+		
+		assertEquals(arrayString[0], usuario.getNombre());
+		assertEquals(arrayString[1], usuario.getLocal());
+		assertEquals(arrayString[2], usuario.getTipoLocal());
+		assertEquals(arrayString[3], usuario.getNifLocal());
 	}
 }

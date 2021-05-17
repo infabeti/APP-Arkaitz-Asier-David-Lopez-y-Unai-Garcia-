@@ -14,12 +14,8 @@ public class FuncionesProductos {
 	public double cantidadTotal(String cantidad, String producto, double total, String tipo) {
 		double precioTotalProducto = 0;
 		int cantidadInt = Integer.parseInt(cantidad);
-		if(tipo.equalsIgnoreCase("producto")) {
-			ListaProductos listaProd = this.modelo.getListaProductos();
-			precioTotalProducto = cantidadInt * listaProd.precioElementoString(producto);}
-		else {
-			ListaPlatos listaPlatos = this.modelo.getListaPlatos();
-			precioTotalProducto = cantidadInt * listaPlatos.precioElementoString(producto);}
+		ListaProductos listaProd = this.modelo.getListaProductos();
+		precioTotalProducto = cantidadInt * listaProd.precioElementoString(producto);
 		total = total + precioTotalProducto;
 		BigDecimal bd = BigDecimal.valueOf(total);
 	    bd = bd.setScale(2, RoundingMode.HALF_DOWN);

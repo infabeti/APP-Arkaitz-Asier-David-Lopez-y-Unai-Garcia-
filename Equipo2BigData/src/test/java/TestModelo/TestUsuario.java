@@ -1,8 +1,10 @@
 package TestModelo;
 
-import Modelo.Usuario;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import Modelo.Usuario;
 
 public class TestUsuario {
 	

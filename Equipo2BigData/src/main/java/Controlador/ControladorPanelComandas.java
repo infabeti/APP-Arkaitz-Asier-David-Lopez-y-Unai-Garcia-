@@ -1,8 +1,9 @@
 package Controlador;
 import javax.swing.DefaultListModel;
+
 import Modelo.Modelo;
-import Vista.Vista;
 import Vista.PanelComandas;
+import Vista.Vista;
 
 public class ControladorPanelComandas implements ControladorInterfaz {
 
@@ -45,13 +46,27 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 		return new PanelComandas(controladorPanelComandas); }
 	
 	public String[] cogerListaProductos() {
-		return modelo.getListaProductos().convertirListaAString(); }
+		try {
+			return modelo.getListaProductos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
+	}
 	
 	public int conseguirStockProductos(String nif, String producto) {
 		return modelo.consultasSimples.obtenerStock(nif, producto); }
 	
 	public String[] cogerListaPlatos() {
-		return modelo.getListaPlatos().convertirListaAString(); }
+		try {
+			return modelo.getListaPlatos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
+	}
 	
 	public String[] accionadoBotonAnnadirProducto(String producto, String cantidad) {
 		String[] devolver = this.modelo.funProd.funcionalidadAnadirProducto(producto, cantidad, this.total);
@@ -109,6 +124,10 @@ public class ControladorPanelComandas implements ControladorInterfaz {
 			String textoSpliteado[] = listaPlatos.get(i).split(" ");
 			insertarPlatoActividad(this.modelo.getListaTemporalPlatos().convertirListaAString()[i], transaccion, Integer.parseInt(textoSpliteado[0]));
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
+	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
 	}
 }

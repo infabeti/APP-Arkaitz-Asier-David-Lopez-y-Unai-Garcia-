@@ -1,6 +1,7 @@
 package Controlador;
 
 import javax.swing.DefaultListModel;
+
 import Modelo.Modelo;
 import Vista.PanelTickets;
 import Vista.Vista;
@@ -49,7 +50,7 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 			String textoSpliteado[] = lista.get(i).split(" ");
 			insertarProductoActividad(i, transaccion, Integer.parseInt(textoSpliteado[0]), nif);
 		}
-		this.modelo.insercionesActividades.ejecutarFuncion(transaccion);
+		this.modelo.insercionesActividades.ejecutarProcedimientoCalcularPrecios(transaccion);
 	}
 
 	public void insertarProductoActividad(int nombreProducto, int transaccion, int cantidad, String nif) {
@@ -74,7 +75,13 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 	}
 
 	public String[] cogerListaProductos() {
-		return this.modelo.getListaProductos().convertirListaAString();
+		try{
+			return this.modelo.getListaProductos().convertirListaAString();
+		}
+		catch(Exception e) {
+			String[] listaError = {"Se ha producido un error", "Compruebe que la base de datos esta conectada"};
+			return listaError;
+		}
 	}
 
 	public int existeProducto(String nombreProducto) {
@@ -112,5 +119,9 @@ public class ControladorPanelTickets implements ControladorInterfaz{
 
 	public PanelTickets makePanelTickets(ControladorPanelTickets controladorPanelTickets) {
 		return new PanelTickets(controladorPanelTickets);
+	}
+	
+	public int conseguirNumTrans() {
+		return this.modelo.consultasSimples.leerNumTransBBDD();
 	}
 }

@@ -9,17 +9,18 @@ public class Modelo {
 	public FuncionesPlatos funPlat;
 	private Registro registro;
 	public Validaciones validaciones;
-	private principal.Conexion conexion = new principal.Conexion("3306");
+	private principal.Conexion conexion = new principal.Conexion("33060");
 	private ListaProductos listaTemporal = new ListaProductos();
 	private ListaPlatos listaTemporalPlatos = new ListaPlatos();
-	public java.sql.Connection conexionConn = conexion.getConn();
 	public Conversor conversor = new Conversor();
 	public Utiles utiles;
 	public ConsultasSimples consultasSimples;
 	public ConsultasComprobaciones consultasComprobaciones;
 	public ConsultasListas consultasListas;
+	public ConsultasActividades consultasActividades;
 	public InsercionesSimples insercionesSimples;
 	public InsercionesActividades insercionesActividades;
+	public ManejadorFicheros escritor = new ManejadorFicheros();
 	
 	public Registro getRegistro() {
 		return registro;
@@ -32,11 +33,12 @@ public class Modelo {
 		registro = new Registro(this);
 		validaciones = new Validaciones(this);
 		utiles = new Utiles(this);
-		consultasSimples = new ConsultasSimples(conexion);
-		consultasComprobaciones = new ConsultasComprobaciones(conexion);
-		consultasListas = new ConsultasListas(conexion);
-		insercionesSimples = new InsercionesSimples(conexion);
-		insercionesActividades = new InsercionesActividades(conexion);
+		consultasSimples = new ConsultasSimples(this);
+		consultasComprobaciones = new ConsultasComprobaciones(this);
+		consultasListas = new ConsultasListas(this);
+		consultasActividades = new ConsultasActividades(this);
+		insercionesSimples = new InsercionesSimples(this);
+		insercionesActividades = new InsercionesActividades(this);
 	}
 
 	public void setConexion(principal.Conexion conexion) {

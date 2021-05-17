@@ -4,7 +4,6 @@ import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.PanelInicio;
 import Vista.Vista;
-import principal.Consultas;
 
 public class ControladorInicio implements ControladorInterfaz {
 
@@ -38,6 +37,10 @@ public class ControladorInicio implements ControladorInterfaz {
 	@Override
 	public void accionadoBottonVolverPanelPrincipal() {
 		this.controlador.navegarPanelPrincipal();
+	}
+	
+	public void accionadoBottonVolverPanelAnalisis() {
+		this.controlador.navegarPanelAnalisis();
 	}
 
 	public void accionadoBottonRegistroPanelInicio() {

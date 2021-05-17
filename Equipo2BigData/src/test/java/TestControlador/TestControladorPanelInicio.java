@@ -12,13 +12,12 @@ import org.junit.Test;
 
 import Controlador.Controlador;
 import Controlador.ControladorInicio;
-import principal.Conexion;
-
 import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Usuario;
 import Vista.PanelInicio;
 import Vista.Vista;
+import principal.Conexion;
 
 public class TestControladorPanelInicio {
 

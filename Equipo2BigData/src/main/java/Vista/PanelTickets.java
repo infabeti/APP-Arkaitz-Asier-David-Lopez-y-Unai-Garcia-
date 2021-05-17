@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,17 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import Controlador.ControladorPanelTickets;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.text.NumberFormatter;
 
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import java.awt.Color;
+import Controlador.ControladorPanelTickets;
 
 public class PanelTickets extends JPanel {
 
@@ -61,7 +60,8 @@ public class PanelTickets extends JPanel {
 		textFieldNumTrans.setBounds(299, 139, 114, 20);
 		add(textFieldNumTrans);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setEditable(false);
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelTickets.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		lblTransaccion = new JLabel("N\u00BA Transacci\u00F3n:");

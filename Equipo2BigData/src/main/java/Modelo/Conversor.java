@@ -1,13 +1,16 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Conversor {
 	
 	public Conversor() {}
 	
 	public ListaProductos listaStringAProductos(ArrayList<String[]> listaString) {
+		if(listaString == null) {
+			return null;
+		}
 		ListaProductos listaP = new ListaProductos();
 		for(int i = 0; i<listaString.size(); i++ ) {
 			String[] arrayString = listaString.get(i);
@@ -38,7 +41,6 @@ public class Conversor {
 		ListaProductos listaP = new ListaProductos();
 		for(int i = 0; i<listaString.size(); i++ ) {
 			String[] arrayString = listaString.get(i);
-			System.out.println(arrayString[0]+arrayString[1]+arrayString[2]+arrayString[3]);
 			String nombre = arrayString[0];
 			double pCompra = Double.parseDouble(arrayString[1]);
 			String tipo = arrayString[2];

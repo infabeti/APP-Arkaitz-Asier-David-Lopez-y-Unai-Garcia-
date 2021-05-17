@@ -7,11 +7,13 @@ public class Actividad {
 	private int numTransaccion;
 	private Date fecha;
 	private String local;
+	private ListaProductos listaProductos;
 
 	public Actividad(int numTransaccion, Date fecha, String local) {
 		this.numTransaccion = numTransaccion;
 		this.fecha = fecha;
 		this.local = local;
+		this.listaProductos = new ListaProductos();
 	}
 
 	public int getNumTransaccion() {

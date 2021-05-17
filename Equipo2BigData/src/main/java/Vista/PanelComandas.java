@@ -1,25 +1,25 @@
 package Vista;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 
-import Controlador.ControladorPanelComandas;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.swing.text.NumberFormatter;
-import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.text.NumberFormatter;
+
+import Controlador.ControladorPanelComandas;
 
 public class PanelComandas extends JPanel {
 
@@ -155,8 +155,9 @@ public class PanelComandas extends JPanel {
 		textFieldNumTrans = new JTextField();
 		textFieldNumTrans.setBounds(185, 117, 114, 20);
 		add(textFieldNumTrans);
+		textFieldNumTrans.setEditable(false);
 		textFieldNumTrans.setColumns(10);
-		textFieldNumTrans.setText("0");
+		textFieldNumTrans.setText(Integer.toString(this.controladorPanelComandas.conseguirNumTrans()));
 		textFieldNumTrans.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		JLabel lblNumTrans = new JLabel("N\u00BA Transacci\u00F3n:");

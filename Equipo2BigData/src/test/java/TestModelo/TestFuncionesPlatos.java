@@ -1,18 +1,17 @@
 package TestModelo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import Modelo.FuncionesPlatos;
 import Modelo.ListaPlatos;
-import Modelo.ListaProductos;
 import Modelo.Modelo;
 import Modelo.Plato;
 import Modelo.Utiles;
-import Modelo.FuncionesPlatos;
 
 public class TestFuncionesPlatos {
 	

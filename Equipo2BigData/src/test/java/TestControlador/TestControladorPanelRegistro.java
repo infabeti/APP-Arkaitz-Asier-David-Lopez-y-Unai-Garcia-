@@ -11,16 +11,13 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import Controlador.Controlador;
-
 import Controlador.ControladorPanelRegistro;
-import principal.Conexion;
 import Modelo.ListaProductos;
 import Modelo.Modelo;
-
 import Modelo.Usuario;
-
 import Vista.PanelRegistro;
 import Vista.Vista;
+import principal.Conexion;
 
 public class TestControladorPanelRegistro {
 
